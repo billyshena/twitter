@@ -1,27 +1,29 @@
-<!-- navbar header -->
-<div class="navbar-header {{app.settings.navbarHeaderColor}}">
-    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
-        <i class="glyphicon glyphicon-cog"></i>
-    </button>
-    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
-        <i class="glyphicon glyphicon-align-justify"></i>
-    </button>
-    <!-- brand -->
-    <a href="#/" class="navbar-brand text-lt">
-        <h2 class="logo">Hetic</h2>
-    </a>
-    <!-- / brand -->
-</div>
-<!-- / navbar header -->
+
+
+<div class="row">
 
 <!-- navbar collapse -->
 <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
     <!-- buttons -->
     <div class="nav navbar-nav hidden-xs">
         <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
-            <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+            HeticTweet
         </a>
     </div>
     <!-- / buttons -->
-
+    <form style="margin-left:200px;" class="navbar-form navbar-form-sm navbar-left shift ng-pristine ng-valid ng-scope" ui-shift="prependTo" target=".navbar-collapse" role="search">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder ng-pristine ng-valid ng-touched" placeholder="Search projects..." aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-33-1702"><ul class="dropdown-menu ng-isolate-scope ng-hide" ng-show="isOpen()" ng-style="{top: position.top+'px', left: position.left+'px'}" style="display: block;;display: block;" role="listbox" aria-hidden="true" typeahead-popup="" id="typeahead-33-1702" matches="matches" active="activeIdx" select="select(activeIdx)" query="query" position="position">
+    <!-- ngRepeat: match in matches track by $index -->
+</ul>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </div>
+        </form>
 </div>
+</div>
+
+

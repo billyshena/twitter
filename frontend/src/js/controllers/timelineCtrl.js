@@ -1,18 +1,14 @@
 /**
- * Created by bshen on 12/11/14.
+ * Created by bshen on 02/12/14.
  */
-/**
- * Created by shen on 05/06/14.
- */
+
 'use strict';
 angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
-    '$scope', '$http',
-    function($scope, $http) {
+    '$scope', 'Logger',
+    function($scope, Logger) {
 
+        console.log('timelineCtrl fired');
 
-        $http.get('http://localhost:3000/home').then(function(data){
-            console.log(data);
-        })
 
 
     }

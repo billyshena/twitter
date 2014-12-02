@@ -9,8 +9,10 @@
  */
 'use strict';
 angular.module('app.controllers.home', []).controller('homeCtrl', [
-    '$scope',
-    function($scope) {
-        console.log('here');
+    '$scope', 'Logger',
+    function($scope, Logger) {
+
+
+
     }
 ]);

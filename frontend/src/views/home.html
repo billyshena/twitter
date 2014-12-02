@@ -1,28 +1,44 @@
 
-
-<!-- Background -->
+<div class="container">
+<!-- Background & Main wrapper -->
 <div class="bg">
     <div class="wrapper main-panel">
         <div class="row">
-            <div class="col-md-7 col-sm-10 col-xs-8">
+
+            <!-- homepage text -->
+            <div class="col-md-8 col-sm-12 col-xs-8" style="padding-left:40px;">
                 <h1 class="m-n h1 text-white">Bienvenue sur Twitter.</h1>
-                <p class="text-white h3 m-t">Connectez-vous à vos amis — et d'autres personnes fascinantes. Recevez des mises à jour instantanées sur les choses qui vous intéressent. Et regardez les événements se dérouler, en temps réel, sous tous les angles.</p>
+                <p class="text-white h3 m-t" id="home-text">Connectez-vous à vos amis — et d'autres personnes fascinantes. Recevez des mises à jour instantanées sur les choses qui vous intéressent. Et regardez les événements se dérouler, en temps réel, sous tous les angles.</p>
             </div>
 
-            <div class="col-md-1"></div>
+
 
             <!-- login panel -->
-            <div class="col-md-4 col-sm-10 col-xs-8">
-                <div class="panel padder-v item">
-                    <form class="login-form">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="panel padder-v item" >
+                    <form name="signin_form" class="login-form form-validation" novalidate>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Adresse email">
+                            <input  type="email"
+                                    class="form-control"
+                                    placeholder="Adresse email"
+                                    name="name"
+                                    ng-model="signin.name"
+                                    ng-minlength=3
+                                    ng-maxlength=20
+                                    required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Mot de passe">
+                            <input type="password"
+                                   class="form-control"
+                                   placeholder="Mot de passe"
+                                   ng-minlength="5"
+                                   max-length="100"
+                                   name="email"
+                                   ng-model="signin.email"
+                                   required>
                         </div>
 
-                        <button class="btn btn-info">Connexion</button>
+                        <button class="btn btn-info" ng-disabled="signin_form.$invalid">Connexion</button>
 
                     </form>
                 </div>
@@ -30,28 +46,48 @@
             <!-- /login panel -->
         </div>
 
+        <!-- register panel -->
         <div class="row">
-            <div class="col-md-7"></div>
-            <div class="col-md-1"></div>
-            <div class="col-md-4">
+            <div class="col-md-8 col-sm-12 col-xs-12"></div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="panel padder-v item">
                     <h3 style="text-align:center;margin-top:0px;">Nouveau sur twitter?</h3>
-                    <form class="login-form">
+                    <form class="login-form form-validation" name="signup_form" novalidate>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Nom complet">
+                            <input  type="text"
+                                    class="form-control"
+                                    placeholder="Nom complet"
+                                    ng-minlength="2"
+                                    ng-maxlength="20"
+                                    required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Adresse email">
+                            <input type="email"
+                                   class="form-control"
+                                   placeholder="Adresse email"
+                                   ng-minlength="5"
+                                   ng-maxlength="100"
+                                   required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Mot de passe">
+                            <input type="password"
+                                   class="form-control"
+                                   placeholder="Mot de passe"
+                                   ng-minlength="6"
+                                   required>
                         </div>
 
-                        <button class="btn btn-success">S'inscrire</button>
+                        <button class="btn btn-success"
+                                ng-disabled="signup_form.$invalid">S'inscrire</button>
 
+                                <button class="btn btn-danger" data-ui-sref="app.timeline">Go !</button>
                     </form>
                 </div>
             </div>
         </div>
+        <!-- /register panel -->
     </div>
+</div>
+<!-- /Main wrapper -->
+
 </div>

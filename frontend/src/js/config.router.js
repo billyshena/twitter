@@ -23,7 +23,7 @@ angular.module('app')
 
 
             // Send to login if the URL was not found
-            $urlRouterProvider.otherwise("app.home");
+            $urlRouterProvider.otherwise("app/home");
 
             $stateProvider
                 .state('app', {
@@ -35,6 +35,11 @@ angular.module('app')
                     url: "/home",
                     controller: 'homeCtrl',
                     templateUrl: appConfig.assetsUrl + 'views/home.html'
+                })
+                .state('app.timeline',{
+                    url: '/timeline',
+                    controller: 'timelineCtrl',
+                    templateUrl: appConfig.assetsUrl + 'views/timeline.html'
                 })
 
         }

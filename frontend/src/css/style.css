@@ -12,10 +12,12 @@
     background-position-y:100px;
     margin-top:-50px;
 }
-
+.timeline{
+    padding-left:50px;
+    padding-right:50px;
+}
 .main-panel{
-    width:960px;
-    margin:100px auto;
+    padding-top:160px;
 }
 
 .item{
@@ -180,7 +182,7 @@ a.bg-white:hover{
     color:white;
 }
 
-.app-header .fa{
+.navbar-btn{
     color:white;
 }
 
@@ -209,8 +211,10 @@ p.noItem{
     padding:20px;
 }
 .hbox .col{
-    display:block;
-    margin-right:250px;
+    display: table-cell;
+    float: none;
+    height: 100%;
+    vertical-align: top;
 }
 
 @media (min-width: 768px){
@@ -631,5 +635,18 @@ button.toast-close-button {
     #toast-container > div {
         padding: 15px 15px 15px 50px;
         width: 25em
+    }
+}
+
+
+@media all and (max-width: 768px){
+    .bg{
+        background-position-y:0px;
+    }
+}
+
+@media all and (max-width:990px){
+    #home-text{
+        display:none;
     }
 }
