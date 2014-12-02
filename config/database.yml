@@ -5,10 +5,14 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: mysql2
+  host: localhost
+  username: root
+  password: root
+  port: 8889
   pool: 5
   timeout: 5000
-
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
 development:
   <<: *default
   database: db/development.sqlite3
@@ -18,7 +22,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: tw_dev
 
 production:
   <<: *default

@@ -55,5 +55,4 @@ Rails.application.routes.draw do
   #   end
 
 
-  root "application#index"
 end
