@@ -1,0 +1,24 @@
+<!-- HOMEPAGE: School list -->
+<div class="page-home">
+    <div class="panel-schools animated fadeInRight">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Valider l'email
+            </div>
+            <div class="panel-body">
+
+                <form data-ng-submit="sendValidationToken()">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="j.dupont" data-ng-model="user.email">
+                        <span class="input-group-addon">@{{school.domain}}</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="9" data-ng-model="user.type">
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary" data-ng-disabled="sendingEmail">Envoyer l'email de vérification</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

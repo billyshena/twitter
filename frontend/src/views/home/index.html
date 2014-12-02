@@ -1,0 +1,39 @@
+<!-- HOMEPAGE: School list -->
+<div class="page-home">
+    <div class="panel-schools">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control input-info" placeholder="Recherchez votre école">
+                    </div>
+
+                    <div class="col-md-4">
+                        <button class="btn btn-info" style="background-color:#019875;border-color:#019875;">
+                            <i class="fa fa-plus"></i>
+                            Soumettre une école
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <tbody>
+                        <tr data-ng-repeat="school in schools" data-ui-sref="validate({id:school.id})" class="animated fadeIn">
+                            <td class="school">
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        {{school.name}}
+                                    </div>
+                                    <div class="col-md-1">
+                                        <a href="" class="target-school"><i class="fa fa-angle-right"></i></a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+src/vendors/*
+node_modules/*
+.idea/*
+.tmp
+.DS_Store
+lib-cov
+*.seed
+*.log
+*.pid
+npm-debug.log

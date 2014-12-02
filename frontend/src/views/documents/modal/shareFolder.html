@@ -1,0 +1,38 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title">Partager ce dossier</h3>
+</div>
+<div class="modal-body">
+    <p data-i18n="choose-share-folder"></p>
+
+    <div class="permission row" ng-show="!showChoices">
+        <div class="col-md-3 main" data-ng-click="sharePublicOrPrivate('public',folder)">
+            <a href="javascript:;" class="btn btn-w-md btn-info btn-direction btn-down">Public</a>
+            <i class="fa fa-globe" style="color:#2980B9;font-size:8em;"></i>
+        </div>
+
+        <div class="col-md-3 main">
+            <a href="javascript:;" class="btn btn-w-md btn-primary btn-direction btn-down">Classe ou Groupe</a>
+            <i class="fa fa-users" style="font-size: 8em; color:#279796;"></i>
+            <br>
+            <select class="form-control ng-pristine ng-valid" data-ng-model="team" data-ng-options="team.name for team in teams" ng-change="ok('team',file.id,team.id)" style=""><!-- ngIf: !hasTeam --><option value="0">Promotion 2015 - 3A</option><option value="1">Promotion 2017 - 1A</option><option value="2">Promotion 2016 - 2A</option><option value="" ng-if="!hasTeam" class="ng-scope">Classe...</option><!-- end ngIf: !hasTeam --></select>
+        </div>
+
+        <div class="col-md-3 main ng-click-active" data-ng-click="sharePublicOrPrivate('private',folder)">
+            <a href="javascript:;" class="btn btn-w-md btn-danger btn-direction btn-down">Privé</a>
+            <i class="fa fa-shield" style="color:#c9411b; font-size: 8em"></i>
+        </div>
+
+        <div class="col-md-3 main" data-ng-click="showChoices = true" ng-show="!showChoices">
+            <a href="javascript:;" class="btn btn-w-md btn-warning btn-direction btn-down">Avancé</a>
+            <i class="fa fa-gears" style="color:#eec95a; font-size: 8em;"></i>
+        </div>
+    </div>
+
+    <br/><br/>
+
+    <input id="allfile" type="checkbox" name="allfile" checked=""> <span data-i18n="all-files"></span>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Annuler</button>
+</div>

@@ -1,0 +1,49 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm page-documents" id="widgets">
+
+    <div class="bg-light lter b-b wrapper-md ng-scope">
+        <h1 class="m-n font-thin h3">Mes groupes</h1>
+    </div>
+    <br />
+    <div class="col-widgets">
+
+        <div class="wrapper">
+
+            <div class="row">
+
+
+                <!-- red -->
+                <div class="col-md-4" ng-repeat="team in teams | orderBy: '-updatedAt'" data-ui-sref="app.viewTeam({id: team.id})">
+                    <div class="panel b-a">
+
+                        <div class="bg-success team-bg">
+                            <a href="javascript:;" class="team-name">{{team.name}}</a>
+                        </div>
+
+                        <div class="hbox text-center b-b b-light text-sm">
+                            <a href class="col padder-v text-muted b-r b-light">
+                                <i class="fa fa-user block m-b-xs fa-2x"></i>
+                                <span>{{team.teachers.length}} professeurs</span>
+                            </a>
+                            <a href class="col padder-v text-muted b-r b-light">
+                                <i class="fa fa-graduation-cap block m-b-xs fa-2x"></i>
+                                <span>{{team.users.length}} étudiants</span>
+                            </a>
+                            <a href class="col padder-v text-muted b-r b-light">
+                                <i class="fa fa-sitemap block m-b-xs fa-2x"></i>
+                                <span>{{team.teams.length}} groupe</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <center>
+                <button class="btn btn-default btn-lg" style="margin-top:50px;">Créer une classe</button>
+            </center>
+
+        </div>
+    </div>
+
+</div>

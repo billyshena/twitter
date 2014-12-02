@@ -1,0 +1,31 @@
+
+<div id="nav-wrapper">
+    <ul id="nav"
+        data-collapse-nav
+        data-slim-scroll
+        data-highlight-active>
+        <li><a data-ui-sref="timeline"> <i class="fa fa-tachometer"></i><span data-i18n="dashboard"></span></a></li>
+        <li><a data-ui-sref="studentCourse"> <i class="fa fa-pencil-square-o"></i><span data-i18n="courses"></span></a></li>
+        <li><a data-ui-sref="message.inbox"> <i class="fa fa-envelope-o"></i><span data-i18n="messages"></span></a></li>
+        <li><a data-ui-sref="notifications"> <i class="fa fa-bell"></i><span data-i18n="notifications"></span></a></li>
+        <li><a data-ui-sref="adminSchedule"> <i class="fa fa-calendar"></i><span data-i18n="schedule"></span></a></li>
+        <li><a data-ui-sref="adminAbsence"> <i class="fa fa-briefcase"></i><span data-i18n="absence"></span></a></li>
+        <li><a data-ui-sref="files"> <i class="fa fa-cloud-download"></i><span data-i18n="documents"></span></a></li>
+        <li><a data-ui-sref="users"> <i class="fa fa-users"></i><span data-i18n="users"></span></a></li>
+        <li><a data-ui-sref="subjects"> <i class="fa fa-book"></i><span data-i18n="subjects"></span></a></li>
+        <li><a data-ui-sref="teachers"> <i class="fa fa-user"></i><span data-i18n="teachers"></span></a></li>
+        <li><a data-ui-sref="allClasses"> <i class="fa fa-flask"></i><span data-i18n="classes"></span></a></li>
+        <li><a data-ui-sref="adminRoom"> <i class="fa fa-building-o"></i><span data-i18n="rooms">Rooms</span> </a></li>
+        <li data-ng-controller="playerCtrl">
+            <a href="javascript:;" id="player">
+                <marquee>{{title}}</marquee><br />
+                <audio media-player="player" id="playlist"></audio>
+                <span><i class="fa fa-headphones"></i></span>
+                <span data-ng-click="player.play(0)"><i class="fa fa-fast-backward"></i></span>
+                <span data-ng-show="player.playing" data-ng-click="player.pause()"><i class="fa fa-pause"></i></span>
+                <span data-ng-show="!player.playing" data-ng-click="player.play()"><i class="fa fa-play"></i></span>
+                <span data-ng-click="player.next(true)"><i class="fa fa-fast-forward"></i></span>
+            </a>
+        </li>
+    </ul>
+</div>

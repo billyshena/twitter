@@ -1,0 +1,80 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <div class="bg-light lter b-b wrapper-md ng-scope">
+        <h1 class="m-n font-thin h3">Liste de vos cours</h1>
+    </div>
+    <div class="col">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-4 course-item-panel animated fadeIn"
+                     ng-repeat="course in courses">
+                    <div class="panel panel-default">
+                        <div class="pull-right">
+                            <div class="dropdown" dropdown>
+                                <a href="javascript:;" id="course-edit" class="dropdown-toggle" dropdown-toggle>
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <!-- dropdown -->
+                                <div class="dropdown-menu animated fadeInDown">
+                                    <div class="panel bg-white">
+                                        <div class="list-group">
+                                            <a href class="media list-group-item" data-ng-click="open('courseItem', course, 'content')">
+                                                <i class="fa fa-book"></i> Ajouter un support
+                                            </a>
+                                            <a href class="media list-group-item" data-ng-click="open('courseItem', course, 'exercise')">
+                                                <i class="fa fa-file-text-o"></i> Ajouter un exercice
+                                            </a>
+                                            <a href class="media list-group-item" data-ng-click="open('courseItem', course, 'qcm')">
+                                                <i class="fa fa-question"></i> Ajouter un QCM
+                                            </a>
+                                            <a href class="media list-group-item" data-ng-click="remove('removeCourse', course)">
+                                                <i class="fa fa-times"></i> Supprimer
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="clearfix text-center m-t">
+                                <div class="inline">
+                                    <a data-ui-sref="app.viewCourse({id: course.id })"
+                                       class="m-n font-thin h4">{{ course.name }}</a>
+                                    <br/>
+                                    <br/>
+                                    <br ng-if="course.subjects.length == 0"/>
+                                    <span class="label label-info"
+                                          ng-repeat="subject in course.subjects"
+                                          style="margin:5px;">
+                                        {{ subject.name }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer bg-info text-center no-padder">
+                            <div class="row no-gutter">
+                                <div class="col-xs-4 course-item">
+                                    <div class="wrapper-item">
+                                        <span class="h3 block text-white">{{ course.data.contents }}</span>
+                                        <small class="text-muted">Supports</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 course-item">
+                                    <div class="wrapper-item">
+                                        <span class="h3 block text-white">{{ course.data.exercises }}</span>
+                                        <small class="text-muted">Exercices</small>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 course-item">
+                                    <div class="wrapper-item">
+                                        <span class="h3 block text-white">{{ course.data.quiz }}</span>
+                                        <small class="text-muted">QCM</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

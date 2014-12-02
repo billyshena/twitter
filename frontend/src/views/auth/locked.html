@@ -1,0 +1,27 @@
+<div class="page page-lock">
+
+    <div class="lock-centered clearfix">
+        <div class="lock-container">
+            <!-- <div ui-time class="lock-time"></div> -->
+            
+            <section class="lock-box">
+                <div class="lock-user">{{user.firstName}} {{user.lastName}}</div>
+                <div class="lock-img"><img src="{{user.avatar}}" alt=""></div>
+                <div class="lock-pwd">
+                    <form data-ng-submit="lockScreen(user.email,lockPass)">
+                        <div class="form-group">
+                            <input data-ng-model="lockPass"
+                                   type="password"
+                                   data-i18n="i18n-placeholder"
+                                   placeholder="password"
+                                   class="form-control">
+                            <a href="#/" class="btn-submit">
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </form>
+                </div>            
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title">{{file.name}}</h3>
+</div>
+<div class="modal-body">
+
+    <video controls autoplay width="100%">
+        <source ng-src="{{trustSrc(data.url)}}" type="{{file.mimeType}}" />
+        <span data-i18n="update-browser"></span>
+    </video>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" data-ng-click="cancel()">Fermer</button>
+</div>

@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title">Propriétés</h3>
+</div>
+
+<div class="modal-body">
+    <table class="table">
+        <tr>
+            <td>Nom</td>
+            <td><b>{{folder.name}}</b></td>
+        </tr>
+        <tr>
+            <td>Crée le</td>
+            <td><b>{{folder.createdAt | date:'dd/MM/yyyy HH:mm'}}</b></td>
+        </tr>
+        <tr>
+            <td>Dernière modification</td>
+            <td><b>{{folder.updatedAt | date:'dd/MM/yyyy HH:mm'}}</b></td>
+        </tr>
+        <tr>
+            <td>Permission</td>
+            <td><b style="text-transform: capitalize">{{folder.permission}}</b></td>
+        </tr>
+        <tr>
+            <td>Contenu</td>
+            <td><b>{{folder.nbFolders}} dossier(s) et {{folder.files.length}} fichiers</b></td>
+        </tr>
+    </table>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-warning" data-ng-click="cancel()">Fermer</button>
+</div>

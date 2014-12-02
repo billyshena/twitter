@@ -1,0 +1,105 @@
+
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <div class="bg-light lter b-b wrapper-md ng-scope">
+        <h1 class="m-n font-thin h3">Création d'un cours</h1>
+    </div>
+    <div class="col">
+        <div class="wrapper">
+            <tabset class="tab-container" ng-init="steps={percent:0, step1:true, step2:false }">
+                <tab heading="Informations du cours" active="steps.step1" select="steps.percent=10">
+                    <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+                    <form name="step1" class="form-validation">
+
+                        <!-- course name -->
+                        <p>Nom du cours:*</p>
+                        <input type="text"
+                               name="name"
+                               placeholder="ex: Cours sur les équations"
+                               class="form-control"
+                               ng-model="course.name"
+                               minLength="5"
+                               maxLength="100"
+                               required
+                               >
+
+                        <!-- course content -->
+                        <p class="m-t">Description:</p>
+                        <textarea
+                                class="form-control"
+                                rows="6"
+                                name="content"
+                                ng-model="course.content"
+                                minLength="2"
+                                maxLength="500"
+                                placeholder="Ce cours introduit les équations du second degrès"
+                                ></textarea>
+
+                        <!-- course subjects -->
+                        <p class="m-t">Matières:*</p>
+                        <tags-input
+                                ng-model="course.subjects"
+                                display-property="name"
+                                min-tags="1"
+                                max-tags="10"
+                                on-tag-added="course.subjects.length == 0 ? steps.percent = 0 : steps.percent = 50"
+                                on-tag-removed="course.subjects.length == 0 ? steps.percent = 0 : steps.percent = 50"
+                                placeholder="ex: Maths">
+                            <auto-complete source="loadSubjects($query)"></auto-complete>
+                        </tags-input>
+
+                        <div class="m-t">
+                            <button type="submit"
+                                    ng-disabled="step1.$invalid"
+                                    class="btn btn-default btn-rounded"
+                                    ng-click="steps.step2=true">Suivant</button>
+                        </div>
+                    </form>
+                </tab>
+                <tab heading="Validation" disabled="step1.$invalid" active="steps.step2" select="steps.percent=50">
+                    <form name="step2" class="form-validation">
+                        <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+                        <p>Protégez votre cours (le mot de passe n'est pas obligatoire)</p>
+
+                        <!-- course password -->
+                        <input
+                                type="password"
+                                minLength="6"
+                                maxLength="100"
+                                name="password"
+                                class="form-control"
+                                placeholder="Mot de passe"
+                                ng-model="course.password"
+                                >
+
+                        <!-- course confirm password -->
+                        <input
+                                type="password"
+                                minLength="6"
+                                maxLength="100"
+                                name="password"
+                                class="form-control m-t"
+                                placeholder="Répétez le mot de passe"
+                                ng-model="course.confirmPassword"
+                                >
+                        <hr/>
+
+                        <!-- course picture -->
+<!--                        <p>Ajoutez une photo au cours</p>-->
+
+
+                        <!-- create course action -->
+                        <div class="m-t m-b">
+                            <button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+                            <button type="submit"
+                                    ng-disabled="step2.$invalid"
+                                    class="btn btn-default btn-rounded"
+                                    ng-click="create(course)">Créer</button>
+                        </div>
+                    </form>
+                </tab>
+            </tabset>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,134 @@
+<!-- list -->
+<ul class="nav">
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+        <span translate="aside.nav.HEADER">Navigation</span>
+    </li>
+    <li>
+        <a data-ui-sref="app.timeline" class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+            <i class="fa fa-tachometer"></i>
+            <span class="font-bold" translate="aside.nav.DASHBOARD">Timeline</span>
+        </a>
+
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="app.documents">
+            <i class="fa fa-cloud-download"></i>
+            <span class="font-bold" translate="aside.nav.CALENDAR">Documents</span>
+        </a>
+    </li>
+
+
+    <!-- course -->
+    <li>
+        <a href class="auto">
+          <span class="pull-right text-muted">
+            <i class="fa fa-fw fa-angle-right text"></i>
+            <i class="fa fa-fw fa-angle-down text-active"></i>
+          </span>
+            <i class="fa fa-edit"></i>
+            <span class="font-bold">Cours & modules</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li>
+                <a data-ui-sref="app.newCourse">
+                    <span>Créer un cours</span>
+                </a>
+            </li>
+            <li>
+                <a data-ui-sref="app.courses">
+                    <span>Mes cours</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!-- /course -->
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.mail.list">
+            <i class="fa fa-calendar"></i>
+            <span class="font-bold" translate="aside.nav.EMAIL">Agenda</span>
+        </a>
+    </li>
+    <li>
+        <a href class="auto">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active"></i>
+      </span>
+            <i class="fa fa-th"></i>
+            <span class="font-bold">Widgets</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li class="nav-sub-header">
+                <a href>
+                    <span>Apps</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="apps.note">
+                    <span>Note</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="apps.contact">
+                    <span>Contacts</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.weather">
+                    <span>Weather</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- groupes -->
+    <li>
+        <a href class="auto">
+          <span class="pull-right text-muted">
+            <i class="fa fa-fw fa-angle-right text"></i>
+            <i class="fa fa-fw fa-angle-down text-active"></i>
+          </span>
+            <i class="fa fa-slideshare"></i>
+            <span class="font-bold">Groupes</span>
+        </a>
+        <ul class="nav nav-sub dk">
+            <li>
+                <a data-ui-sref="app.newTeam">
+                    <span>Créer un groupe</span>
+                </a>
+            </li>
+            <li>
+                <a data-ui-sref="app.teams">
+                    <span>Mes groupes</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!-- /groupes -->
+
+
+    <li class="line dk hidden-folded"></li>
+
+    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+        <span translate="aside.nav.your_stuff.YOUR_STUFF">Your Stuff</span>
+    </li>
+    <li>
+        <a ui-sref="app.profile">
+            <i class="icon-user icon text-success-lter"></i>
+            <b class="badge bg-success pull-right">30%</b>
+            <span translate="aside.nav.your_stuff.PROFILE">Profile</span>
+        </a>
+    </li>
+    <li>
+        <a ui-sref="app.docs">
+            <i class="icon-question icon"></i>
+            <span translate="aside.nav.your_stuff.DOCUMENTS">Documents</span>
+        </a>
+    </li>
+</ul>
+<!-- / list -->

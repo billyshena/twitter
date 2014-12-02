@@ -1,0 +1,24 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title">Diaporama</h3>
+</div>
+<div class="modal-body">
+
+    <ul rn-carousel rn-carousel-buffered rn-carousel-index="slideIndex" rn-carousel-control class="carousel image">
+        <li ng-repeat="image in images"  ng-click="toggle(image)">
+            <img ng-src="{{appUrl}}/download/documents/{{image.id}}/{{token}}"/>
+
+            <div class="layer"><br />{{ image.name }} &nbsp;
+                <i class="fa fa-lock permission" data-ng-show="file.permission == 'private'"></i>
+                <i class="fa fa-globe permission" data-ng-show="file.permission == 'public'"></i>
+                <i class="fa fa-users permission" data-ng-show="file.permission != 'private' && file.permission != 'public'"></i>
+                &nbsp;
+                <a href="{{appUrl}}/download/documents/{{image.id}}/{{token}}">Télécharger l'image</a>
+            </div>
+        </li>
+    </ul>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" data-ng-click="cancel()">Fermer</button>
+</div>

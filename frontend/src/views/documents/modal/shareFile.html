@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title" data-i18n="share-file"></h3>
+</div>
+<div class="modal-body">
+    <p data-i18n="choose-share-file"></p>
+
+    <div class="permission row">
+
+        <div class="col-md-4 main" data-ng-click="ok('public')">
+            <p data-i18n="public"></p>
+            <img src="/images/permissions/all.png" alt="public"/>
+        </div>
+
+        <div class="col-md-4 main">
+            <p data-i18n="group-or-class"></p>
+            <img src="/images/permissions/friends.png" alt="friends"/>
+            <br />
+            <select class="form-control"
+                    data-ng-model="file.permission"
+                    data-ng-options="team.name for team in teams"
+                    ng-change="ok()">
+            </select>
+        </div>
+
+        <div class="col-md-4 main" data-ng-click="ok('private')">
+            <p data-i18n="private"></p>
+            <img src="/images/permissions/private.png" alt="private"/>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()" data-i18n="cancel"></button>
+</div>

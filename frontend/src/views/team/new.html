@@ -1,0 +1,69 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm page-documents">
+
+    <div class="bg-light lter b-b wrapper-md ng-scope">
+        <h1 class="m-n font-thin h3">Créer un groupe</h1>
+    </div>
+
+    <div class="col">
+        <div class="wrapper">
+
+
+            <div class="col-sm-12">
+
+                <form data-ng-submit="newTeam()">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Créer un groupe
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label>Nom du groupe</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Nom du groupe"
+                                       min
+                                       data-ng-model="team.name">
+                            </div>
+                            <div class="form-group">
+                                <label>Inviter des étudiants</label>
+                                <tags-input
+                                        ng-model="team.students"
+                                        display-property="fullName"
+                                        replace-spaces-with-dashes="false"
+                                        placeholder="Cherchez des étudiants">
+                                    <auto-complete source="loadUsers($query,9)"></auto-complete>
+                                </tags-input>
+                            </div>
+                            <div class="form-group">
+                                <label>Inviter des professeurs</label>
+                                <tags-input
+                                        ng-model="team.teachers"
+                                        display-property="fullName"
+                                        replace-spaces-with-dashes="false"
+                                        placeholder="Cherchez des professeurs">
+                                    <auto-complete source="loadUsers($query,89)"></auto-complete>
+                                </tags-input>
+                            </div>
+                            <div class="form-group">
+                                <label>Agenda Google</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Agenda Google"
+                                       min
+                                       data-ng-model="team.googleAgenda">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Créer</button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

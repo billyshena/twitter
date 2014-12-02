@@ -1,0 +1,118 @@
+<!-- Custom styles only applied to this page -->
+<style>
+    @media (min-width: 768px){
+        .modal-dialog{
+            width:700px;
+        }
+    }
+    .btn{
+        padding:4px 9px;
+        font-size:12px;
+    }
+    .datepicker .btn-default{
+        text-transform: uppercase;
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title">Ajout
+        <span ng-if="course.section == 'content' ">d'un support de cours</span>
+        <span ng-if="course.section == 'exercise' ">d'un exercice</span>
+        <span ng-if="course.section == 'qcm' ">d'un QCM</span>
+    </h3>
+</div>
+
+<form data-ng-submit="ok()">
+    <div class="modal-body">
+
+        <!-- course name -->
+        <label for="fname">Nom</label>
+        <input id="fname"
+               class="form-control"
+               ng-focus-input="true"
+               value="{{data.newFolderName}}"
+               data-ng-model="courseItem.name"/>
+        <!-- /course name -->
+
+        <!-- courseItem content -->
+        <div class="editor">
+            <div text-angular ng-model="courseItem.content" class="btn-groups"></div>
+        </div>
+        <!-- /courseItem content -->
+
+        <!-- add handin -->
+        <button
+                class="btn m-b-xs btn-sm btn-success btn-addon m-t"
+                data-ng-click="isOpen = !isOpen"
+                ng-show="course.section == 'exercise' ">
+            <i class="fa fa-plus"></i>
+            Activer un dépôt
+        </button>
+
+
+        <div class="row" ng-show="isOpen">
+
+            <!-- handin starting date -->
+            <div class="col-md-6">
+                Date début du rendu
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           datepicker-popup="{{format}}"
+                           ng-model="dt"
+                           is-open="opened"
+                           min-date="minDate"
+                           datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)"
+                           ng-required="true"
+                           current-text="Aujourd'hui"
+                           clear-text="Vider"
+                           close-text="Fermer" />
+                  <span class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default"
+                            ng-click="open($event)"
+                            id="courseItem-calendar">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                  </span>
+                </p>
+            </div>
+            <!-- /handin starting date -->
+
+            <!-- handin ending date -->
+            <div class="col-md-6">
+                Date de fin du rendu
+                <p class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           datepicker-popup="{{format}}"
+                           ng-model="dte"
+                           is-open="openedEnd"
+                           min-date="minDate"
+                           datepicker-options="dateOptions"
+                           date-disabled="disabled(date, mode)"
+                           current-text="Aujourd'hui"
+                           clear-text="Vider"
+                           close-text="Fermer" />
+                  <span class="input-group-btn">
+                    <button type="button"
+                            class="btn btn-default"
+                            ng-click="openEnd($event)"
+                            id="courseItem-calendar">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                  </span>
+                </p>
+            </div>
+            <!-- /hadin ending date -->
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-success" type="button" data-ng-click="create(courseItem)">Enregistrer</button>
+        <button class="btn btn-danger" data-ng-click="cancel()">Annuler</button>
+    </div>
+</form>

@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default viewer" role="navigation" style="width:105%">
+    <ul class="nav navbar-nav">
+        <li><a href="javascript:;"><button class="btn btn-primary" ng-click="goPrevious()"><</button></a></li>
+        <li><a href="javascript:;"><button class="btn btn-primary" ng-click="goNext()">></button></a></li>
+
+        <li><a href="javascript:;"><button class="btn btn-primary" ng-click="zoomIn()">+</button></a></li>
+        <li><a href="javascript:;"><button class="btn btn-primary" ng-click="zoomOut()">-</button></a></li>
+
+        <li><a href="javascript:;"><button class="btn btn-primary" ng-click="rotate()">90</button></a></li>
+
+        <li class="pageNum"><a href="javascript:;">
+
+            <span>Page: </span>
+            <input type="text" min=1 ng-model="pageNum" class="form-control">
+            <span> / {{pageCount}}</span>
+        </a></li>
+
+        <li><a href="{{pdfUrl}}"><button class="btn btn-primary">Télécharger</button></a></li>
+
+    </ul>
+</nav>
+
+<div id="pdf-loader" ng-if="!pageCount">
+    <img ng-src="{{assetsUrl}}img/loader.gif" />
+</div>
+
+<canvas id="pdf-canvas" class="rotate0"></canvas>

@@ -1,0 +1,64 @@
+<div class="page-forgot">
+
+    <div class="signin-header">
+        <div class="container text-center">
+            <section class="logo">
+                <a href="#/">Scoledge</a>
+            </section>
+        </div>
+    </div>
+
+
+    <div data-ng-show="!validToken">
+        <div class="info text-center">
+            <h2><span data-i18n="password-redefinition"></span></h2>
+            <div class="callout callout-danger">
+                <p data-i18n="invalid-token"></p>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-show="validToken">
+        <div class="info text-center">
+            <h2><span data-i18n="password-redefinition"></span></h2>
+            <p class="text-small" data-i18n="choose-new-password"></p>
+        </div>
+
+        <div class="form-container">
+
+            <form class="form-horizontal" name="redefinePasswordForm" data-ng-submit="redefine()">
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                        <input type="password"
+                               class="form-control"
+                               data-i18n="i18n-placeholder"
+                               placeholder="password"
+                               data-ng-model="user.password"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                        <input type="password"
+                               class="form-control"
+                               data-i18n="i18n-placeholder"
+                               placeholder="confirm-password"
+                               data-ng-model="user.password2"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-lg btn-block btn-primary">
+                        <span data-i18n="re-init"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

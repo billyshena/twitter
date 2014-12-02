@@ -1,0 +1,299 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm page-documents">
+
+    <div class="bg-light lter b-b wrapper-md ng-scope">
+        <h1 class="m-n font-thin h3">Documents</h1>
+    </div>
+    <br />
+    <div class="col">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-lg-6">
+
+                    <form class="b-a b-2x b-dashed wrapper-lg bg-white text-center m-b"
+                          action="/file/upload" class="dropzone" upload>
+                        <div class="dz-default dz-message">Mettre en ligne des fichiers</div>
+                        <input type="hidden" value="{{owner}}" name="owner" id="owner"/>
+                        <input type="hidden" value="{{parent}}" name="parent" id="parent"/>
+                    </form>
+
+                </div>
+
+                <!-- OPTIONS -->
+                <div class="col-lg-6">
+                    <form data-ng-submit="createFolder()" class="add-folder" role="form">
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Nouveau dossier"
+                                   min
+                                   data-ng-model="folder.name">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit">Créer</button>
+                                              </span>
+                        </div>
+                    </form>
+                    <br />
+
+
+                    <input type="hidden" data-ng-model="typeSort" />
+                        <span tooltip="Trier par nom de A à Z">
+                            <button class="btn btn-info"
+                                    data-ng-click="sort('asc')">
+                                <span data-i18n="sort"></span> &nbsp;<i class="fa fa-arrow-down"></i>
+                            </button>
+                        </span>
+
+                        <span tooltip="Trier par nom dans l'ordre inverse">
+                            <button class="btn btn-info"
+                                    data-ng-click="sort('desc')">
+                                <span data-i18n="sort"></span> &nbsp;<i class="fa fa-arrow-up"></i>
+                            </button>
+                        </span>
+
+                        <span tooltip="Afficher uniquement les images">
+                            <button class="btn btn-warning"
+                                    data-ng-click="sort('image')">
+                                <i class="fa fa-camera"></i>
+                            </button>
+                        </span>
+
+                        <span tooltip="Afficher uniquement les vidéos">
+                            <button class="btn btn-danger"
+                                    data-ng-click="sort('video')">
+                                <i class="fa fa-film"></i>
+                            </button>
+                        </span>
+
+                        <span tooltip="Afficher uniquement les fichiers audios">
+                            <button class="btn btn-primary"
+                                    data-ng-click="sort('audio')">
+                                <i class="fa fa-headphones"></i>
+                            </button>
+                        </span>
+
+                        <span tooltip="Afficher uniquement les fichiers PDF">
+                            <button class="btn btn-success"
+                                    data-ng-click="sort('pdf')">
+                                <i class="fa fa-file-text-o"></i>
+                            </button>
+                        </span>
+
+                        <span tooltip="Tout afficher">
+                            <button class="btn btn-orange" data-ng-click="sort()">
+                                <span data-i18n="all">Tous</span>
+                            </button>
+                        </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- USER DOCUMENTS TAB -->
+                    <tabset>
+                        <tab heading="Vos documents">
+
+                            <!-- BREADCRUMBS -->
+                            <ul class="breadcrumb bg-white">
+                                <li data-ng-repeat="fname in pathName"><i class="fa fa-chevron-right"></i><a
+                                    href="javascript:;">
+                                    {{fname}} </a>
+                                </li>
+                            </ul>
+                            <!-- /BREADCRUMBS -->
+
+                            <!-- BACK FOLDER -->
+                            <div class="fd animated fadeInUp"
+                                 data-ng-show="parent"
+                                 data-ng-click="back()">
+                                <div class="fIcon sprite-folder-home"></div>
+                                Retour
+                            </div>
+
+                            <!-- FOREACH FOLDER -->
+                            <div class="fd"
+                                 data-ng-repeat="folder in folders | filter:typeSort"
+                                 drop="folder"
+                                 dropStyle="sprite-folder-open">
+
+                                <!-- FOLDER ICON DEPENDING ON THE NAME -->
+                                <div class="fIcon {{folder.icon}}"
+                                     data-ng-click="loadFolder(folder)">
+                                    <i class="fa fa-lock permission" data-ng-show="folder.permission == 'private'"></i>
+                                    <i class="fa fa-globe permission" data-ng-show="folder.permission == 'public'"></i>
+                                    <i class="fa fa-users permission"
+                                       data-ng-show="folder.permission != 'private' && folder.permission != 'public'"></i>
+                                </div>
+
+
+
+                                <div class="dropdown" dropdown>
+                                    <a href class="dropdown-toggle" dropdown-toggle>
+                                        {{folder.name}}
+                                    </a>
+                                    <!-- dropdown -->
+                                    <div class="dropdown-menu animated fadeInDown">
+                                        <div class="panel bg-white">
+                                            <div class="list-group">
+                                                <a href class="media list-group-item" data-ng-click="open('renameFolder', folder)">
+                                                    <i class="fa fa-edit"></i> Renommer
+                                                </a>
+                                                <a href class="media list-group-item" data-ng-click="open('shareFolder', folder)">
+                                                    <i class="fa fa-share"></i> Partager
+                                                </a>
+                                                <a href class="media list-group-item" data-ng-click="open('propertiesFolder', folder)">
+                                                    <i class="fa fa-cog"></i> Propriétés</a>
+                                                </a>
+                                                <a href class="media list-group-item" data-ng-click="open('removeFolder', folder)">
+                                                    <i class="fa fa-times"></i> Supprimer
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- / dropdown -->
+                            </div>
+
+                            <!-- FOREACH FILES -->
+                            <div class="fd"
+                                 data-ng-repeat="file in files | filter:typeSort"
+                                 drag="file"
+                                 data-ng-controller="fileCtrl">
+
+                                <!-- FOLDER ICON DEPENDING ON THE NAME -->
+                                <div class="fIcon {{file.icon}}"
+                                     data-ng-click="preview(file)"
+                                     >
+
+                                    <i class="fa fa-lock permission" data-ng-show="file.permission == 'private'"></i>
+                                    <i class="fa fa-globe permission" data-ng-show="file.permission == 'public'"></i>
+                                    <i class="fa fa-users permission"
+                                       data-ng-show="file.permission != 'private' && file.permission != 'public'"></i>
+                                </div>
+
+                                <div class="dropdown" dropdown>
+                                    <a href class="dropdown-toggle" dropdown-toggle>
+                                        <p data-ng-show="file.name.length < 16">{{file.name}}</p>
+                                        <p data-ng-show="file.name.length > 15">{{file.name.substring(0,15)}}...</p>
+                                    </a>
+                                    <!-- dropdown -->
+                                    <div class="dropdown-menu animated fadeInDown">
+                                        <div class="panel bg-white">
+                                            <div class="list-group">
+                                                <a class="media list-group-item" href="javascript:;" data-ng-click="download(file)">
+                                                    <i class="fa fa-download"></i> Télécharger
+                                                </a>
+                                                <!--                                    <li><a href="javascript:;" data-ng-click="link('linkCourse',file)"><i class="fa fa-file-o"></i>
+                                                                                        <span data-i18n="linkc"></span></a></li>-->
+                                                <a class="media list-group-item" href="javascript:;" data-ng-click="openFile('renameFile', file)">
+                                                    <i class="fa fa-edit"></i> Renommer
+                                                </a>
+                                                <a class="media list-group-item" href="javascript:;" data-ng-click="openFile('shareFile', file)">
+                                                    <i class="fa fa-share"></i> Partager
+                                                </a>
+                                                <a class="media list-group-item" href="javascript:;" data-ng-click="openFile('qrFile', file)">
+                                                    <i class="fa fa-qrcode"></i> Lien de téléchargement
+                                                </a>
+                                                <a class="media list-group-item" href="javascript:;" data-ng-click="openFile('propertiesFile', file)">
+                                                    <i class="fa fa-cog"></i> Propriétés
+                                                </a>
+
+                                                <a class="media list-group-item" href="javascript:;" data-ng-click="openFile('removeFile', file)">
+                                                    <i class="fa fa-times"></i> Supprimer
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- / dropdown -->
+                            </div>
+                        </tab>
+                        <tab heading="Documents partagés">
+
+                            <div class="row">
+                                <!-- BREADCRUMBS -->
+                                <ul class="breadcrumb">
+                                    <li data-ng-repeat="fname in sharedPathName"><i class="fa fa-chevron-right"></i><a
+                                            href="javascript:;">
+                                        {{fname}} </a></li>
+                                </ul>
+                                <!-- /BREADCRUMBS -->
+                            </div>
+                            <br/>
+
+                            <!-- FILES -->
+                            <div class="col-md-12 ">
+
+                                <!-- BACK FOLDER -->
+                                <div class="fd folder main animate-fade-up animate-flip-y"
+                                     data-ng-show="sharedParent != -1"
+                                     data-ng-click="backShared()">
+                                    <div class="fIcon sprite-folder-home"></div>
+                                    <span data-i18n="back"></span>
+                                </div>
+
+                                <!-- FOREACH SHARED FOLDER -->
+                                <div class="fd folder main animate-fade-up animate-flip-y"
+                                     data-ng-repeat="folder in sharedFolders"
+                                     drop="folder"
+                                     dropStyle="sprite-folder-open">
+
+                                    <!-- FOLDER ICON DEPENDING ON THE NAME -->
+                                    <div class="fIcon sprite-folder"
+                                         data-ng-click="loadSharedFolders(folder)">
+                                        <i class="fa fa-cloud-download permission"></i>
+                                    </div>
+
+                                    <div class="btn-group" dropdown is-open="status.isopen">
+                                                    <span class="dropdown-toggle" ng-disabled="disabled">
+                                                        {{folder.name}}
+                                                    </span>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="javascript:;" data-ng-click="open('propertiesFolder', folder)">
+                                                    <i class="fa fa-cog"></i> <span data-i18n="properties"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- END FOREACH SHARED FOLDER -->
+
+                                <!-- FOREACH SHARED FILE -->
+                                <div class="fd file main animate-fade-up animate-flip-y"
+                                     data-ng-repeat="file in sharedFiles"
+                                     drag="file">
+
+                                    <!-- FILE ICON DEPENDING ON THE NAME -->
+                                    <div class="fIcon {{file.icon}}"
+                                         data-ng-click="preview(file)">
+                                        <i class="fa fa-cloud-download permission"></i>
+                                    </div>
+
+                                    <div class="btn-group" dropdown is-open="status.isopen">
+                                                <span class="dropdown-toggle" ng-disabled="disabled">
+                                                    <p data-ng-show="file.realName.length < 16">{{file.realName}}</p>
+                                                    <p data-ng-show="file.realName.length > 15">{{file.realName.substring(0,15)}}...</p>
+                                                </span>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="javascript:;" data-ng-click="download(file)"><i class="fa fa-download"></i>
+                                                <span data-i18n="download"></span></a></li>
+                                            <li><a href="javascript:;" data-ng-click="openFile('qrFile', file)" data-toggle="modal"
+                                                   data-target="#qrFile"><i class="fa fa-qrcode"></i> <span
+                                                    data-i18n="download-link"></span></a></li>
+                                            <li><a href="javascript:;" data-ng-click="openFile('propertiesFile', file)"><i
+                                                    class="fa fa-cog"></i> <span data-i18n="properties"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- END FOREACH SHARED FILE -->
+
+                            </div>
+                        </tab>
+                    </tabset>
+                    <!-- END USER DOCUMENTS TAB -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <br /><br /><br /><br /><br />

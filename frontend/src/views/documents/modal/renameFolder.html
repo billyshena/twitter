@@ -1,0 +1,15 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title">Renommer le dossier</h3>
+</div>
+
+<form data-ng-submit="ok()">
+    <div class="modal-body">
+        <label for="fname">Nouveau nom</label>
+        <input id="fname" class="form-control" ng-focus-input="true" value="{{data.newFolderName}}" data-ng-model="data.newFolderName"/>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Renommer</button>
+        <button class="btn btn-warning" data-ng-click="cancel()">Annuler</button>
+    </div>
+</form>

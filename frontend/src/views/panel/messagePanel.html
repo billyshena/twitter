@@ -1,0 +1,49 @@
+<div class="page page-messages">
+    <div class="col-sm-3">
+        <section class="panel panel-default mail-categories">
+            <div class="panel-heading">
+                <a
+                    data-ui-sref="message.new({id: -1,action: new})"
+                    class="btn btn-block btn-primary">
+                    <i class="fa fa-send"></i> Nouveau message
+                </a>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><a data-ui-sref="message.inbox">
+                    <i class="fa fa-inbox"></i>
+                    <span data-i18n="inbox">Boite de reception</span>
+                    <span class="badge badge-info pull-right"></span>
+                </a></li>
+                <li class="list-group-item"><a data-ui-sref="message.sent">
+                    <i class="fa fa-envelope-o"></i>
+                    <span data-i18n="sent-messages">Messages envoyés</span>
+                </a></li>
+                <li class="list-group-item"><a data-ui-sref="message.draft">
+                    <i class="fa fa-pencil"></i>
+                    <span data-i18n="drafts">Brouillons</span>
+                    <span class="badge badge-warning pull-right"></span>
+                </a></li>
+                <li class="list-group-item"><a data-ui-sref="message.trash">
+                    <i class="fa fa-trash-o"></i>
+                    <span data-i18n="trash">Corbeille</span>
+                </a></li>
+            </ul>
+        </section>
+
+        <section class="panel panel-default mail-categories">
+            <div class="panel-heading"> Groupes </div>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="javascript:;">
+                    Administrateur <i class="fa fa-circle color-danger pull-right"></i>
+                </a></li>
+                <li class="list-group-item"><a href="javascript:;">
+                    Professeur <i class="fa fa-circle color-warning pull-right"></i>
+                </a></li>
+                <li class="list-group-item"><a href="javascript:;">
+                    Elève <i class="fa fa-circle color-info pull-right"></i>
+                </a></li>
+            </ul>
+        </section>
+    </div>
+    <div ui-view class="animate-fade-up"></div>
+</div>

@@ -1,0 +1,61 @@
+
+<div class="page-signin" ng-init="app.settings.container = false;">
+
+    <div class="signin-header">
+        <div class="container text-center">
+            <section class="logo">
+                <a href="#/"><img ng-src="{{assetsUrl}}images/logo-dark.png" style="max-width: 30%;"/></a>
+            </section>
+        </div>
+    </div>
+
+    <div class="signin-body">
+        <div class="container">
+            <div class="form-container panel-login login-bg">
+
+                <section class="signin-social text-center">
+
+                    <!-- FACEBOOK CONNECT -->
+                    <button class="btn btn-block btn-facebook" ng-click="authenticate('facebook')">
+                        <i class="fa fa-facebook"></i> Sign in
+                    </button>
+
+                    <!-- LINKED CONNECT -->
+                    <button class="btn btn-block btn-linkedin" ng-click="authenticate('linkedin')">
+                        <i class="fa fa-linkedin"></i> Sign in
+                    </button>
+
+                    <!-- TWITTER CONNECT -->
+                    <button class="btn btn-block btn-twitter" ng-click="authenticate('twitter')">
+                        <i class="fa fa-twitter"></i> Sign in
+                    </button>
+
+
+                </section>
+
+                <form class="form-horizontal form-login" data-ng-submit="login()">
+                    <div class="list-group list-group-sm">
+                        <div class="list-group-item">
+                            <input type="email" placeholder="Email" class="form-control no-border ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-touched" ng-model="user.email" required="">
+                        </div>
+                        <div class="list-group-item">
+                            <input type="password" placeholder="Password" class="form-control no-border ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-model="user.password" required="">
+                        </div>
+                    </div>
+
+                    <!-- EMAIL CONNECT -->
+                    <button class="btn btn-block btn-connect" style="margin-bottom:20px;">
+                        <i class="fa fa-check"></i> Connexion
+                    </button>
+                </form>
+
+                <section class="text-center">
+                    <a data-ui-sref="forgot"><span data-i18n="forgot-password">Mot de passe oublié ?</span></a><br />
+                    <a data-ui-sref="home">Pas encore de compte ?</a>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+</div>

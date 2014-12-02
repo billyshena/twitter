@@ -1,0 +1,104 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+<div class="bg-light lter b-b wrapper-md ng-scope">
+    <div class="row" id="courseItem-title">
+        <div class="col-md-11">
+            <a class="m-n font-thin h3" ng-show="!show">
+                <img src="img/default_avatar.png" alt="Avatar" class="img-circle" height="48" width="48"/>
+                {{ courseItem.name }}
+            </a>
+
+            <form ng-show="show" data-ng-submit="update(courseItem, show)">
+                <input type="text"
+                       class="form-control"
+                       ng-model="courseItem.name"
+                       type="submit">
+            </form>
+
+        </div>
+
+        <div class="col-md-1">
+            <a href="javascript:;" data-ng-click="show = !show">
+                <i class="fa fa-edit"></i>
+            </a>
+        </div>
+
+    </div>
+</div>
+<div class="col">
+    <div class="wrapper">
+        <div class="row">
+            <!-- panel -->
+            <div class="col-sm-9" id="courseItem-panel">
+                <!-- course item content displayed here -->
+                <div class="blog-post">
+                    <a data-ng-click="edit = !edit" class="pull-right c-edit" ng-show="!edit">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <div class="m-b-sm" ng-show="edit">
+                        <div class="pull-right m">
+                            <label class="btn btn-sm btn-info" data-ng-click="update(courseItem, edit)">Enregistrer</label>
+                            <label class="btn btn-sm btn-default" data-ng-click="edit = false">Annuler</label>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="wrapper-lg">
+                            <!-- courseItem content -->
+                            <div class="editor">
+                                <div text-angular
+                                     ng-model="courseItem.content"
+                                     class="btn-groups"
+                                     ng-show="edit"></div>
+                                <p ng-bind-html="courseItem.content" ng-show="!edit"></p>
+                            </div>
+                            <!-- /courseItem content -->
+
+                            <div class="line line-lg b-b b-light"></div>
+                            <div class="text-muted">
+                                <i class="fa fa-user text-muted"></i>
+                                by <a href="" class="m-r-sm">{{ owner.fullName }}</a>
+                                <i class="fa fa-clock-o text-muted"></i> Feb 20, 2013
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /course item content -->
+            </div>
+            <!-- /panel -->
+
+            <!-- attachments -->
+            <div class="col-sm-3">
+                <h5 class="font-bold">Documents</h5>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a href="">
+                            <span class="badge pull-right">15</span>
+                            Photograph
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="">
+                            <span class="badge pull-right">30</span>
+                            Life style
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="">
+                            <span class="badge pull-right">9</span>
+                            Food
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="">
+                            <span class="badge pull-right">4</span>
+                            Travel world
+                        </a>
+                    </li>
+                </ul>
+                <!-- /attachments -->
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

@@ -1,0 +1,75 @@
+
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+    <div class="bg-light lter b-b wrapper-md ng-scope">
+        <a href="javascript:;">
+              <span class="pull-left thumb-sm avatar m-r">
+                <img src="img/default_avatar.png" alt="...">
+                <i class="on b-white right"></i>
+              </span>
+              <span class="clear">
+                <span class="m-n font-thin h4">Sujet: {{course.name }}</span>
+                <small class="text-muted clear text-ellipsis h5">Description: {{course.content}}</small>
+              </span>
+        </a>
+    </div>
+    <div class="col">
+        <div class="wrapper">
+            <tabset justified="true" class="tab-container" id="course-tab">
+                <tab heading="Support de cours">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <a data-ng-click="open('courseItem',course,'content')"
+                               class="block panel padder-v bg-white item border-white">
+                                <span class="font-thin h4 block courseItem-name">Nouveau support</span>
+                                <span class="text-muted text-xs m-t-10">
+                                    <i class="fa fa-plus"></i>
+                                    Ajouter</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3" ng-repeat="content in contents">
+                            <a data-ui-sref="app.viewItem({ courseId: course.id, section: 'content', id: content.id })"
+                               class="block panel padder-v bg-info item border-blue">
+                                <span class="text-white font-thin h4 block courseItem-name">{{ content.name }}</span>
+                                <span class="text-muted text-xs m-t-10">
+                                    <i class="fa fa-clock-o"></i>
+                                    posté il y'a 6 jours</span>
+                            </a>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="Exercices">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <a href="" class="block panel padder-v bg-white item border-white">
+                                <span class="font-thin h4 block courseItem-name">Nouvel exercice</span>
+                                <span class="text-muted text-xs m-t-10">
+                                    <i class="fa fa-plus"></i>
+                                    Ajouter</span>
+                            </a>
+                        </div>
+                        <div class="col-md-3" ng-repeat="exercise in exercises">
+                            <a href="" class="block panel padder-v bg-success item border-green">
+                                <span class="text-white font-thin h4 block courseItem-name">{{ exercise.name }}</span>
+                                <span class="text-muted text-xs m-t-10">
+                                    <i class="fa fa-clock-o"></i>
+                                    posté il y'a 6 jours</span>
+                            </a>
+                        </div>
+                    </div>
+                </tab>
+                <tab heading="QCM">
+                    <div class="row text-center">
+                        <div class="col-md-3" ng-repeat="i in [1,2,3,4]">
+                            <a href="" class="block panel padder-v bg-danger item border-red">
+                                <span class="text-white font-thin h4 block courseItem-name">Les équations du second degrès</span>
+                                <span class="text-muted text-xs m-t-10">
+                                    <i class="fa fa-clock-o"></i>
+                                    posté il y'a 6 jours</span>
+                            </a>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>

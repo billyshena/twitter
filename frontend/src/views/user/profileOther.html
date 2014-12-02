@@ -1,0 +1,183 @@
+<div class="page page-profile">
+    <div class="row">
+
+        <!-- LEFT PANEL -->
+        <div class="col-md-6">
+            <div class="panel profile panel-info">
+                <a data-ui-sref="message.new({id: user.id,action: 'profile'})"
+                   href="javascript:;"
+                   class="send-mail-to">
+                    <i class="fa fa-envelope"></i>
+                </a>
+                <div class="panel-heading text-center bg-info">
+                    <img alt="Avatar" ng-src="{{ user.avatar }}" class="img-circle img150_150" height="150" width="150">
+                    <h3 class="displayName">{{user.lastName}} {{user.firstName}}</h3>
+                    <p data-ng-show="user.type == 89">Professeur</p>
+                    <p data-ng-show="user.type == 96">Administrateur</p>
+                    <p data-ng-show="user.type == 9">Étudiant</p>
+                </div>
+
+                <div class="row ratio">
+                    <div class="col-sm-6">
+                        <div class="panel mini-box">
+                            <span class="box-icon bg-danger">
+                            <i class="fa fa-comments-o"></i>
+                            </span>
+                            <div class="box-info">
+                                <p class="size-h2">{{user.comments.length}}</p>
+                                <p class="text-muted" data-i18n="posted-comments"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel mini-box">
+                            <span class="box-icon bg-warning">
+                            <i class="fa fa-bullhorn"></i>
+                            </span>
+                            <div class="box-info">
+                                <p class="size-h2">{{user.homeworks.length}}</p>
+                                <p class="text-muted" data-i18n="help-asked"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- USER INFORMATION -->
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <strong><span class="glyphicon glyphicon-th"></span> <span
+                            data-i18n="profile-information"></span></strong>
+                </div>
+                <div class="panel-body" style="padding:7px;">
+                    <div class="media">
+                        <div class="media-body">
+                            <ul class="list-unstyled list-info">
+                                <li class="displayName">
+                                    <span class="icon glyphicon glyphicon-user"></span>
+                                    <label data-i18n="name"></label>
+                                    {{user.lastName}} {{user.firstName}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-envelope"></span>
+                                    <label data-i18n="email"></label>
+                                    {{user.email}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-home"></span>
+                                    <label data-i18n="address"></label>
+                                    {{user.postalAddress}}
+                                </li>
+                                <li>
+                                    <span class="icon glyphicon glyphicon-earphone"></span>
+                                    <label data-i18n="phone"></label>
+                                    {{user.phone}}
+                                </li>
+                            </ul>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href="https://facebook.com/{{user.facebook}}" target="_blank">
+                                        <div class="panel mini-box">
+                                            <span class="box-icon bg-facebook">
+                                                <i class="fa fa-facebook"></i>
+                                             </span>
+                                            <div class="box-info">
+                                                <p class="size-h2">Profil</p>
+                                                <p class="text-muted">Facebook</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="https://twitter.com/{{user.twitter}}" target="_blank">
+                                        <div class="panel mini-box">
+                                            <span class="box-icon bg-twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </span>
+                                            <div class="box-info">
+                                                <p class="size-h2">Profil</p>
+                                                <p class="text-muted">Twitter</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <!-- DOCUMENTS -->
+    <div class="row" style="margin-bottom:100px;">
+        <div class="col-md-12 ">
+            <div class="panel panel-info animate-fade-up">
+                <div class="panel-heading">
+                    <ul id="tree" class="breadcrumb">
+                        <li data-ng-repeat="fname in pathName"><i class="fa fa-chevron-right"></i><a href="javascript:;">
+                            {{fname}} </a></li>
+                    </ul>
+                </div>
+
+                <div class="panel-body">
+                    <br />
+                    <!-- BACK FOLDER -->
+                    <div class="fd folder main animate-fade-up animate-flip-y"
+                         data-ng-show="parent != -1"
+                         data-ng-click="back()">
+                        <div class="fIcon sprite-folder-home"></div>
+                        <span>Retour</span>
+                    </div>
+
+                    <!-- FOREACH FOLDER -->
+                    <div class="fd folder main animate-fade-up animate-flip-y"
+                         data-ng-repeat="folder in folders | filter:typeSort">
+
+                        <!-- FOLDER ICON DEPENDING ON THE NAME -->
+                        <div class="fIcon {{folder.icon}}"
+                             data-ng-click="loadFolder(folder)">
+                            <i class="fa fa-lock permission" data-ng-show="folder.permission == 'private'"></i>
+                            <i class="fa fa-globe permission" data-ng-show="folder.permission == 'public'"></i>
+                            <i class="fa fa-users permission"
+                               data-ng-show="folder.permission != 'private' && folder.permission != 'public'"></i>
+                        </div>
+
+                        <span>
+                            {{folder.name}}
+                        </span>
+                    </div>
+
+                    <!-- FOREACH FILES -->
+                    <div class="fd file main animate-fade-up animate-flip-y"
+                         data-ng-repeat="file in files | filter:typeSort">
+
+                        <!-- FOLDER ICON DEPENDING ON THE NAME -->
+                        <div class="fIcon {{file.icon}}"
+                             data-ng-click="download(file)">
+
+                            <i class="fa fa-lock permission" data-ng-show="file.permission == 'private'"></i>
+                            <i class="fa fa-globe permission" data-ng-show="file.permission == 'public'"></i>
+                            <i class="fa fa-users permission"
+                               data-ng-show="file.permission != 'private' && file.permission != 'public'"></i>
+                        </div>
+
+                        <span class="dropdown-toggle">
+                            <p data-ng-show="file.realName.length < 16">{{file.realName}}</p>
+                            <p data-ng-show="file.realName.length > 15">{{file.realName.substring(0,15)}}...</p>
+                        </span>
+                    </div>
+                    <p class="noItem" ng-if="!folders.length && !files.length">
+                        La <strong>Scolbox</strong> de <span class="displayName">{{user.firstName}} {{user.lastName}}</span>
+                        est vide pour le moment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
