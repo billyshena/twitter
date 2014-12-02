@@ -1,0 +1,19 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3 class="modal-title" style="text-align:center">Ecrire un nouveau tweet</h3>
+</div>
+<div class="modal-body">
+    <textarea name=""
+              class="form-control"
+              rows="4"
+              style="border:1px solid rgba(0,132,180,0.25);"
+              ng-model="tweet"
+              maxlength="150">
+    </textarea>
+
+    <p>{{ maxLength - tweet.length }} caractères restants</p>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" data-ng-click="remove()" data-i18n="remove">Oui</button>
+    <button class="btn btn-default" data-ng-click="cancel()" data-i18n="cancel">Non</button>
+</div>

@@ -6,8 +6,8 @@
 /* Controllers */
 
 angular.module('app.controllers.main',[]).controller('AppCtrl', [
-    '$scope', '$window',
-    function ($scope, $window) {
+    '$scope', '$window', '$modal',
+    function ($scope, $window, $modal) {
 
 
         // add 'ie' classes to html
@@ -49,6 +49,14 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
             var ua = $window['navigator']['userAgent'] || $window['navigator']['vendor'] || $window['opera'];
             // Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
             return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
+        }
+
+
+        $scope.open = function(modal){
+            var modalInstance = $modal.open({
+                templateUrl: appConfig.assetsUrl + 'views/modals/' + modal + '.html',
+                controller: modal + 'Ctrl'
+            });
         }
 
     }]);

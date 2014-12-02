@@ -40,10 +40,10 @@
     <!-- /menu -->
 
     <!-- / buttons -->
-    <form class="navbar-form navbar-form-sm navbar-left shift ng-pristine ng-valid ng-scope animated fadeInLeft" ui-shift="prependTo" target=".navbar-collapse" role="search">
+    <form class="navbar-form navbar-form-sm navbar-left shift ng-pristine ng-valid ng-scope animated fadeInLeft" role="search">
           <div class="form-group">
             <div class="input-group">
-              <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder ng-pristine ng-valid ng-touched" placeholder="Search projects..." aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-33-1702"><ul class="dropdown-menu ng-isolate-scope ng-hide" ng-show="isOpen()" ng-style="{top: position.top+'px', left: position.left+'px'}" style="display: block;;display: block;" role="listbox" aria-hidden="true" typeahead-popup="" id="typeahead-33-1702" matches="matches" active="activeIdx" select="select(activeIdx)" query="query" position="position">
+              <input type="text" ng-model="selected" class="form-control input-sm bg-light no-border rounded padder ng-pristine ng-valid ng-touched" placeholder="Search projects..." aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-33-1702"><ul class="dropdown-menu ng-isolate-scope ng-hide" ng-show="isOpen()" ng-style="{top: position.top+'px', left: position.left+'px'}" style="display: block;;display: block;" role="listbox" >
     <!-- ngRepeat: match in matches track by $index -->
 </ul>
               <span class="input-group-btn">
@@ -53,7 +53,10 @@
           </div>
         </form>
 
-        <a href="" class="btn no-shadow navbar-btn h3 pull-right animated fadeInRight" id="tweet">
+        <a href=""
+           class="btn no-shadow navbar-btn h3 pull-right animated fadeInRight"
+           id="tweet"
+           data-ng-click="open('tweet')">
                     <i class="fa fa-paper-plane"></i>
             Tweeter
         </a>
