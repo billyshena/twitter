@@ -1,10 +1,13 @@
+/**
+ * Created by bshen on 02/12/14.
+ */
 'use strict';
 
 /* Controllers */
 
 angular.module('app.controllers.main',[]).controller('AppCtrl', [
-    '$scope', '$window', '$sailsSocket', 'Auth', 'Storage', 'CurrentUser', 'TeamRequestService', 'TeamService',
-    function ($scope, $window, $sailsSocket, Auth, Storage, CurrentUser, TeamRequestService, TeamService) {
+    '$scope', '$window',
+    function ($scope, $window) {
 
 
         // add 'ie' classes to html
@@ -40,88 +43,6 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
                 container: false
             }
         };
-
-        /** Functions triggered when the User is logged in **/
-        if(Auth.isAuthenticated()) {
-
-            $sailsSocket
-                .get(appConfig.appUrl + '/user/' + CurrentUser.getId())
-                .then(function (response) {
-
-                    // Setting current user
-                    CurrentUser.setCurrentUser(response.data);
-                    $scope.user = response.data;
-
-                    // Loading team request
-                    TeamRequestService.find({
-                        where: {
-                            user: CurrentUser.getId(),
-                            state: 'pending'
-                        },
-                        populate: ['team', 'from']
-                    }).then(function(data) {
-                        $scope.teamRequests = data;
-                        console.log(data);
-                    }, function(err) {
-                        console.log(err);
-                    });
-
-                }, function (err) {
-                    console.log(err);
-                });
-
-            /** Whenever onConnect triggers, make the user join the room again **/
-            $sailsSocket.subscribe('onConnect',function(data){
-                return $sailsSocket.get(appConfig.appUrl + '/user/joinRoom');
-            });
-
-
-            $sailsSocket.subscribe('newEvent',function(data){
-                console.log('HEYHEY');
-                console.log(data);
-            });
-
-
-            // Function to accept team request
-            $scope.acceptRequest = function(teamRequest) {
-
-                console.log(teamRequest);
-
-                TeamService
-                    .addUser(teamRequest.team, CurrentUser.getCurrentUser())
-                    .then(function(response) {
-
-                        // Updating the team request object
-                        TeamRequestService
-                            .update(teamRequest.id, {
-                                state: 'accepted'
-                            }).then(function(response) {
-                                $scope.teamRequests.splice($scope.teamRequests.indexOf(response.data), 1);
-                            }, function(err) {
-                                console.log(err);
-                            });
-
-                    }, function(err) {
-                        console.log(err);
-                    });
-            };
-
-            // Function to decline team request
-            $scope.declineRequest = function(teamRequest) {
-
-                console.log(teamRequest);
-
-                TeamRequestService
-                    .update(teamRequest.id, {
-                        state: 'declined'
-                    }).then(function(response) {
-                        console.log(response)
-                        $scope.teamRequests.splice($scope.teamRequests.indexOf(response.data), 1);
-                    }, function(err) {
-                        console.log(err);
-                    });
-            }
-        }
 
         function isSmartDevice($window) {
             // Adapted from http://www.detectmobilebrowsers.com

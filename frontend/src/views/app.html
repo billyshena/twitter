@@ -1,12 +1,6 @@
 <!-- navbar -->
-<div data-ng-include=" 'views/blocks/header.html' " class="app-header navbar">
-</div>
+<div data-ng-include=" 'views/blocks/header.html' " class="app-header navbar"></div>
 <!-- / navbar -->
-
-<!-- menu -->
-<div data-ng-include=" 'views/blocks/aside.html' " class="app-aside hidden-xs {{app.settings.asideColor}}">
-</div>
-<!-- / menu -->
 
 <!-- content -->
 <div class="app-content">
@@ -17,39 +11,3 @@
 </div>
 <!-- /content -->
 
-<!-- aside right -->
-<div class="app-aside-right pos-fix no-padder w-md w-auto-xs bg-white b-l animated fadeInRigh"
-     data-ng-include=" 'views/blocks/nav-right.html' ">
-</div>
-<!-- / aside right -->
-
-<!-- footer -->
-<div class="app-footer wrapper b-t bg-light" style="padding: 10px">
-    <div class="hbox">
-        <div class="col">
-            <div data-ng-controller="playerCtrl" id="player">
-            <span data-ng-click="player.play(0)">
-                <i class="fa fa-fast-backward"></i>
-            </span>
-            <span data-ng-show="player.playing" data-ng-click="player.pause()">
-                <i class="fa fa-pause"></i>
-            </span>
-            <span data-ng-show="!player.playing" data-ng-click="player.play()">
-                <i class="fa fa-play"></i>
-            </span>
-            <span data-ng-click="player.next(true)">
-                <i class="fa fa-fast-forward"></i>
-            </span>
-                <audio media-player="player" id="playlist"></audio>
-            <span class="media-title">
-                <marquee>{{title}}</marquee>
-            </span>
-                <span data-ng-show="player.formatDuration !='00:00'">{{player.formatTime}}</span>
-                <span data-ng-show="player.formatDuration !='00:00'">{{player.formatDuration}}</span>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- / footer -->
-
-</div>
