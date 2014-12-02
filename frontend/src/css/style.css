@@ -216,7 +216,27 @@ p.noItem{
     height: 100%;
     vertical-align: top;
 }
-
+.app:before{
+    background-color:rgb(215, 238, 245);
+}
+.navbar-nav:hover{
+    border-bottom:2px solid white;
+}
+#tweet{
+    border:1px solid white;
+    margin-right:30px;
+    margin-top:6px;
+}
+.list-group-sp .list-group-item{
+    margin-bottom:0px;
+}
+.btn:focus{
+    color:white;
+}
+html{
+/*    background-color:rgb(215, 238, 245);*/
+    background-color:rgb(238, 250, 253);
+}
 @media (min-width: 768px){
     .app-aside-fixed .aside-wrap {
         position: fixed;
