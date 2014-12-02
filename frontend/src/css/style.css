@@ -1,5 +1,33 @@
 /** Custom styles **/
 
+.bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../img/bg.jpg') no-repeat center; background-size: cover;
+    z-index: -2;
+    opacity:1;
+    background-position-y:100px;
+    margin-top:-50px;
+}
+
+.main-panel{
+    width:960px;
+    margin:100px auto;
+}
+
+.item{
+    border: 1px solid #e1e8ed;
+    border-radius:5px;
+}
+
+.login-form{
+    padding: 0px 25px 0px 25px;
+}
+
+
 a.team-request small.text-muted {
     display: inline-block;
 }
