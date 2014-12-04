@@ -12,8 +12,8 @@
                             </div>
                             <div class="text-center m-b clearfix">
                               <div class="thumb-lg avatar m-t-n-xxl">
-                                <img src="img/default_avatar.png" alt="..." class="b b-3x b-white">
-                                <div class="h4 font-thin m-t-sm">Jacobs Simon</div>
+                                <img src="img/billy.png" alt="..." class="b b-3x b-white">
+                                <div class="h4 font-thin m-t-sm">Billy Shen</div>
                                 <span>13 tweets</span>
                               </div>
                             </div>
@@ -38,7 +38,7 @@
                 <!-- /user information -->
 
                 <!-- timeline content -->
-                <div class="col-md-8 animated fadeInUp">
+                <div class="col-md-6 animated fadeInUp">
 
                     <div class="panel item">
                         <div class="list-group list-group-lg list-group-sp" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">
@@ -61,7 +61,29 @@
                 <!-- /timeline content -->
 
 
-                <div class="col-md-3"></div>
+                <div class="col-md-3 animated fadeInRight">
+                <div class="panel no-border">
+                    <div class="panel-heading wrapper b-b b-light">
+
+                      <h4 class="font-thin m-t-none m-b-none text-muted">Personnes à suivre</h4>
+                    </div>
+                    <ul class="list-group list-group-lg m-b-none">
+                      <li class="list-group-item" ng-repeat="i in [1,2,3,4]">
+                        <a href="" class="thumb-sm m-r">
+                          <img src="img/a1.jpg" class="r r-2x">
+                        </a>
+                        <button class="btn btn-default inline pull-right">
+                        <i class="fa fa-user"></i>
+                        Suivre</button>
+                        <a href="">Damon Parker</a>
+                      </li>
+
+                    </ul>
+     <!--               <div class="panel-footer">
+                      <button class="btn btn-primary btn-addon btn-sm"><i class="fa fa-plus"></i>Tout afficher</button>
+                    </div>-->
+                  </div>
+                </div>
             </div>
         </div>
     </div>
