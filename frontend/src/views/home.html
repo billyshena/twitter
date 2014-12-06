@@ -16,13 +16,13 @@
             <!-- login panel -->
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="panel padder-v item" >
-                    <form name="signin_form" class="login-form form-validation" novalidate>
+                    <form name="signin_form" class="login-form form-validation" novalidate data-ng-submit="signIn(signin)">
                         <div class="form-group">
                             <input  type="email"
                                     class="form-control"
                                     placeholder="Adresse email"
                                     name="name"
-                                    ng-model="signin.name"
+                                    ng-model="signin.email"
                                     ng-minlength=3
                                     ng-maxlength=20
                                     required>
@@ -34,7 +34,7 @@
                                    ng-minlength="5"
                                    max-length="100"
                                    name="email"
-                                   ng-model="signin.email"
+                                   ng-model="signin.password"
                                    required>
                         </div>
 

@@ -29,6 +29,21 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
                 }, function(err){
                     console.log(err);
                 });
+        };
+
+
+        $scope.signIn = function(user){
+            console.log(user);
+            $http
+                .post(appConfig.appUrl + '/auth/create',{
+                    email: user.email,
+                    password: user.password
+                })
+                .success(function(){
+
+                }, function(err){
+
+                });
         }
 
 
