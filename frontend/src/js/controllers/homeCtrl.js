@@ -13,18 +13,7 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
     function($scope, Logger, $http) {
 
 
-        $http.post('http://localhost:3000/user/create', {
-            account_name: 'test_local',
-            username: 'test_local',
-            password: 'test',
-            email: 'test@test.com',
-            bio: 'test'
-        }).success(function(data){
-            console.log(data);
-            console.log('entered');
-        }, function(err){
-            console.log(err);
-        })
+
 
 
 

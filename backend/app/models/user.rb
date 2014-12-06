@@ -3,24 +3,24 @@ require 'bcrypt'
 class User < ActiveRecord::Base
 
   # Create two virtual (in memory only) attributes to hold the password and its confirmation.
-  attr_accessor :password, :password_confirmation
+  attr_accessor :new_password, :new_password_confirmation
   # We need to validate that the user has typed the same password twice
   # but we only want to do the validation if they've opted to change their password.
-  validates_confirmation_of :password, :if=>:password_changed?
+  validates_confirmation_of :new_password, :if=>:password_changed?
 
   before_save :hash_new_password, :if=>:password_changed?
 
   # By default the form_helpers will set new_password to "",
   # we don't want to go saving this as a password
   def password_changed?
-    !@password.blank?
+    !@new_password.blank?
   end
 
   private
   # This is where the real work is done, store the BCrypt has in the
   # database
   def hash_new_password
-    self.password = BCrypt::Password.create(@password)
+    self.password = BCrypt::Password.create(@new_password)
   end
 
   # As is the 'standard' with rails apps we'll return the user record if the
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     # we need to fetch the potential user
     if user = find_by_email(email)
       # Then compare the provided password against the hashed one in the db.
-      if BCrypt::Password.new(user.hashed_password).is_password? password
+      if BCrypt::Password.new(user.password).is_password? password
         # If they match we return the user
         return user
       end
