@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   before_filter :preflight_check
   after_filter :set_access_control_headers
 
-  filter_parameter_logging :password
 
 
   def index

@@ -13,7 +13,13 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
     function($scope, Logger, $http) {
 
 
-        $http.get('http://192.168.1.15:3000/user').success(function(data){
+        $http.post('http://192.168.1.15:3000/user', {
+            account_name: 'billy',
+            username: 'billy',
+            password: 'billyshen',
+            email: 'billy.shen',
+            bio: 'iezudhizedjizedezd'
+        }).success(function(data){
             console.log(data);
             console.log('entered');
         }, function(err){
