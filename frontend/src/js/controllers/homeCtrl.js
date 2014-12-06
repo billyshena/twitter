@@ -13,26 +13,24 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
     function($scope, Logger, $http) {
 
 
-        $http.post('http://192.168.1.15:3000/user', {
-            account_name: 'billy',
-            username: 'billy',
-            password: 'billyshen',
-            email: 'billy.shen',
-            bio: 'iezudhizedjizedezd'
-        }).success(function(data){
-            console.log(data);
-            console.log('entered');
-        }, function(err){
-            console.log(err);
-        })
+        /* Register a new user object */
+        $scope.signUp = function (user){
 
-
-
-
-
-
-
-
+            console.log(user);
+            $http
+                .post(appConfig.appUrl + '/user/create',{
+                    email: user.email,
+                    new_password: user.password,
+                    account_name: user.userName
+                })
+                .success(function(data){
+                    $scope.newUser = {};
+                    console.log(data);
+                    Logger.logSuccess('Votre compte a bien été crée');
+                }, function(err){
+                    console.log(err);
+                });
+        }
 
 
     }
