@@ -7,12 +7,6 @@ class ApplicationController < ActionController::Base
   skip_before_filter :verify_authenticity_token
 
 
-  def index
-    @test = { name: 'billy', lastName: 'shen' }
-    render json: @test.to_json
-  end
-
-
   # For all responses in this controller, return the CORS access control headers.
 
   def set_access_control_headers
