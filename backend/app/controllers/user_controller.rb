@@ -10,7 +10,7 @@ class UserController < ApplicationController
         bio: params[:bio],
     )
     if @user.save
-      render json: 'User created'
+      render json: @user.to_json
     else
       flash[:error] = "Une erreur a empêché la création"
       render :new

@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
   resources :user
 
+
+  controller :user, path: '/user' do
+    match 'create', via: [ :post, :options]
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
