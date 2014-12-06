@@ -9,8 +9,23 @@
  */
 'use strict';
 angular.module('app.controllers.home', []).controller('homeCtrl', [
-    '$scope', 'Logger',
-    function($scope, Logger) {
+    '$scope', 'Logger', '$http',
+    function($scope, Logger, $http) {
+
+
+        $http.get('http://192.168.1.15:3000/user').success(function(data){
+            console.log(data);
+            console.log('entered');
+        }, function(err){
+            console.log(err);
+        })
+
+
+
+
+
+
+
 
 
 
