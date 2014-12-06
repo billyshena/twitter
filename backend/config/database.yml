@@ -1,0 +1,27 @@
+# MySQL
+#
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: root
+  host: localhost
+  port: 8889
+  pool: 5
+  timeout: 5000
+  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+
+development:
+  <<: *default
+  database: tw_dev
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: tw_test
+
+production:
+  <<: *default
+  database: tw_prod
