@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   # This is where the real work is done, store the BCrypt has in the
   # database
   def hash_new_password
-    self.hashed_password = BCrypt::Password.create(@new_password)
+    self.password = BCrypt::Password.create(@new_password)
   end
 
   # As is the 'standard' with rails apps we'll return the user record if the
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     # we need to fetch the potential user
     if user = find_by_email(email)
       # Then compare the provided password against the hashed one in the db.
-      if BCrypt::Password.new(user.hashed_password).is_password? password
+      if BCrypt::Password.new(user.password).is_password? password
         # If they match we return the user
         return user
       end

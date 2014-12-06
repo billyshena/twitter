@@ -12,7 +12,6 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
     '$scope', 'Logger', '$http',
     function($scope, Logger, $http) {
 
-
         /* Register a new user object */
         $scope.signUp = function (user){
 

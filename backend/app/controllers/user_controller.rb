@@ -6,7 +6,7 @@ class UserController < ApplicationController
         email: params[:email],
         account_name: params[:account_name],
         username: params[:username],
-        password: params[:password],
+        new_password: params[:new_password],
         bio: params[:bio],
     )
     if @user.save
