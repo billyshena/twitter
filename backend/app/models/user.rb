@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   def self.authenticate(email, password)
     # Because we use bcrypt we can't do this query in one part, first
     # we need to fetch the potential user
-    if user == find_by_email(email)
+    if user = find_by_email(email)
       # Then compare the provided password against the hashed one in the db.
       if BCrypt::Password.new(user.hashed_password).is_password? password
         # If they match we return the user
