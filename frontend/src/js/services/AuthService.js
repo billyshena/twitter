@@ -50,8 +50,8 @@
     angular.module('app.services.auth',[])
         .factory('Auth',
         [
-            '$http', 'Storage', 'Logger',
-            function($http, Storage, Logger) {
+            '$http', 'Storage', 'Logger', '$state',
+            function($http, Storage, Logger, $state) {
                 return {
                     /**
                      * Method to authorize current user with given access level in application.
@@ -138,14 +138,7 @@
                      * Should we still make logout process to backend side?
                      */
                     logout: function() {
-                        return $http
-                            .post(appConfig.appUrl + '/user/onDisconnected')
-                            .then(function(){
-                                Storage.unset('token');
-                                console.log('unset')
-                            },function(err){
-                                console.log(err);
-                            });
+                        Storage.unset('token');
                     }
                 };
             }

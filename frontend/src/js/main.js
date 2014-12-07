@@ -6,8 +6,8 @@
 /* Controllers */
 
 angular.module('app.controllers.main',[]).controller('AppCtrl', [
-    '$scope', '$window', '$modal',
-    function ($scope, $window, $modal) {
+    '$scope', '$window', '$modal', 'Auth', 'Logger', '$state',
+    function ($scope, $window, $modal, Auth, Logger, $state) {
 
 
         // add 'ie' classes to html
@@ -52,11 +52,12 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
         }
 
 
-        $scope.open = function(modal){
-            var modalInstance = $modal.open({
-                templateUrl: appConfig.assetsUrl + 'views/modals/' + modal + '.html',
-                controller: modal + 'Ctrl'
-            });
+        /* Logout function */
+        $scope.logout = function(){
+            Auth.logout();
+            $state.go('app.home');
+            Logger.logSuccess('Vous avez bien été déconnecté');
         }
+
 
     }]);

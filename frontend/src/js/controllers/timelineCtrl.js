@@ -4,12 +4,9 @@
 
 'use strict';
 angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
-    '$scope', 'Logger',
-    function($scope, Logger) {
+    '$scope', 'Logger', 'Auth', '$state',
+    function($scope, Logger, Auth, $state) {
 
         console.log('timelineCtrl fired');
-
-
-
     }
 ]);
