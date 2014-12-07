@@ -16,19 +16,15 @@ class User < ActiveRecord::Base
     !@new_password.blank?
   end
 
-  private
-  # This is where the real work is done, store the BCrypt has in the
-  # database
-  def hash_new_password
-    self.password = BCrypt::Password.create(@new_password)
-  end
 
   # As is the 'standard' with rails apps we'll return the user record if the
   # password is correct and nil if it isn't.
-  def self.authenticate(email, password)
+  def authenticate(email, password)
     # Because we use bcrypt we can't do this query in one part, first
     # we need to fetch the potential user
-    if user = find_by_email(email)
+    user = User.find_by(email: email)
+
+    if user
       # Then compare the provided password against the hashed one in the db.
       if BCrypt::Password.new(user.password).is_password? password
         # If they match we return the user
@@ -39,6 +35,14 @@ class User < ActiveRecord::Base
     # password was provided.  But we don't want to let an attacker know which.
     return nil
   end
+
+  private
+  # This is where the real work is done, store the BCrypt has in the
+  # database
+  def hash_new_password
+    self.password = BCrypt::Password.create(@new_password)
+  end
+
 
 
 end

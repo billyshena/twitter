@@ -35,14 +35,15 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
         $scope.signIn = function(user){
             console.log(user);
             $http
-                .post(appConfig.appUrl + '/auth/create',{
+                .post(appConfig.appUrl + '/auth/authenticate',{
                     email: user.email,
                     password: user.password
                 })
-                .success(function(){
+                .then(function(response){
+                    console.log(response);
 
                 }, function(err){
-
+                    console.log(err);
                 });
         }
 
