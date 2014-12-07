@@ -6,10 +6,15 @@
 angular.module('app')
     .run(
     [
-        '$rootScope', '$state', '$stateParams',
-        function ($rootScope, $state, $stateParams) {
-            $rootScope.$state = $state;
-            $rootScope.$stateParams = $stateParams;
+        '$rootScope', '$state', '$stateParams', 'Auth', 'Logger',
+        function ($rootScope, $state, $stateParams, Auth, Logger) {
+            $rootScope.$on("$stateChangeStart", function (event, toState) {
+                if (toState.authenticate && !Auth.isAuthenticated()) {
+                    event.preventDefault();
+                    Logger.logError('Merci de vous connecter pour accéder à cette section');
+                    $state.go('app.home');
+                }
+            });
         }
     ]
 )
@@ -39,7 +44,8 @@ angular.module('app')
                 .state('app.timeline',{
                     url: '/timeline',
                     controller: 'timelineCtrl',
-                    templateUrl: appConfig.assetsUrl + 'views/timeline.html'
+                    templateUrl: appConfig.assetsUrl + 'views/timeline.html',
+                    authenticate: true
                 })
 
         }

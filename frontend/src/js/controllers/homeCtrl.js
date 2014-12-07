@@ -9,8 +9,8 @@
  */
 'use strict';
 angular.module('app.controllers.home', []).controller('homeCtrl', [
-    '$scope', 'Logger', '$http',
-    function($scope, Logger, $http) {
+    '$scope', 'Logger', '$http', 'Auth', '$state',
+    function($scope, Logger, $http, Auth, $state) {
 
         /* Register a new user object */
         $scope.signUp = function (user){
@@ -33,19 +33,17 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
 
 
         $scope.signIn = function(user){
-            console.log(user);
-            $http
-                .post(appConfig.appUrl + '/auth/authenticate',{
-                    email: user.email,
-                    password: user.password
-                })
-                .then(function(response){
-                    console.log(response);
-
-                }, function(err){
-                    console.log(err);
-                });
+            return Auth.login(user).then(function(data) {
+                if(Auth.isAuthenticated()){
+                    Logger.logSuccess('Vous êtes désormais connecté!');
+                    $state.go('app.timeline');
+                }
+                else{
+                    Logger.logError('Merci de vérifier vos identifiants');
+                }
+            });
         }
+
 
 
     }

@@ -7,5 +7,7 @@ angular.module('app', [
     'app.controllers.home',
     'app.controllers.timeline',
     'app.services.logger',
-    'app.controllers.tweet'
+    'app.controllers.tweet',
+    'app.services.auth',
+    'app.services.storage'
 ]);

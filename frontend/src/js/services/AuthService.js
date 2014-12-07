@@ -107,7 +107,7 @@
                      */
                     login: function(credentials) {
                         return $http
-                            .post(appConfig.appUrl+'/auth/login', credentials, { withCredentials: true })
+                            .post(appConfig.appUrl+'/auth/authenticate', credentials, { withCredentials: true })
                             .success(function(response) {
                                 if(response.token){
                                     Storage.set('token', response.token);
@@ -115,8 +115,9 @@
                                 else{
                                     return response;
                                 }
-                            }).error(function(error){
-                                return Logger.logError(error.message);
+                            })
+                            .error(function(error){
+                                return Logger.logError('Merci de vérifier vos identifiants');
                             });
                     },
 
