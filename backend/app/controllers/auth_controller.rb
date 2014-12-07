@@ -18,8 +18,9 @@ class AuthController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:email],params[:password])
       token = AuthToken.issue_token({ user_id: user.id })
-      render json: { user: user,
-                     token: token }
+      puts "Im here bitches"
+      @user_token = { token: { hash: token , id: user.id, name: 'Billy' } }
+      render json: @user_token
     else
       render json: { error: "Invalid email/password combination" }, status: :unauthorized
     end

@@ -6,8 +6,8 @@
 /* Controllers */
 
 angular.module('app.controllers.main',[]).controller('AppCtrl', [
-    '$scope', '$window', '$modal', 'Auth', 'Logger', '$state',
-    function ($scope, $window, $modal, Auth, Logger, $state) {
+    '$scope', '$window', '$modal', 'Auth', '$state', 'Logger',
+    function ($scope, $window, $modal, Auth, $state, Logger) {
 
 
         // add 'ie' classes to html
@@ -57,6 +57,11 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
             Auth.logout();
             $state.go('app.home');
             Logger.logSuccess('Vous avez bien été déconnecté');
+        };
+
+
+        $scope.isAuthenticated = function(){
+            return Auth.isAuthenticated();
         }
 
 

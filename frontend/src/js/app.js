@@ -9,5 +9,6 @@ angular.module('app', [
     'app.services.logger',
     'app.controllers.tweet',
     'app.services.auth',
-    'app.services.storage'
+    'app.services.storage',
+    'app.interceptors.auth'
 ]);

@@ -63,9 +63,8 @@ angular.module('app.interceptors.auth', [])
                  */
                 responseError: function (response) {
                     if (response.status === 401 || response.status === 403) {
-                        Storage.unset('user');
                         Storage.unset('token');
-                        $injector.get('$state').go('login');
+                        $injector.get('$state').go('app.home');
                     }
 
                     return $q.reject(response);

@@ -109,14 +109,17 @@
                         return $http
                             .post(appConfig.appUrl+'/auth/authenticate', credentials, { withCredentials: true })
                             .success(function(response) {
+                                console.log('here');
+                                console.log(response);
                                 if(response.token){
-                                    Storage.set('token', response.token);
+                                    Storage.set('token', JSON.stringify(response.token));
                                 }
                                 else{
                                     return response;
                                 }
                             })
                             .error(function(error){
+                                console.log(error);
                                 return Logger.logError('Merci de vérifier vos identifiants');
                             });
                     },

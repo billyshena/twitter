@@ -25,7 +25,7 @@ angular.module('app')
 
             $httpProvider.defaults.useXDomain = true;
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+            $httpProvider.interceptors.push('AuthInterceptor');
 
             // Send to login if the URL was not found
             $urlRouterProvider.otherwise("app/home");
