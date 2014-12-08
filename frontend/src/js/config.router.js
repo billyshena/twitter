@@ -48,7 +48,7 @@ angular.module('app')
                     authenticate: true
                 })
                 .state('app.profile',{
-                    url: '/profile',
+                    url: '/profile/:name',
                     controller: 'userCtrl',
                     templateUrl: appConfig.assetsUrl + 'views/profile.html',
                     authenticated: true

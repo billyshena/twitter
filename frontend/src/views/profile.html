@@ -1,33 +1,28 @@
 <div class="hbox hbox-auto-xs hbox-auto-sm ng-scope">
 <div class="col">
-    <div style="background:url(img/c4.jpg) center center; background-size:cover">
+    <div style="background:url(img/bg5.jpeg) center center; background-size:cover">
         <div class="wrapper-lg bg-white-opacity">
             <div class="row m-t">
                 <div class="col-sm-7">
                     <a href="" class="thumb-lg pull-left m-r">
-                        <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}" class="img-circle">
+                        <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}"
+                             class="img-circle border-img animated fadeInUpBig">
                     </a>
                     <div class="clear m-b">
                         <div class="m-b m-t-sm">
-                            <span class="h3 text-black">{{user.account_name}}</span>
-                            <small class="m-l">London, UK</small>
+                            <span class="h2 text-white animated fadeInDownBig">{{user.account_name}}</span>
+                            <p class="text-white animated fadeInLeft">London, UK</p>
                         </div>
-                        <p class="m-b">
-                            <a href="" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
-                            <a href="" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
-                            <a href="" class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a>
-                        </p>
-
 
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="pull-right pull-none-xs text-center">
-                        <a href="" class="m-b-md inline m">
+                        <a href="" class="m-b-md inline m animated fadeInRightBig">
                             <span class="h3 block font-bold">2k</span>
                             <small>Followers</small>
                         </a>
-                        <a href="" class="m-b-md inline m">
+                        <a href="" class="m-b-md inline m animated fadeInLeftBig">
                             <span class="h3 block font-bold">250</span>
                             <small>Following</small>
                         </a>
@@ -41,7 +36,7 @@
             <li class="active"><a href="">Mes tweets</a></li>
             <li><a href="">Abonnés</a></li>
             <li><a href="">Abonnements</a></li>
-            <li>
+            <li class="pull-right">
                 <!-- Single button -->
                 <div class="btn-group" dropdown is-open="status.isopen">
                     <button type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
@@ -66,14 +61,14 @@
         </ul>
     </div>
     <div class="padder">
-        <div class="streamline b-l b-info m-l-lg m-b padder-v" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">
+        <div class="streamline b-l b-info m-l-lg m-b padder-v animated fadeInUp" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">
             <div>
                 <a class="pull-left thumb-sm avatar m-l-n-md">
                     <img src="img/billy.png" class="img-circle" alt="...">
                 </a>
                 <div class="m-l-lg">
                     <div class="m-b-xs">
-                        <a href="" class="h4">John smith</a>
+                        <a href="" class="h4">{{ user.account_name }}</a>
               <span class="text-muted m-l-sm pull-right">
                 Just now
               </span>
@@ -82,11 +77,12 @@
                         <div class="panel b-a">
                             <div class="panel-heading pos-rlt">
                                 <span class="arrow left pull-up"></span>
-              <span class="text-muted m-l-sm pull-right">
-                10m ago
-              </span>
+                                  <span class="text-muted m-l-sm pull-right">
+                                    10m ago
+                                  </span>
                                 <a href="">Mika Sam</a>
-                                Report this comment is helpful
+                                Report this comment is helpful <br/>
+                                Lorem ipsum are content that provide some examples for users that cannot afford a translator
                             </div>
                         </div>
                     </div>

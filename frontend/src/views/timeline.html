@@ -1,15 +1,17 @@
-
+<style>
+    .hbox .col{display: table-cell}
+</style>
 <div class="hbox">
     <div class="wrapper">
         <div class="col timeline">
             <div class="row">
                 <!-- user information -->
-                <div class="col-md-3 animated fadeInDown">
+                <div class="col-md-3 animated fadeInLeftBig">
                     <div class="col-md-12">
                         <div class="panel b-a">
                             <div class="panel-heading bg-info dk no-border wrapper-lg"></div>
                             <div class="text-center m-b clearfix">
-                              <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile">
+                              <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })">
                                 <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}" alt="..." class="b b-3x b-white">
                                 <div class="h4 font-thin m-t-sm">{{user.account_name}}</div>
                                 <span>13 tweets</span>
@@ -36,11 +38,11 @@
                 <!-- /user information -->
 
                 <!-- timeline content -->
-                <div class="col-md-6 animated fadeInUp">
+                <div class="col-md-6">
 
                     <div class="panel item">
-                        <div class="list-group list-group-lg list-group-sp" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">
-                            <a herf="" class="list-group-item clearfix">
+                        <div class="list-group list-group-lg list-group-sp animated fadeInDownBig" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">
+                            <a herf="" class="list-group-item clearfix ">
                                   <span class="pull-left thumb-sm avatar m-r">
                                     <img src="img/a1.jpg" alt="...">
                                     <i class="on b-white right"></i>
@@ -59,14 +61,14 @@
                 <!-- /timeline content -->
 
 
-                <div class="col-md-3 animated fadeInRight">
+                <div class="col-md-3">
                 <div class="panel no-border">
                     <div class="panel-heading wrapper b-b b-light">
 
                       <h4 class="font-thin m-t-none m-b-none text-muted">Personnes à suivre</h4>
                     </div>
                     <ul class="list-group list-group-lg m-b-none">
-                      <li class="list-group-item" ng-repeat="i in [1,2,3,4]">
+                      <li class="list-group-item animated fadeInRightBig" ng-repeat="i in [1,2,3,4]">
                         <a href="" class="thumb-sm m-r">
                           <img src="img/a1.jpg" class="r r-2x">
                         </a>

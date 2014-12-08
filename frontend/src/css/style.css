@@ -88,8 +88,15 @@ a.team-request small.text-muted:first-letter {
     height: 100%;
     vertical-align: top;
 }
-
-
+.dropdown-menu{
+    left:-90px;
+}
+.border-img{
+    border:3px solid white;
+}
+.bg-white-opacity {
+    background-color: rgba(255, 255, 255, 0.2);
+}
 .courseItem-name{
     margin-bottom:10px;
     font-weight:400;
@@ -208,7 +215,6 @@ p.noItem{
     padding:20px;
 }
 .hbox .col{
-    display: table-cell;
     float: none;
     height: 100%;
     vertical-align: top;
