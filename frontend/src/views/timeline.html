@@ -68,13 +68,26 @@
                       <h4 class="font-thin m-t-none m-b-none text-muted">Personnes à suivre</h4>
                     </div>
                     <ul class="list-group list-group-lg m-b-none">
-                      <li class="list-group-item animated fadeInRightBig" ng-repeat="i in [1,2,3,4]">
+                      <li class="list-group-item animated fadeInRightBig"
+                          ng-repeat="result in results"
+                          >
                         <a href="" class="thumb-sm m-r">
                           <img src="img/a1.jpg" class="r r-2x">
                         </a>
-                        <button class="btn btn-default inline pull-right">
+               <!--         <button class="btn btn-default inline pull-right"
+                                data-ng-click="results.splice($index,1)">
                         <i class="fa fa-user"></i>
-                        Suivre</button>
+                        Suivre</button>-->
+
+
+                          <button class="btn btn-default pull-right"
+                                  ui-toggle-class="btn-success"
+                                  data-ng-click="results.splice($index,1)">
+                              <i class="fa fa-user text"></i>
+                              <span class="text">Suivre</span>
+                              <i class="fa fa-check text-active"></i>
+                              <span class="text-active">Suivi</span>
+                          </button>
                         <a href="">Damon Parker</a>
                       </li>
 

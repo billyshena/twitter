@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :new_password, :if=>:password_changed?
 
   before_save :hash_new_password, :if=>:password_changed?
+  has_many :posts
 
   # By default the form_helpers will set new_password to "",
   # we don't want to go saving this as a password

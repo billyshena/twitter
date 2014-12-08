@@ -28,7 +28,6 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
 
         if(Auth.isAuthenticated()){
             $http.get(appConfig.appUrl + '/user/' + JSON.parse(Storage.get('token')).id).success(function(data){
-                console.log(data);
                 $scope.user = data;
             }).error(function(err){
                 console.log(err);

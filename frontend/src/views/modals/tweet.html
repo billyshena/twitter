@@ -7,14 +7,14 @@
               class="form-control"
               rows="4"
               style="border:1px solid rgba(0,132,180,0.25);"
-              ng-model="tweet"
+              ng-model="post.content"
               maxlength="150">
     </textarea>
 
-    <p>{{ maxLength - tweet.length }} caractères restants</p>
+    <p>{{ maxLength - post.content.length }} caractères restants</p>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-info" data-ng-click="tweet()">
+    <button class="btn btn-info" data-ng-click="create(post)">
         <i class="fa fa-send-o"></i>
         Tweeter</button>
 </div>
