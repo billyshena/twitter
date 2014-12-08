@@ -9,6 +9,16 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
     '$scope', '$window', '$modal', 'Auth', '$state', 'Logger', 'Storage', '$http',
     function ($scope, $window, $modal, Auth, $state, Logger, Storage, $http) {
 
+        $scope.selected = undefined;
+        $scope.avatarUrl = appConfig.appUrl + '/avatars';
+
+        // Any function returning a promise object can be used to load values asynchronously
+        $scope.search = function(val) {
+            console.log('searching for = ' + val);
+            return $http.get(appConfig.appUrl + '/user').then(function(response){
+                return response.data;
+            });
+        };
 
         if(Auth.isAuthenticated()){
             $http.get(appConfig.appUrl + '/user/' + JSON.parse(Storage.get('token')).id).success(function(data){
@@ -18,6 +28,8 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
                 console.log(err);
                 Logger.logError('Erreur récupération de l\'utilisateur');
             });
+
+
         }
 
 

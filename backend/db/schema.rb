@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141206140427) do
     t.string   "email"
     t.string   "password"
     t.text     "bio"
+    t.string   "avatar",       default: "default_avatar.png"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

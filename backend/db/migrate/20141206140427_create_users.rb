@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password
       t.text :bio
+      t.string :avatar, default: 'default_avatar.png'
 
       t.timestamps
     end

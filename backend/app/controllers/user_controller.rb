@@ -1,7 +1,7 @@
 
   class UserController < Api::BaseController
     respond_to :json
-    before_filter :authenticate, :only => [:index, :update, :delete]
+    before_filter :authenticate, :only => [:index, :update, :delete, :upload]
 
     def create
       @user = User.new(
@@ -34,4 +34,14 @@
       @user = User.all.to_json
       render json: @user
     end
+
+    def upload
+      uploaded_io = params[:file]
+      File.open(Rails.root.join('public', 'avatars', uploaded_io.original_filename), 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      @updated_user = User.update(@current_user.id, :avatar => uploaded_io.original_filename)
+      render json: @updated_user.to_json
+    end
+
   end

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'user/index'
 
+  post '/file/upload', to: "user#upload"
+
   resources :user
 
 

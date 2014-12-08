@@ -11,5 +11,7 @@ angular.module('app', [
     'app.services.auth',
     'app.services.storage',
     'app.interceptors.auth',
-    'app.controllers.user'
+    'app.controllers.user',
+    'app.controllers.avatar',
+    'app.directives.upload'
 ]);
