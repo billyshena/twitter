@@ -47,6 +47,12 @@ angular.module('app')
                     templateUrl: appConfig.assetsUrl + 'views/timeline.html',
                     authenticate: true
                 })
+                .state('app.profile',{
+                    url: '/profile',
+                    controller: 'userCtrl',
+                    templateUrl: appConfig.assetsUrl + 'views/profile.html',
+                    authenticated: true
+                })
 
         }
     ]

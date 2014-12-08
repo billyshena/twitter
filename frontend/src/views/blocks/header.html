@@ -14,7 +14,7 @@
     </div>
 
     <!-- /menu -->
-    <div class="nav navbar-nav hidden-xs animated fadeInLeft" ng-if="">
+    <div class="nav navbar-nav hidden-xs animated fadeInLeft" ng-if="isAuthenticated()">
           <a href="" class="btn no-shadow navbar-btn">
             <i class="fa fa-home"></i>
             Accueil
@@ -22,7 +22,7 @@
 
 
             <div class="nav navbar-nav hidden-xs animated fadeInLeft">
-          <a href="" class="btn no-shadow navbar-btn">
+          <a data-ui-sref="app.timeline" class="btn no-shadow navbar-btn">
             <i class="fa fa-slack"></i>
             Découvrir
           </a>

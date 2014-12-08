@@ -62,6 +62,15 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
 
         $scope.isAuthenticated = function(){
             return Auth.isAuthenticated();
+        };
+
+
+        /* Open the modal to post a new Tweet */
+        $scope.open = function(modal){
+            var modalInstance = $modal.open({
+                templateUrl: appConfig.assetsUrl + 'views/modals/' + modal + '.html',
+                controller: modal + 'Ctrl'
+            });
         }
 
 

@@ -10,5 +10,6 @@ angular.module('app', [
     'app.controllers.tweet',
     'app.services.auth',
     'app.services.storage',
-    'app.interceptors.auth'
+    'app.interceptors.auth',
+    'app.controllers.user'
 ]);

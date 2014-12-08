@@ -32,6 +32,7 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
         };
 
 
+        /* Login action */
         $scope.signIn = function(user){
             return Auth.login(user).then(function(data) {
                 if(Auth.isAuthenticated()){
