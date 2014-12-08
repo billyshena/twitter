@@ -19,7 +19,7 @@
         <div class="nav navbar-nav hidden-xs animated fadeInLeft menu-item">
           <a data-ui-sref="app.timeline" class="btn no-shadow navbar-btn">
             <i class="fa fa-slack"></i>
-            Découvrir
+            Accueil
           </a>
 
         </div>
@@ -35,7 +35,9 @@
     <!-- /menu -->
 
     <!-- / buttons -->
-    <form class="navbar-form navbar-form-sm navbar-left shift ng-pristine ng-valid ng-scope animated fadeInLeft" role="search">
+    <form class="navbar-form navbar-form-sm navbar-left shift ng-pristine ng-valid ng-scope animated fadeInLeft"
+          role="search"
+          data-ng-submit="getProfile(term)">
           <div class="form-group">
             <div class="input-group">
  <!--             <input type="text"
@@ -46,7 +48,7 @@
                      >-->
 
                 <input type="text"
-                       ng-model="asyncSelected"
+                       ng-model="term"
                        placeholder="Recherchez ici..."
                        typeahead="user as user.account_name for user in search($viewValue)"
                        typeahead-loading="loadingLocations"

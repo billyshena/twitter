@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   post '/file/upload', to: "user#upload"
 
+  get '/user/get/:name', to: "user#find_by_name"
+
   resources :user
 
 

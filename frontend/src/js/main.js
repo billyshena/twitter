@@ -20,6 +20,12 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
             });
         };
 
+        $scope.getProfile = function(term){
+            $state.go("app.profile", {name: term.account_name})
+
+        };
+
+
         if(Auth.isAuthenticated()){
             $http.get(appConfig.appUrl + '/user/' + JSON.parse(Storage.get('token')).id).success(function(data){
                 console.log(data);

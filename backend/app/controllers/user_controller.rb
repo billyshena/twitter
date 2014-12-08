@@ -30,6 +30,11 @@
       render json: @user
     end
 
+    def find_by_name
+      @user = User.where(account_name: params[:name])
+      render json: @user
+    end
+
     def index
       @user = User.all.to_json
       render json: @user
