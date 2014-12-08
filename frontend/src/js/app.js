@@ -13,5 +13,6 @@ angular.module('app', [
     'app.interceptors.auth',
     'app.controllers.user',
     'app.controllers.avatar',
-    'app.directives.upload'
+    'app.directives.upload',
+    'angularMoment'
 ]);

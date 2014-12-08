@@ -13,8 +13,8 @@
                             <div class="text-center m-b clearfix">
                               <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })">
                                 <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}" alt="..." class="b b-3x b-white">
-                                <div class="h4 font-thin m-t-sm">{{user.account_name}}</div>
-                                <span>13 tweets</span>
+                                <div class="h3 font-thin m-t-sm">{{user.account_name}}</div>
+                                <span>{{ numberPosts }} tweets</span>
                               </div>
                             </div>
 
@@ -40,17 +40,48 @@
                 <!-- timeline content -->
                 <div class="col-md-6">
 
+                    <div ng-show="isOpen" class="animated fadeInUp">
+                        <textarea name=""
+                                  class="form-control"
+                                  rows="4"
+                                  style="border:1px solid rgba(0,132,180,0.25);"
+                                  ng-model="post.content"
+                                  maxlength="150">
+                        </textarea>
+
+<!--                        <p class="pull-left">{{ maxLength - post.content.length }} caractères restants</p>-->
+
+                        <form action="/file/upload" upload-picture id="my-dropzone">
+                            <div class="dz-default dz-message">Ajoutez votre photo profil ici</div>
+                            <input type="hidden" value="{{owner}}" name="owner" id="owner"/>
+                            <input type="hidden" value="{{parent}}" name="parent" id="parent"/>
+                        </form>
+
+                        <button class="btn btn-info pull-right m-t m-b"
+                                data-ng-click="create(post)"
+                                ng-disabled="!post.content">
+                            <i class="fa fa-send-o"></i>
+                            Tweeter</button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
                     <div class="panel item">
-                        <div class="list-group list-group-lg list-group-sp animated fadeInDownBig" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">
+                        <div class="list-group list-group-lg list-group-sp animated fadeInDownBig"
+                             ng-repeat="post in posts | orderBy: '-created_at'">
                             <a herf="" class="list-group-item clearfix ">
+                                  <i class="fa fa-clock-o pull-right" style="margin-top:4px;"></i>
+                                  <span class="pull-right" am-time-ago="post.created_at">
+
+                                  </span>
                                   <span class="pull-left thumb-sm avatar m-r">
-                                    <img src="img/a1.jpg" alt="...">
+                                    <img data-ng-src="{{avatarUrl}}/{{post.user.avatar}}" alt="...">
                                     <i class="on b-white right"></i>
                                   </span>
                                   <span class="clear">
-                                    <span>Amanda Conlan</span>
-                                    <small class="text-muted clear text-ellipsis">
-                                    Le Lorem Ipsum est simplement du faux texte employé dans la composition.
+                                    <span class="h5">{{post.user.account_name}}</span>
+                                    <small class="text-muted clear text-ellipsis h4">
+                                    {{post.content}}
                                     </small>
                                   </span>
                             </a>

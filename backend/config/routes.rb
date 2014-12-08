@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   post '/posts/new', to: "posts#create"
 
+  get '/userPosts', to: "posts#user_posts"
+
+  get '/count/posts', to: "posts#count"
+
   resources :user
 
 

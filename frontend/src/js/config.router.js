@@ -6,8 +6,9 @@
 angular.module('app')
     .run(
     [
-        '$rootScope', '$state', '$stateParams', 'Auth', 'Logger',
-        function ($rootScope, $state, $stateParams, Auth, Logger) {
+        '$rootScope', '$state', '$stateParams', 'Auth', 'Logger', 'amMoment',
+        function ($rootScope, $state, $stateParams, Auth, Logger, amMoment) {
+            amMoment.changeLocale('fr');
             $rootScope.$on("$stateChangeStart", function (event, toState) {
                 if (toState.authenticate && !Auth.isAuthenticated()) {
                     event.preventDefault();

@@ -1,5 +1,5 @@
 class PostsController < Api::BaseController
-  before_filter :authenticate, :only => [:index, :create, :destroy, :update]
+  before_filter :authenticate, :only => [:index, :create, :destroy, :update, :user_posts, :count]
   respond_to :json
 
   def index
@@ -25,7 +25,7 @@ class PostsController < Api::BaseController
       user_id: @current_user.id
     )
     if @post.save
-      render json: @post.to_json
+      render json: @post.as_json(include: :user)
     else
       flash[:error] = "Une erreur a empêché la création"
       render :new
@@ -40,6 +40,23 @@ class PostsController < Api::BaseController
   def destroy
     @post.destroy
     respond_with(@post)
+  end
+
+  def user_posts
+    @posts = Post.where(user_id: @current_user.id)
+    render json: @posts.as_json(include: :user)
+  end
+
+  def count
+    @number_posts = Post.where(user_id: @current_user.id).count
+    puts "zedjzoejezd"
+    render json: @number_posts.to_json
+  end
+
+  def upload
+    puts "uploading"
+
+
   end
 
   private

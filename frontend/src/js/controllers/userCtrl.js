@@ -5,6 +5,7 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
 
         /* Initialize scope values here */
         $scope.user = data;
+        $scope.posts = [];
 
         $scope.open = function(modal){
             var modalInstance = $modal.open({
@@ -13,8 +14,14 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
             });
         };
 
-
-
+        $http
+            .get(appConfig.appUrl + '/userPosts')
+            .then(function(response){
+                $scope.posts = response.data;
+            }, function(err){
+                console.log(err);
+                Logger.logError('Erreur récupération de vos postes');
+            });
 
     }
 ]);

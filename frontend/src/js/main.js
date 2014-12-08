@@ -11,6 +11,9 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
 
         $scope.selected = undefined;
         $scope.avatarUrl = appConfig.appUrl + '/avatars';
+        $scope.isOpen = false;
+
+
 
         // Any function returning a promise object can be used to load values asynchronously
         $scope.search = function(val) {
@@ -94,12 +97,16 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
 
 
         /* Open the modal to post a new Tweet */
-        $scope.open = function(modal){
-            var modalInstance = $modal.open({
-                templateUrl: appConfig.assetsUrl + 'views/modals/' + modal + '.html',
-                controller: modal + 'Ctrl'
-            });
+        $scope.open = function(){
+            if($scope.isOpen){
+                $scope.isOpen = false;
+            }
+            else{
+                $scope.isOpen = true;
+            }
         }
+
+
 
 
     }]);

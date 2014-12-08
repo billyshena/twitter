@@ -3,7 +3,7 @@
     <h3 class="modal-title" style="text-align:center">Uploadez votre photo profil</h3>
 </div>
 <div class="modal-body">
-    <form action="/file/upload" class="dropzone" upload>
+    <form action="/file/upload" class="dropzone" upload id="dropzone">
         <div class="dz-default dz-message">Ajoutez votre photo profil ici</div>
         <input type="hidden" value="{{owner}}" name="owner" id="owner"/>
         <input type="hidden" value="{{parent}}" name="parent" id="parent"/>
