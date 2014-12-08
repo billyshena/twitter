@@ -37,7 +37,7 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
             return Auth.login(user).then(function(data) {
                 if(Auth.isAuthenticated()){
                     Logger.logSuccess('Vous êtes désormais connecté!');
-                    $state.go('app.timeline');
+                    window.location.href = '/';
                 }
                 else{
                     Logger.logError('Merci de vérifier vos identifiants');

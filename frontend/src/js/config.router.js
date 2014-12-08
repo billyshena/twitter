@@ -28,7 +28,7 @@ angular.module('app')
             $httpProvider.interceptors.push('AuthInterceptor');
 
             // Send to login if the URL was not found
-            $urlRouterProvider.otherwise("app/home");
+            $urlRouterProvider.otherwise("app/timeline");
 
             $stateProvider
                 .state('app', {

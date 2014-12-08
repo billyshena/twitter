@@ -218,8 +218,16 @@ p.noItem{
 .app:before{
     background-color:rgb(215, 238, 245);
 }
-.navbar-nav:hover{
-    border-bottom:2px solid white;
+.menu-item:hover{
+    border-bottom:3px solid white;
+}
+.nav-pills > li > a:hover{
+    color: #fff !important;
+    background-color: #23b7e5;
+
+}
+.thumb-lg{
+    cursor:pointer;
 }
 #tweet{
     border:1px solid white;

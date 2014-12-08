@@ -6,8 +6,19 @@
 /* Controllers */
 
 angular.module('app.controllers.main',[]).controller('AppCtrl', [
-    '$scope', '$window', '$modal', 'Auth', '$state', 'Logger',
-    function ($scope, $window, $modal, Auth, $state, Logger) {
+    '$scope', '$window', '$modal', 'Auth', '$state', 'Logger', 'Storage', '$http',
+    function ($scope, $window, $modal, Auth, $state, Logger, Storage, $http) {
+
+
+        if(Auth.isAuthenticated()){
+            $http.get(appConfig.appUrl + '/user/' + JSON.parse(Storage.get('token')).id).success(function(data){
+                console.log(data);
+                $scope.user = data;
+            }).error(function(err){
+                console.log(err);
+                Logger.logError('Erreur récupération de l\'utilisateur');
+            });
+        }
 
 
         // add 'ie' classes to html
