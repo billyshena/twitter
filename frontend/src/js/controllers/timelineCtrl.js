@@ -124,13 +124,11 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
 
                     submitButton.addEventListener("click", function() {
                         myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-                        console.log("content == " + scope.post.content);
-                        console.log(scope.post);
                         if(myDropzone.files.length === 0){
                             $http.post(appConfig.appUrl + '/posts/new_post',{
                                 content: scope.post.content
                             }).then(function(response){
-                                scope.isOpen = false;
+                                scope.post.content = '';
                                 scope.posts.push(response.data);
                                 Logger.logSuccess('Votre poste a bien été publié');
                             }, function(err){
