@@ -29,6 +29,7 @@
 
 .tweet-content {
     padding-top: 40px;
+    min-height:100%;
 }
 .item{
     border: 1px solid #e1e8ed;

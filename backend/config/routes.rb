@@ -17,15 +17,17 @@ Rails.application.routes.draw do
 
   get 'user/index'
 
-  post '/file/upload', to: "user#upload"
-
   get '/user/get/:name', to: "user#find_by_name"
-
+  
   post '/posts/new', to: "posts#create"
+
+  post '/posts/new_post', to: "posts#new_post"
 
   get '/userPosts/:name', to: "posts#user_posts"
 
   get '/count/posts', to: "posts#count"
+
+  get 'user/is_following/:id', to: "user#following?"
 
   resources :user do
     member do
@@ -33,6 +35,9 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'relationships/create', to: "relationships#create"
+
+  delete 'relationships/destroy', to: "relationships#destroy"
 
   controller :user, path: '/user' do
     match 'create', via: [ :post, :options]
@@ -42,6 +47,10 @@ Rails.application.routes.draw do
   controller :auth, path: '/auth' do
     match 'authenticate', via: [ :post ]
   end
+
+  post '/file/upload', to: "user#upload"
+
+  post '/posts/new', to: "posts#create"
 
 
 end

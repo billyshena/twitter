@@ -44,8 +44,17 @@
             <li class="pull-right">
                 <!-- Single button -->
                 <div class="btn-group" dropdown is-open="status.isopen">
-                    <button type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+                    <button type="button"
+                            class="btn btn-default"
+                            dropdown-toggle
+                            ng-disabled="disabled"
+                            ng-if="user.id == currentUser">
                         Mon compte <span class="caret"></span>
+                    </button>
+
+                    <button class="btn btn-info" ng-if="user.id !== currentUser">
+                        <i class="fa fa-share"></i>
+                        Follow
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li>
@@ -65,8 +74,8 @@
             </li>
         </ul>
     </div>
-    <div class="padder">
-        <div class="streamline b-l b-info m-l-lg m-b padder-v animated fadeInUp" ng-repeat="post in posts">
+    <div class="padder" style="width:769px;margin:0 auto;">
+        <div class="streamline b-l b-info m-l-lg m-b padder-v animated fadeInUp" ng-repeat="post in posts | orderBy: '-created_at'">
             <div>
                 <a class="pull-left thumb-sm avatar m-l-n-md">
                     <img data-ng-src="{{avatarUrl }}/{{ post.user.avatar }}" class="img-circle avatar-small" alt="...">
@@ -80,10 +89,16 @@
                             <div class="panel-heading pos-rlt">
                                 <span class="arrow left pull-up"></span>
                                   <span class="text-muted m-l-sm pull-right" am-time-ago="post.created_at">
-
                                   </span>
-                                <a href="">Mika Sam</a>
                                 {{post.content}}
+                            </div>
+                            <div class="panel-body">
+                                <img data-ng-src="http://localhost:3000/uploads/{{post.image}}"
+                                     ng-if="post.image"
+                                     class="tweet-img"
+                                     height="200"
+                                     width="250"
+                                     alt="Post image"/>
                             </div>
                         </div>
                     </div>
