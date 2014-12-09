@@ -51,14 +51,13 @@
 
 <!--                        <p class="pull-left">{{ maxLength - post.content.length }} caractères restants</p>-->
 
-                        <form action="/file/upload" upload-picture id="my-dropzone">
+                        <form action="/posts/new" upload-picture id="my-dropzone" class="dropzone">
                             <div class="dz-default dz-message">Ajoutez votre photo profil ici</div>
-                            <input type="hidden" value="{{owner}}" name="owner" id="owner"/>
-                            <input type="hidden" value="{{parent}}" name="parent" id="parent"/>
+                            <input type="hidden" value="{{post.content}}" name="post" id="post"/>
                         </form>
 
                         <button class="btn btn-info pull-right m-t m-b"
-                                data-ng-click="create(post)"
+                                id="tweetB"
                                 ng-disabled="!post.content">
                             <i class="fa fa-send-o"></i>
                             Tweeter</button>
@@ -68,22 +67,28 @@
 
                     <div class="panel item">
                         <div class="list-group list-group-lg list-group-sp animated fadeInDownBig"
-                             ng-repeat="post in posts | orderBy: '-created_at'">
+                             ng-repeat="tweet in posts | orderBy: '-created_at'">
                             <a herf="" class="list-group-item clearfix ">
                                   <i class="fa fa-clock-o pull-right" style="margin-top:4px;"></i>
-                                  <span class="pull-right" am-time-ago="post.created_at">
+                                  <span class="pull-right" am-time-ago="tweet.created_at">
 
                                   </span>
                                   <span class="pull-left thumb-sm avatar m-r">
-                                    <img data-ng-src="{{avatarUrl}}/{{post.user.avatar}}" alt="...">
+                                    <img data-ng-src="{{avatarUrl}}/{{tweet.user.avatar}}" alt="...">
                                     <i class="on b-white right"></i>
                                   </span>
-                                  <span class="clear">
-                                    <span class="h5">{{post.user.account_name}}</span>
-                                    <small class="text-muted clear text-ellipsis h4">
-                                    {{post.content}}
-                                    </small>
+                                  <span>
+                                    <span class="h5">{{tweet.user.account_name}}</span>
+
+                                    <center>
+                                        <img data-ng-src="http://localhost:3000/uploads/{{tweet.image}}"
+                                             alt="Post image"
+                                             class="m-t tweet-img"
+                                             height="200" width="250" ng-if="tweet.image !== null"/>
+                                    </center>
                                   </span>
+
+                                   <span>{{tweet.content}}</span>
                             </a>
                         </div>
                     </div>

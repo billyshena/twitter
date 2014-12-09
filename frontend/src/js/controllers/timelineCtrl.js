@@ -13,15 +13,13 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $scope.posts = [];
         $scope.maxLength = 150;
         $scope.numberPosts = 0;
-        $scope.post = {
-            content: ''
-        };
 
 
         /* Get all the tweets */
         $http
             .get(appConfig.appUrl + '/posts')
             .then(function(response){
+                console.log(response.data);
                 $scope.posts = response.data;
             }, function(err){
                 console.log(err);
@@ -36,10 +34,11 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 console.log(err);
             });
 
+
         /* Create a new Post */
         $scope.create = function(post){
             /* Create a new Post */
-            $http
+/*            $http
                 .post(appConfig.appUrl + '/posts/new', post)
                 .then(function(response){
                     $scope.isOpen = false;
@@ -48,11 +47,13 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 }, function(err){
                     console.log(err);
                     Logger.logError('Erreur lors de la publication');
-                });
+                });*/
 
 
-            var myDropzone = new Dropzone("#my-dropzone");
-            myDropzone.autoDiscover = false;
+
+            Dropzone.autoDiscover = false;
+
+            // console.log(angular.element(document.querySelector("#my-dropzone")));
 
         }
 
@@ -61,7 +62,7 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
     function (Storage, Logger) {
         return function (scope, element) {
             element.dropzone({
-                url: appConfig.appUrl + '/file/upload',
+                url: appConfig.appUrl + '/posts/new',
                 maxFilesize: 500,
                 paramName: "file",
                 maxThumbnailFilesize: 5,
@@ -73,20 +74,25 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                     'Authorization': 'Bearer ' + JSON.parse(Storage.get('token')).hash
                 },
                 init: function () {
+                    var submitButton = document.querySelector("#tweetB");
+                    var myDropzone = this; // closure
+
+                    submitButton.addEventListener("click", function() {
+                        myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+                    });
+
 
                     this.on("success", function (data, files) {
-                        console.log(files);
-                        Logger.logSuccess('Upload avatar en cours...');
-                        setTimeout(function(){
-                            location.reload();
-                        },3000);
+                        scope.$apply(function(){
+                            scope.posts.push(files);
+                            scope.isOpen = false;
+                        });
+                        Logger.logSuccess('Votre poste a bien été publié');
                     });
 
                     this.on("complete", function () {
                         if (this.getQueuedFiles().length === 0 && this.getUploadingFiles().length === 0) {
-                            setTimeout(function(){
-                                this.removeAllFiles();
-                            },3000);
+                            myDropzone.removeAllFiles();
                         }
                     });
 

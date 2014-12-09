@@ -18,7 +18,9 @@
 .main-panel{
     padding-top:160px;
 }
-
+.tweet-img{
+    border-radius:5px;
+}
 .item{
     border: 1px solid #e1e8ed;
     border-radius:5px;

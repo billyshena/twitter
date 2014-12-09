@@ -21,11 +21,18 @@ class PostsController < Api::BaseController
 
   def create
     @post = Post.new(
-      content: params[:content],
+      content: params[:post],
       user_id: @current_user.id
     )
     if @post.save
-      render json: @post.as_json(include: :user)
+      uploaded_io = params[:file]
+      File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      @updated_user = Post.update(@post.id, :image => uploaded_io.original_filename)
+
+      render json: @updated_user.to_json
+
     else
       flash[:error] = "Une erreur a empêché la création"
       render :new
