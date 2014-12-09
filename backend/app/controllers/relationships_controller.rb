@@ -1,4 +1,4 @@
-class RelationshipsController < ApplicationController
+class RelationshipsController < Api::BaseController
   before_filter :authenticate, :only => [:create, :destroy]
 
   def create
