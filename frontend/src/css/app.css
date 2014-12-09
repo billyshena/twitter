@@ -4127,6 +4127,7 @@ a.text-#000000:hover {
 .padder {
   padding-right: 15px;
   padding-left: 15px;
+  max-width: 100% !important;
 }
 
 .padder-v {
