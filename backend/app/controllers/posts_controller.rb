@@ -29,9 +29,9 @@ class PostsController < Api::BaseController
       File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
         file.write(uploaded_io.read)
       end
-      @updated_user = Post.update(@post.id, :image => uploaded_io.original_filename)
+      @updated_post = Post.update(@post.id, :image => uploaded_io.original_filename)
 
-      render json: @updated_user.to_json
+      render json: @updated_post.as_json(include: :user)
 
     else
       flash[:error] = "Une erreur a empêché la création"
@@ -50,7 +50,7 @@ class PostsController < Api::BaseController
   end
 
   def user_posts
-    @posts = Post.where(user_id: @current_user.id)
+    @posts = Post.where(user_id: params[:name])
     render json: @posts.as_json(include: :user)
   end
 
@@ -60,11 +60,6 @@ class PostsController < Api::BaseController
     render json: @number_posts.to_json
   end
 
-  def upload
-    puts "uploading"
-
-
-  end
 
   private
     def set_post
