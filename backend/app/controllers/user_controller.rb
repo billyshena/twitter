@@ -52,7 +52,7 @@ class UserController < Api::BaseController
 
     def following?
       @user = User.find(@current_user.id)
-      @user.following?(params[:id]) ? (render status: 200) : (render status: 500)
+      @user.following?(params[:id]) ? head 200 : head 500
     end
 
     def following
