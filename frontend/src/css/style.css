@@ -193,7 +193,10 @@ a.bg-white:hover{
     background-image: url("../img/suricate.svg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: auto 45px;
+    background-size: auto 40px;
+}
+.logo-hide {
+    visibility: hidden;
 }
 .navbar-collapse.collapse > a{
     color: white;
@@ -271,7 +274,7 @@ p.noItem{
 #tweet{
     border:1px solid white;
     margin-right:30px;
-    margin-top:6px;
+    margin-top:9px;
 }
 .list-group-sp .list-group-item{
     margin-bottom:0px;
@@ -714,5 +717,12 @@ button.toast-close-button {
 @media all and (max-width:990px){
     #home-text{
         display:none;
+    }
+
+    .navbar-collapse.collapse {
+    background-image: none;
+    }
+    .logo-hide {
+        visibility: visible;
     }
 }
