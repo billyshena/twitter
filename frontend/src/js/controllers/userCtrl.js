@@ -15,8 +15,9 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
         };
 
         $http
-            .get(appConfig.appUrl + '/userPosts')
+            .get(appConfig.appUrl + '/userPosts/' + data.id)
             .then(function(response){
+                console.log(response);
                 $scope.posts = response.data;
             }, function(err){
                 console.log(err);
