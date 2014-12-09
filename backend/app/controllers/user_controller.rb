@@ -1,7 +1,7 @@
 
   class UserController < Api::BaseController
     respond_to :json
-    before_filter :authenticate, :only => [:index, :update, :delete, :upload]
+    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :follow, :unfollow]
 
     def create
       username = params[:username] ? params[:username] : params[:account_name]
@@ -51,6 +51,21 @@
       puts "UPDATED USER : #{@updated_user.inspect}"
 
       render json: @updated_user.to_json
+    end
+
+    def follow
+      @user = User.find(@current_user.id)
+      @user.follow(params[:id]) ? render status: 200 : render status: 500
+    end
+
+    def unfollow
+      @user = User.find(@current_user.id)
+      @user.unfollow(params[:id]) ? render status: 200 : render status: 500
+    end
+
+    def following
+      @user = User.find(@current_user.id)
+      @user.following?(params[:id]) ? render status: 200 : render status: 500
     end
 
   end

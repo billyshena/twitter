@@ -17,15 +17,17 @@ Rails.application.routes.draw do
 
   get 'user/index'
 
-  post '/file/upload', to: "user#upload"
-
   get '/user/get/:name', to: "user#find_by_name"
-
-  post '/posts/new', to: "posts#create"
 
   get '/userPosts/:name', to: "posts#user_posts"
 
   get '/count/posts', to: "posts#count"
+
+  post '/user/follow', to: "user#follow"
+
+  post '/user/unfollow', to: "user#unfollow"
+
+  get 'user/following/:id', to: "user#following"
 
   resources :user do
     member do
@@ -42,6 +44,10 @@ Rails.application.routes.draw do
   controller :auth, path: '/auth' do
     match 'authenticate', via: [ :post ]
   end
+
+  post '/file/upload', to: "user#upload"
+
+  post '/posts/new', to: "posts#create"
 
 
 end
