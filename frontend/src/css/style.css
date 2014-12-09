@@ -20,6 +20,7 @@
 }
 .tweet-img{
     border-radius:5px;
+    min-height:100%;
 }
 .item{
     border: 1px solid #e1e8ed;

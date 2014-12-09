@@ -155,11 +155,8 @@
     display: block;
 }
 .dropzone {
-    border: 1px dashed grey;
-    min-height: 88px;
     background: transparent;
     //background: rgba(0,0,0,0.03);
-    padding: 30px;
 }
 .dropzone .dz-default.dz-message {
     opacity: 1;

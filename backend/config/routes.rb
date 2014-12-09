@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   post '/posts/new', to: "posts#create"
 
+  post '/posts/new_post', to: "posts#new_post"
+
   get '/userPosts/:name', to: "posts#user_posts"
 
   get '/count/posts', to: "posts#count"
