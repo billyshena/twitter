@@ -52,7 +52,7 @@ angular.module('app')
                     url: '/profile/:name',
                     controller: 'userCtrl',
                     templateUrl: appConfig.assetsUrl + 'views/profile.html',
-                    authenticated: true,
+                    authenticate: true,
                     resolve: {
                         data: [
                             '$stateParams','$http', 'Logger', '$state',
@@ -74,7 +74,45 @@ angular.module('app')
                     url: '/following/:name',
                     controller: 'followingCtrl',
                     templateUrl: appConfig.assetsUrl + 'views/following.html',
-                    authenticated: true
+                    authenticate: true,
+                    resolve: {
+                        data: [
+                            '$stateParams','$http', 'Logger', '$state',
+                            function($stateParams, $http, Logger, $state){
+                                return $http
+                                    .get(appConfig.appUrl + '/user/get/' + $stateParams.name)
+                                    .then(function(response){
+                                        return response.data[0];
+                                    }, function(err){
+                                        console.log(err);
+                                        Logger.logError('Cet utilisateur n\'existe pas');
+                                        $state.go('app.timeline');
+                                    })
+                            }
+                        ]
+                    }
+                })
+                .state('app.followers',{
+                    url: '/followers/:name',
+                    controller: 'followerCtrl',
+                    templateUrl: appConfig.assetsUrl + 'views/followers.html',
+                    authenticate: true,
+                    resolve: {
+                        data: [
+                            '$stateParams','$http', 'Logger', '$state',
+                            function($stateParams, $http, Logger, $state){
+                                return $http
+                                    .get(appConfig.appUrl + '/user/get/' + $stateParams.name)
+                                    .then(function(response){
+                                        return response.data[0];
+                                    }, function(err){
+                                        console.log(err);
+                                        Logger.logError('Cet utilisateur n\'existe pas');
+                                        $state.go('app.timeline');
+                                    })
+                            }
+                        ]
+                    }
                 })
 
         }

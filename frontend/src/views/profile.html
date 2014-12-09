@@ -24,12 +24,12 @@
                 <div class="col-sm-5">
                     <div class="pull-right pull-none-xs text-center">
                         <a href="" class="m-b-md inline m animated fadeInRightBig">
-                            <span class="h3 block font-bold">2k</span>
-                            <small>Followers</small>
+                            <span class="h3 block font-bold">{{numberFollowings}}</span>
+                            <small>Abonnements</small>
                         </a>
                         <a href="" class="m-b-md inline m animated fadeInLeftBig">
-                            <span class="h3 block font-bold">250</span>
-                            <small>Following</small>
+                            <span class="h3 block font-bold">{{numberFollowers}}</span>
+                            <small>Abonnés</small>
                         </a>
                     </div>
                 </div>
@@ -38,9 +38,9 @@
     </div>
     <div class="wrapper bg-white b-b">
         <ul class="nav nav-pills nav-sm">
-            <li class="active"><a href="">Mes tweets</a></li>
+            <li class="active"><a data-ui-sref="app.profile({ name: user.account_name})">Tweets</a></li>
             <li><a data-ui-sref="app.following({name: user.account_name })">Abonnés</a></li>
-            <li><a href="">Abonnements</a></li>
+            <li><a data-ui-sref="app.followers({name: user.account_name })">Abonnements</a></li>
             <li class="pull-right">
                 <!-- Single button -->
                 <div class="btn-group" dropdown is-open="status.isopen">
@@ -52,7 +52,7 @@
                         Mon compte <span class="caret"></span>
                     </button>
 
-                    <button class="btn btn-info" ng-if="user.id !== currentUser">
+                    <button class="btn btn-info" ng-if="user.id != currentUser">
                         <i class="fa fa-share"></i>
                         Follow
                     </button>

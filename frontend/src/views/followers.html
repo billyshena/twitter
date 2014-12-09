@@ -24,12 +24,12 @@
                     <div class="col-sm-5">
                         <div class="pull-right pull-none-xs text-center">
                             <a href="" class="m-b-md inline m animated fadeInRightBig">
-                                <span class="h3 block font-bold">2k</span>
-                                <small>Followers</small>
+                                <span class="h3 block font-bold">{{numberFollowings}}</span>
+                                <small>Abonnements</small>
                             </a>
                             <a href="" class="m-b-md inline m animated fadeInLeftBig">
-                                <span class="h3 block font-bold">250</span>
-                                <small>Following</small>
+                                <span class="h3 block font-bold">{{numberFollowers}}</span>
+                                <small>Abonnés</small>
                             </a>
                         </div>
                     </div>
@@ -38,9 +38,9 @@
         </div>
         <div class="wrapper bg-white b-b">
             <ul class="nav nav-pills nav-sm">
-                <li class="active"><a href="">Mes tweets</a></li>
-                <li><a href="">Abonnés</a></li>
-                <li><a href="">Abonnements</a></li>
+                <li><a data-ui-sref="app.profile({name: user.account_name})">Tweets</a></li>
+                <li><a data-ui-sref="app.following({name: user.account_name})">Abonnés</a></li>
+                <li class="active"><a data-ui-sref="app.follower({name: user.account_name})">Abonnements</a></li>
                 <li class="pull-right">
                     <!-- Single button -->
                     <div class="btn-group" dropdown is-open="status.isopen">
@@ -74,8 +74,24 @@
                 </li>
             </ul>
         </div>
-        <div class="padder" style="width:769px;margin:0 auto;">
-            <h1>FOLLOWERS</h1>
+        <div class="padder">
+            <div class="row m-t">
+                <div class="col-md-3 animated fadeInLeftBig"
+                     ng-repeat="user in users">
+                    <div class="col-md-12">
+                        <div class="panel b-a">
+                            <div class="panel-heading bg-success dk no-border wrapper-lg"></div>
+                            <div class="text-center m-b clearfix">
+                                <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })" href="#/app/profile/bshen">
+                                    <img data-ng-src="{{avatarUrl}}/{{user.avatar}}" alt="..." class="b b-3x b-white avatar-medium" src="http://localhost:3000/avatars/billy_shen.jpg">
+                                    <div class="h3 font-thin m-t-sm ng-binding">{{user.account_name}}</div>
+                                    <span class="ng-binding">5 tweets</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

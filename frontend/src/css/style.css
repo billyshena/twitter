@@ -18,6 +18,9 @@
 .main-panel{
     padding-top:160px;
 }
+.panel.b-a{
+    min-height: 80px;
+}
 .tweet-img{
     border-radius:5px;
     min-height: 100px;
@@ -29,6 +32,7 @@
 
 .tweet-content {
     padding-top: 40px;
+    padding-bottom: 20px;
     min-height:100%;
 }
 .item{
@@ -39,7 +43,10 @@
 .login-form{
     padding: 0px 25px 0px 25px;
 }
-
+.bg-success{
+    background-color:#27ae60;
+    opacity:0.7;
+}
 
 a.team-request small.text-muted {
     display: inline-block;

@@ -22,17 +22,22 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $http
             .get(appConfig.appUrl + '/user')
             .then(function(response){
-                angular.forEach(response.data, function(user){
+                angular.forEach(response.data, function(user, index){
+                    if(user.id == $scope.current_user){
+                        console.log('index = ' + index);
+                        console.log(user);
+                        response.data.splice(index, 1);
+                    }
                     $http
                         .get(appConfig.appUrl + '/user/is_following/' + user.id)
                         .then(function(response){
+                            console.log(response);
                             user.is_following = response.data.is_following;
-                            console.log("follow = " + user.is_following);
-                            $scope.persons.push(user);
                         }, function(err){
                             console.log(err);
                         })
                 });
+                $scope.persons = response.data;
             }, function(err){
                 console.log(err);
             });
@@ -41,7 +46,6 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $http
             .get(appConfig.appUrl + '/posts')
             .then(function(response){
-                console.log(response.data);
                 $scope.posts = response.data;
             }, function(err){
                 console.log(err);
@@ -124,13 +128,11 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
 
                     submitButton.addEventListener("click", function() {
                         myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-                        console.log("content == " + scope.post.content);
-                        console.log(scope.post);
                         if(myDropzone.files.length === 0){
                             $http.post(appConfig.appUrl + '/posts/new_post',{
                                 content: scope.post.content
                             }).then(function(response){
-                                scope.isOpen = false;
+                                scope.post.content = '';
                                 scope.posts.push(response.data);
                                 Logger.logSuccess('Votre poste a bien été publié');
                             }, function(err){

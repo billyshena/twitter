@@ -316,7 +316,7 @@ a.list-group-item.hover {
 
 .nav-pills > li.active > a {
   color: #fff !important;
-  background-color: #E74C3C;
+  background-color: #E74C3C !important;
   opacity: 0.8;
 }
 
@@ -1854,8 +1854,9 @@ fieldset[disabled] .btn-success.active {
 
 .btn-info {
   color: #ffffff !important;
-  background-color: #23b7e5;
-  border-color: #23b7e5;
+  background-color: #E74C3C;
+  border-color: #E74C3C;
+  opacity: 0.8;
 }
 
 .btn-info:hover,
@@ -1864,8 +1865,9 @@ fieldset[disabled] .btn-success.active {
 .btn-info.active,
 .open .dropdown-toggle.btn-info {
   color: #ffffff !important;
-  background-color: #19a9d5;
-  border-color: #189ec8;
+  background-color: #E74C3C;
+  border-color: #E74C3C;
+  opacity: 0.9;
 }
 
 .btn-info:active,
@@ -1889,8 +1891,9 @@ fieldset[disabled] .btn-info:active,
 .btn-info.disabled.active,
 .btn-info[disabled].active,
 fieldset[disabled] .btn-info.active {
-  background-color: #23b7e5;
-  border-color: #23b7e5;
+  background-color: #E74C3C;
+  border-color: #E74C3C;
+  opacity: 0.6
 }
 
 .btn-warning {

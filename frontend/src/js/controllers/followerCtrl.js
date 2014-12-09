@@ -1,7 +1,7 @@
 /**
  * Created by bshen on 09/12/14.
  */
-angular.module('app.controllers.following', []).controller('followingCtrl', [
+angular.module('app.controllers.follower', []).controller('followerCtrl', [
     '$scope', '$http', 'Logger', 'Storage', 'data',
     function ($scope, $http, Logger, Storage, data) {
 
@@ -13,13 +13,12 @@ angular.module('app.controllers.following', []).controller('followingCtrl', [
 
         /* Get the following users */
         $http
-            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/following')
             .then(function(response){
                 $scope.users = response.data;
             }, function(err){
                 console.log(err);
             });
-
 
 
         /** get number of followers for the current user **/
@@ -39,6 +38,5 @@ angular.module('app.controllers.following', []).controller('followingCtrl', [
             }, function(err){
                 console.log(err);
             });
-
     }
 ]);

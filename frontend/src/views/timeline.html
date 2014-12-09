@@ -13,6 +13,7 @@
                 <div class="col-md-3 animated fadeInLeftBig hidden-xs">
                     <div class="col-md-12">
                         <div class="panel b-a">
+
                             <div class="panel-heading bg-info dk no-border wrapper-lg"></div>
                             <div class="text-center m-b clearfix">
                               <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })">
@@ -23,13 +24,13 @@
                             </div>
 
                             <div class="hbox text-center b-t b-light">
-                              <a href="" class="col padder-v text-muted b-r b-light">
+                              <a data-ui-sref="app.following({name: user.account_name })"" class="col padder-v text-muted">
                                 <div class="h4">{{numberFollowers}}</div>
-                                <span>Abonnements</span>
-                              </a>
-                              <a href="" class="col padder-v text-muted">
-                                <div class="h4">{{numberFollowings}}</div>
                                 <span>Abonnés</span>
+                              </a>
+                              <a data-ui-sref="app.followers({name: user.account_name })" class="col padder-v text-muted b-r b-light">
+                                <div class="h4">{{numberFollowings}}</div>
+                                <span>Abonnements</span>
                               </a>
                             </div>
                           </div>
