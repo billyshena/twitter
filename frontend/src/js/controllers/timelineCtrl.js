@@ -9,6 +9,7 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
 
 
         /* Initialize scope values */
+        $scope.current_user = JSON.parse(Storage.get('token')).id;
         $scope.persons = [];
         $scope.posts = [];
         $scope.maxLength = 150;
@@ -22,8 +23,10 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 angular.forEach(response.data, function(user){
                     $http
                         .get(appConfig.appUrl + '/user/is_following/' + user.id)
-                        .then(function(data){
-                            console.log(data);
+                        .then(function(response){
+                            user.is_following = response.data.is_following;
+                            console.log("follow = " + user.is_following);
+                            $scope.persons.push(user);
                         }, function(err){
                             console.log(err);
                         })
@@ -53,7 +56,6 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
             });
 
         $scope.follow = function(user){
-
             $http.post(appConfig.appUrl + '/relationships/create',{
                 followed_id: user.id
             }).then(function(data){
@@ -62,10 +64,30 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 Logger.logSuccess('Vous venez de suivre ' + user.account_name);
             }, function(err){
                 return;
-            })
-
-
+            });
         };
+
+
+        $scope.unfollow = function(user){
+            $http.post(appConfig.appUrl + '/relationships/destroy',{
+                followed_id: user.id
+            }).then(function(data){
+                console.log(data);
+                user.is_following = false;
+                return;
+            }, function(err){
+                console.log(err);
+            });
+        };
+
+        /** get number of followers for the current user **/
+        $http
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
+            .then(function(data){
+                console.log(data);
+            }, function(err){
+
+            });
 
 
 

@@ -80,7 +80,6 @@
                                   <span>
                                     <span class="h5">{{tweet.user.account_name}}</span>
 
-                                    
                                   </span>
 
                                    <p class="h4 tweet-content">{{tweet.content}}</p>
@@ -111,20 +110,29 @@
                         <a href="" class="thumb-sm m-r">
                           <img data-ng-src="{{avatarUrl}}/{{person.avatar}}" class="r r-2x">
                         </a>
-               <!--         <button class="btn btn-default inline pull-right"
-                                data-ng-click="results.splice($index,1)">
-                        <i class="fa fa-user"></i>
-                        Suivre</button>-->
 
-
+                          <!-- FOLLOW button -->
                           <button class="btn btn-default pull-right"
+                                  ng-if="!person.is_following"
                                   ui-toggle-class="btn-success"
                                   data-ng-click="follow(person)">
                               <i class="fa fa-user text"></i>
-                              <span class="text">Suivre</span>
+                              <span class="text">Follow</span>
                               <i class="fa fa-check text-active"></i>
                               <span class="text-active">Suivi</span>
                           </button>
+
+                          <!-- UNFOLLOW button -->
+                          <button class="btn btn-default pull-right"
+                                  ng-if="person.is_following"
+                                  ui-toggle-class="btn-success"
+                                  data-ng-click="unFollow(person)">
+                              <i class="fa fa-user text"></i>
+                              <span class="text">Unfollow</span>
+                              <i class="fa fa-check text-active"></i>
+                              <span class="text-active">Suivi</span>
+                          </button>
+
                         <a href="">{{person.account_name}}</a>
                       </li>
 
