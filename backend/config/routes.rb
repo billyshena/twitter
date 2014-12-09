@@ -27,11 +27,7 @@ Rails.application.routes.draw do
 
   get '/count/posts', to: "posts#count"
 
-  post '/user/follow', to: "user#follow"
-
-  post '/user/unfollow', to: "user#unfollow"
-
-  get 'user/following/:id', to: "user#following"
+  get 'user/is_following/:id', to: "user#following?"
 
   resources :user do
     member do
@@ -39,6 +35,9 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'relationship/create', to: "relationship#create"
+
+  delete 'relationship/destroy', to: "relationship#destroy"
 
   controller :user, path: '/user' do
     match 'create', via: [ :post, :options]

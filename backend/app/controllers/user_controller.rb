@@ -51,19 +51,23 @@
       render json: @updated_user.to_json
     end
 
-    def follow
+    def following?
       @user = User.find(@current_user.id)
-      @user.follow(params[:id]) ? (render status: 200) : (render status: 500)
-    end
-
-    def unfollow
-      @user = User.find(@current_user.id)
-      @user.unfollow(params[:id]) ? (render status: 200) : (render status: 500)
+      @user.following?(params[:id]) ? (render status: 200) : (render status: 500)
     end
 
     def following
-      @user = User.find(@current_user.id)
-      @user.following?(params[:id]) ? (render status: 200) : (render status: 500)
+      @title = "Following"
+      @user  = User.find(params[:id])
+      @users = @user.following.paginate(page: params[:page])
+      render json: @users
+    end
+
+    def followers
+      @title = "Followers"
+      @user  = User.find(params[:id])
+      @users = @user.followers.paginate(page: params[:page])
+      render json: @users
     end
 
   end
