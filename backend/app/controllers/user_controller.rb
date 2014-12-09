@@ -1,5 +1,4 @@
-
-  class UserController < Api::BaseController
+class UserController < Api::BaseController
     respond_to :json
     before_filter :authenticate, :only => [:index, :update, :delete, :upload, :follow, :unfollow]
 

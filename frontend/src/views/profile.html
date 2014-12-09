@@ -11,7 +11,7 @@
                 <div class="col-sm-7">
                     <a data-ng-click="open('avatar')" class="thumb-lg pull-left m-r">
                         <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}"
-                             class="img-circle border-img animated fadeInUpBig">
+                             class="img-circle border-img animated fadeInUpBig avatar-medium">
                     </a>
                     <div class="clear m-b">
                         <div class="m-b m-t-sm">
@@ -78,7 +78,7 @@
         <div class="streamline b-l b-info m-l-lg m-b padder-v animated fadeInUp" ng-repeat="post in posts | orderBy: '-created_at'">
             <div>
                 <a class="pull-left thumb-sm avatar m-l-n-md">
-                    <img data-ng-src="{{avatarUrl }}/{{ post.user.avatar }}" class="img-circle" alt="...">
+                    <img data-ng-src="{{avatarUrl }}/{{ post.user.avatar }}" class="img-circle avatar-small" alt="...">
                 </a>
                 <div class="m-l-lg">
                     <div class="m-b-xs">
