@@ -19,9 +19,9 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $http
             .get(appConfig.appUrl + '/user')
             .then(function(response){
-                console.log(response);
+                $scope.persons = response.data;
             }, function(err){
-
+                console.log(err);
             });
 
         /* Get all the tweets */
@@ -45,6 +45,16 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
             });
 
         $scope.follow = function(user){
+
+            $http.post(appConfig.appUrl + '/relationship/create',{
+                followed_id: user.id
+            }).then(function(data){
+                console.log(data);
+                Logger.logSuccess('Vous venez de suivre ' + user.account_name);
+
+            }, function(err){
+                console.log(err);
+            })
 
 
         };
