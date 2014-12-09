@@ -29,7 +29,11 @@ Rails.application.routes.draw do
 
   get '/count/posts', to: "posts#count"
 
-  resources :user
+  resources :user do
+    member do
+      get :following, :followers
+    end
+  end
 
 
   controller :user, path: '/user' do
