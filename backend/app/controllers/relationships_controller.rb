@@ -3,11 +3,13 @@ class RelationshipsController < Api::BaseController
 
   def create
     user = User.find(params[:followed_id])
-    @current_user.follow(user) ? (render status: 200) : (render status:500)
+    @current_user.follow(user)
+    render status: 200
   end
 
   def destroy
     user = Relationship.find(params[:id]).followed
-    @current_user.unfollow(user) ? (render status: 200) : (render status:500)
+    @current_user.unfollow(user)
+    render status: 200
   end
 end
