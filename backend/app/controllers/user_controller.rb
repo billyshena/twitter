@@ -55,17 +55,17 @@
 
     def follow
       @user = User.find(@current_user.id)
-      @user.follow(params[:id]) ? render status: 200 : render status: 500
+      @user.follow(params[:id]) ? (render status: 200) : (render status: 500)
     end
 
     def unfollow
       @user = User.find(@current_user.id)
-      @user.unfollow(params[:id]) ? render status: 200 : render status: 500
+      @user.unfollow(params[:id]) ? (render status: 200) : (render status: 500)
     end
 
     def following
       @user = User.find(@current_user.id)
-      @user.following?(params[:id]) ? render status: 200 : render status: 500
+      @user.following?(params[:id]) ? (render status: 200) : (render status: 500)
     end
 
   end
