@@ -52,7 +52,7 @@ angular.module('app')
                     url: '/profile/:name',
                     controller: 'userCtrl',
                     templateUrl: appConfig.assetsUrl + 'views/profile.html',
-                    authenticated: true,
+                    authenticate: true,
                     resolve: {
                         data: [
                             '$stateParams','$http', 'Logger', '$state',
@@ -74,7 +74,13 @@ angular.module('app')
                     url: '/following/:name',
                     controller: 'followingCtrl',
                     templateUrl: appConfig.assetsUrl + 'views/following.html',
-                    authenticated: true
+                    authenticate: true
+                })
+                .state('app.followers',{
+                    url: '/followers/:name',
+                    controller: 'followerCtrl',
+                    templateUrl: appConfig.assetsUrl + 'views/followers.html',
+                    authenticate: true
                 })
 
         }
