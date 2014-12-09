@@ -51,7 +51,7 @@
                                 class="btn btn-default"
                                 dropdown-toggle
                                 ng-disabled="disabled"
-                                ng-if="user.id == currentUser">
+                                ng-if="user.id == user">
                             Mon compte <span class="caret"></span>
                         </button>
 
@@ -86,7 +86,10 @@
                             <div class="panel-heading bg-success dk no-border wrapper-lg"></div>
                             <div class="text-center m-b clearfix">
                                 <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })" href="#/app/profile/bshen">
-                                    <img data-ng-src="http://localhost:3000/avatars/billy_shen.jpg" alt="..." class="b b-3x b-white avatar-medium" src="http://localhost:3000/avatars/billy_shen.jpg">
+                                    <img data-ng-src="{{avatarUrl }}/ {{user.avatar}}"
+                                         alt="..."
+                                         class="b b-3x b-white avatar-medium"
+                                         >
                                     <div class="h3 font-thin m-t-sm ng-binding">{{user.account_name}}</div>
                                     <span class="ng-binding">5 tweets</span>
                                 </div>

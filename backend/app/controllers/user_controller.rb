@@ -16,7 +16,7 @@ class UserController < Api::BaseController
         render json: @user.to_json
       else
         flash[:error] = "Une erreur a empêché la création"
-        render :new
+        head 500
       end
     end
 
