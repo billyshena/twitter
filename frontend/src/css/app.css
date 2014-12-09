@@ -316,13 +316,14 @@ a.list-group-item.hover {
 
 .nav-pills > li.active > a {
   color: #fff !important;
-  background-color: #428BCA;
+  background-color: #E74C3C;
+  opacity: 0.8;
 }
 
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:active {
   background-color: #E74C3C;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 

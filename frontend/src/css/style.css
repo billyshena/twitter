@@ -193,7 +193,7 @@ a.bg-white:hover{
     background-image: url("../img/suricate.svg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: auto 50px;
+    background-size: auto 45px;
 }
 .navbar-collapse.collapse > a{
     color: white;
