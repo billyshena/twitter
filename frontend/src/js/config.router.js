@@ -70,6 +70,12 @@ angular.module('app')
                         ]
                     }
                 })
+                .state('app.following',{
+                    url: '/following/:name',
+                    controller: 'followingCtrl',
+                    templateUrl: appConfig.assetsUrl + 'views/following.html',
+                    authenticated: true
+                })
 
         }
     ]

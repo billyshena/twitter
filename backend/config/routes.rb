@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'user/index'
 
   get '/user/get/:name', to: "user#find_by_name"
-  
+
   post '/posts/new', to: "posts#create"
 
   post '/posts/new_post', to: "posts#new_post"
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     match 'authenticate', via: [ :post ]
   end
 
-  post '/file/upload', to: "user#upload"
+  post '/upload_avatar', to: "user#upload"
 
   post '/posts/new', to: "posts#create"
 

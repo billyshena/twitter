@@ -4,16 +4,38 @@
 
 'use strict';
 angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
-    '$scope', 'Logger', 'Auth', '$state', '$http',
-    function($scope, Logger, Auth, $state, $http) {
+    '$scope', 'Logger', 'Auth', '$state', '$http', 'Storage',
+    function($scope, Logger, Auth, $state, $http, Storage) {
 
 
         /* Initialize scope values */
-        $scope.results = [1,2,3,4,5];
+        $scope.current_user = JSON.parse(Storage.get('token')).id;
+        $scope.persons = [];
         $scope.posts = [];
         $scope.maxLength = 150;
         $scope.numberPosts = 0;
+        $scope.numberFollowers = 0;
+        $scope.numberFollowings = 0;
 
+
+        /* Get all the users to be followed */
+        $http
+            .get(appConfig.appUrl + '/user')
+            .then(function(response){
+                angular.forEach(response.data, function(user){
+                    $http
+                        .get(appConfig.appUrl + '/user/is_following/' + user.id)
+                        .then(function(response){
+                            user.is_following = response.data.is_following;
+                            console.log("follow = " + user.is_following);
+                            $scope.persons.push(user);
+                        }, function(err){
+                            console.log(err);
+                        })
+                });
+            }, function(err){
+                console.log(err);
+            });
 
         /* Get all the tweets */
         $http
@@ -26,6 +48,7 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 Logger.logError('Erreur récupération de vos postes');
             });
 
+        /* Count the user's tweets */
         $http
             .get(appConfig.appUrl + '/count/posts')
             .then(function(response){
@@ -34,28 +57,50 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 console.log(err);
             });
 
-
-        /* Create a new Post */
-        $scope.create = function(post){
-            /* Create a new Post */
-/*            $http
-                .post(appConfig.appUrl + '/posts/new', post)
-                .then(function(response){
-                    $scope.isOpen = false;
-                    $scope.posts.push(response.data);
-                    Logger.logSuccess('Votre tweet a bien été posté');
-                }, function(err){
-                    console.log(err);
-                    Logger.logError('Erreur lors de la publication');
-                });*/
+        $scope.follow = function(user){
+            $http.post(appConfig.appUrl + '/relationships/create',{
+                followed_id: user.id
+            }).then(function(data){
+                console.log(data);
+                $scope.persons.splice($scope.persons.indexOf(data),1);
+                Logger.logSuccess('Vous venez de suivre ' + user.account_name);
+            }, function(err){
+                return;
+            });
+        };
 
 
+        $scope.unfollow = function(user){
+            $http.post(appConfig.appUrl + '/relationships/destroy',{
+                followed_id: user.id
+            }).then(function(data){
+                console.log(data);
+                user.is_following = false;
+                return;
+            }, function(err){
+                console.log(err);
+            });
+        };
 
-            Dropzone.autoDiscover = false;
+        /** get number of followers for the current user **/
+        $http
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
+            .then(function(response){
+                $scope.numberFollowers = response.data.length;
+            }, function(err){
 
-            // console.log(angular.element(document.querySelector("#my-dropzone")));
+            });
 
-        }
+        /* get number of followings for the current user */
+        $http
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/following')
+            .then(function(response){
+                $scope.numberFollowings = response.data.length;
+            }, function(err){
+                console.log(err);
+            });
+
+
 
     }
 ]).directive('uploadPicture', ['Storage', 'Logger', '$http',

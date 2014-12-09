@@ -1,0 +1,81 @@
+<style>
+    .panel{
+        min-height:120px;
+    }
+</style>
+<div class="hbox hbox-auto-xs hbox-auto-sm ng-scope">
+    <div class="col">
+        <div style="background:url(img/bg5.jpeg) center center; background-size:cover">
+            <div class="wrapper-lg bg-white-opacity">
+                <div class="row m-t">
+                    <div class="col-sm-7">
+                        <a data-ng-click="open('avatar')" class="thumb-lg pull-left m-r">
+                            <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}"
+                                 class="img-circle border-img animated fadeInUpBig avatar-medium">
+                        </a>
+                        <div class="clear m-b">
+                            <div class="m-b m-t-sm">
+                                <span class="h2 text-white animated fadeInDownBig">{{user.account_name}}</span>
+                                <p class="text-white animated fadeInLeft">London, UK</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="pull-right pull-none-xs text-center">
+                            <a href="" class="m-b-md inline m animated fadeInRightBig">
+                                <span class="h3 block font-bold">2k</span>
+                                <small>Followers</small>
+                            </a>
+                            <a href="" class="m-b-md inline m animated fadeInLeftBig">
+                                <span class="h3 block font-bold">250</span>
+                                <small>Following</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper bg-white b-b">
+            <ul class="nav nav-pills nav-sm">
+                <li class="active"><a href="">Mes tweets</a></li>
+                <li><a href="">Abonnés</a></li>
+                <li><a href="">Abonnements</a></li>
+                <li class="pull-right">
+                    <!-- Single button -->
+                    <div class="btn-group" dropdown is-open="status.isopen">
+                        <button type="button"
+                                class="btn btn-default"
+                                dropdown-toggle
+                                ng-disabled="disabled"
+                                ng-if="user.id == currentUser">
+                            Mon compte <span class="caret"></span>
+                        </button>
+
+                        <button class="btn btn-info" ng-if="user.id !== currentUser">
+                            <i class="fa fa-share"></i>
+                            Follow
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a data-ng-click="open('avatar')">
+                                    <i class="fa fa-picture-o"></i>
+                                    Changer mon avatar
+                                </a>
+                            </li>
+                            <li>
+                                <a href>
+                                    <i class="fa fa-pencil"></i>
+                                    Modifier mes informations
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="padder" style="width:769px;margin:0 auto;">
+            <h1>FOLLOWERS</h1>
+        </div>
+    </div>
+</div>

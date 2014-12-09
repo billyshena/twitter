@@ -1,6 +1,6 @@
 class UserController < Api::BaseController
     respond_to :json
-    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :follow, :unfollow]
+    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :following?, :follow, :unfollow]
 
     def create
       username = params[:username] ? params[:username] : params[:account_name]
@@ -46,26 +46,26 @@ class UserController < Api::BaseController
       File.open(Rails.root.join('public', 'avatars', uploaded_io.original_filename), 'wb') do |file|
         file.write(uploaded_io.read)
       end
-      @updated_user = User.update(@current_user.id, :avatar => uploaded_io.original_filename)
+      @updated_user = User.update(@current_user.id, avatar: uploaded_io.original_filename)
       render json: @updated_user.to_json
     end
 
     def following?
       @user = User.find(@current_user.id)
-      @user.following?(params[:id]) ? (render status: 200) : (render status: 500)
+      render json: {is_following: @user.following?(params[:id])}
     end
 
     def following
       @title = "Following"
       @user  = User.find(params[:id])
-      @users = @user.following.paginate(page: params[:page])
+      @users = @user.following
       render json: @users
     end
 
     def followers
       @title = "Followers"
       @user  = User.find(params[:id])
-      @users = @user.followers.paginate(page: params[:page])
+      @users = @user.followers
       render json: @users
     end
 

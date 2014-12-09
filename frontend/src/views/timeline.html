@@ -1,5 +1,9 @@
 <style>
     .hbox .col{display: table-cell}
+    .dropzone{
+        border:1px dashed black;
+        padding:20px;
+    }
 </style>
 <div class="hbox">
     <div class="wrapper">
@@ -20,11 +24,11 @@
 
                             <div class="hbox text-center b-t b-light">
                               <a href="" class="col padder-v text-muted b-r b-light">
-                                <div class="h4">5032</div>
+                                <div class="h4">{{numberFollowers}}</div>
                                 <span>Abonnements</span>
                               </a>
                               <a href="" class="col padder-v text-muted">
-                                <div class="h4">689</div>
+                                <div class="h4">{{numberFollowings}}</div>
                                 <span>Abonnés</span>
                               </a>
                             </div>
@@ -46,20 +50,20 @@
                                   rows="4"
                                   style="border:1px solid rgba(0,132,180,0.25);"
                                   ng-model="post.content"
+                                  placeholder="Ecrivez votre tweet ici..."
                                   maxlength="150">
                         </textarea>
 
-<!--                        <p class="pull-left">{{ maxLength - post.content.length }} caractères restants</p>-->
 
-                        <form action="/posts/new" upload-picture id="my-dropzone" class="dropzone">
-                            <div class="dz-default dz-message">Ajoutez votre photo profil ici</div>
+                        <form action="/posts/new" upload-picture id="my-dropzone" class="dropzone m-t">
+                            <div class="dz-default dz-message">Glissez une image avec votre tweet!</div>
                             <input type="hidden" value="{{post.content}}" name="post" id="post"/>
                         </form>
 
                         <button class="btn btn-info pull-right m-t m-b"
                                 id="tweetB"
                                 ng-disabled="!post.content">
-                            <i class="fa fa-send-o"></i>
+                            <span>{{ maxLength - post.content.length }}</span>
                             Tweeter</button>
                     </div>
 
@@ -80,7 +84,6 @@
                                   <span>
                                     <span class="h5">{{tweet.user.account_name}}</span>
 
-                                    
                                   </span>
 
                                    <p class="h4 tweet-content">{{tweet.content}}</p>
@@ -99,33 +102,42 @@
 
 
                 <div class="col-md-3">
-                <div class="panel no-border">
+                <div class="panel no-border animated fadeInRightBig">
                     <div class="panel-heading wrapper b-b b-light">
 
                       <h4 class="font-thin m-t-none m-b-none text-muted">Personnes à suivre</h4>
                     </div>
                     <ul class="list-group list-group-lg m-b-none">
-                      <li class="list-group-item animated fadeInRightBig"
-                          ng-repeat="result in results"
+                      <li class="list-group-item"
+                          ng-repeat="person in persons"
                           >
                         <a href="" class="thumb-sm m-r">
-                          <img src="img/a1.jpg" class="r r-2x">
+                          <img data-ng-src="{{avatarUrl}}/{{person.avatar}}" class="r r-2x">
                         </a>
-               <!--         <button class="btn btn-default inline pull-right"
-                                data-ng-click="results.splice($index,1)">
-                        <i class="fa fa-user"></i>
-                        Suivre</button>-->
 
-
+                          <!-- FOLLOW button -->
                           <button class="btn btn-default pull-right"
+                                  ng-if="!person.is_following"
                                   ui-toggle-class="btn-success"
-                                  data-ng-click="results.splice($index,1)">
+                                  data-ng-click="follow(person)">
                               <i class="fa fa-user text"></i>
-                              <span class="text">Suivre</span>
+                              <span class="text">Follow</span>
                               <i class="fa fa-check text-active"></i>
                               <span class="text-active">Suivi</span>
                           </button>
-                        <a href="">Damon Parker</a>
+
+                          <!-- UNFOLLOW button -->
+                          <button class="btn btn-default pull-right"
+                                  ng-if="person.is_following"
+                                  ui-toggle-class="btn-success"
+                                  data-ng-click="unFollow(person)">
+                              <i class="fa fa-user text"></i>
+                              <span class="text">Unfollow</span>
+                              <i class="fa fa-check text-active"></i>
+                              <span class="text-active">Suivi</span>
+                          </button>
+
+                        <a href="">{{person.account_name}}</a>
                       </li>
 
                     </ul>
