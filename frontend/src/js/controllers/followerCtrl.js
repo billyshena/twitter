@@ -19,5 +19,24 @@ angular.module('app.controllers.follower', []).controller('followerCtrl', [
             }, function(err){
                 console.log(err);
             });
+
+
+        /** get number of followers for the current user **/
+        $http
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
+            .then(function(response){
+                $scope.numberFollowers = response.data.length;
+            }, function(err){
+                console.log(err);
+            });
+
+        /* get number of followings for the current user */
+        $http
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/following')
+            .then(function(response){
+                $scope.numberFollowings = response.data.length;
+            }, function(err){
+                console.log(err);
+            });
     }
 ]);
