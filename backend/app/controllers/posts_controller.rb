@@ -1,6 +1,6 @@
 class PostsController < Api::BaseController
-  before_filter :authenticate, :only => [:index, :create, :destroy, :update, :user_posts, :count]
 
+  before_filter :authenticate, :only => [:index, :create, :destroy, :update, :user_posts, :count, :new_post]
   respond_to :json
 
   def index
@@ -12,15 +12,18 @@ class PostsController < Api::BaseController
     respond_with(@post)
   end
 
-  def new
-    @post = Post.new
-    respond_with(@post)
+  def new_post
+    @post = Post.new(content: params[:content], user_id: @current_user.id)
+    if @post.save
+      render json: @post.as_json(include: :user)
+    end
   end
 
   def edit
   end
 
   def create
+    puts "creating post"
     @post = Post.new(
       content: params[:post],
       user_id: @current_user.id

@@ -48,8 +48,6 @@
         file.write(uploaded_io.read)
       end
       @updated_user = User.update(@current_user.id, :avatar => uploaded_io.original_filename)
-      puts "UPDATED USER : #{@updated_user.inspect}"
-
       render json: @updated_user.to_json
     end
 

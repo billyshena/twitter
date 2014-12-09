@@ -12,3 +12,4 @@ class CreateUsers < ActiveRecord::Migration
     end
   end
 end
+
