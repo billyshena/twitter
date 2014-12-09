@@ -13,7 +13,7 @@ angular.module('app.controllers.follower', []).controller('followerCtrl', [
 
         /* Get the following users */
         $http
-            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/following')
             .then(function(response){
                 $scope.users = response.data;
             }, function(err){

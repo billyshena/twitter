@@ -37,7 +37,6 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                             console.log(err);
                         })
                 });
-
                 $scope.persons = response.data;
             }, function(err){
                 console.log(err);

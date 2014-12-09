@@ -11,15 +11,15 @@ angular.module('app.controllers.following', []).controller('followingCtrl', [
         $scope.user = data;
 
 
-
         /* Get the following users */
         $http
-            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/following')
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
             .then(function(response){
                 $scope.users = response.data;
             }, function(err){
                 console.log(err);
             });
+
 
     }
 ]);
