@@ -265,9 +265,11 @@ p.noItem{
 }
 .menu-item{
     border-bottom:3px solid transparent;
+    transition: all .15s ease-in-out;
 }
 .menu-item:hover{
     border-bottom:3px solid white;
+    transition: all .15s ease-in-out;
 }
 .nav-pills > li > a:hover{
     color: #fff !important;
