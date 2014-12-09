@@ -3,13 +3,19 @@ class RelationshipsController < Api::BaseController
 
   def create
     user = User.find(params[:followed_id])
-    @current_user.follow(user)
-    render json: user.to_json
+    if @current_user.follow(user)
+      render json: {success: true}
+    else
+      render json: {success: false}
+    end
   end
 
   def destroy
     user = Relationship.find(params[:id]).followed
-    @current_user.unfollow(user)
-    render json: user.to_json
+    if @current_user.unfollow(user)
+      render json: {success: true}
+    else
+      render json: {success: false}
+    end
   end
 end
