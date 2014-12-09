@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'user/index'
 
   get '/user/get/:name', to: "user#find_by_name"
-  
+
   post '/posts/new', to: "posts#create"
 
   post '/posts/new_post', to: "posts#new_post"

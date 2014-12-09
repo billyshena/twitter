@@ -4,16 +4,25 @@
 
 'use strict';
 angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
-    '$scope', 'Logger', 'Auth', '$state', '$http',
-    function($scope, Logger, Auth, $state, $http) {
+    '$scope', 'Logger', 'Auth', '$state', '$http', 'Storage',
+    function($scope, Logger, Auth, $state, $http, Storage) {
 
 
         /* Initialize scope values */
-        $scope.results = [1,2,3,4,5];
+        $scope.persons = [];
         $scope.posts = [];
         $scope.maxLength = 150;
         $scope.numberPosts = 0;
 
+
+        /* Get all the users to be followed */
+        $http
+            .get(appConfig.appUrl + '/user')
+            .then(function(response){
+                console.log(response);
+            }, function(err){
+
+            });
 
         /* Get all the tweets */
         $http
@@ -26,6 +35,7 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 Logger.logError('Erreur récupération de vos postes');
             });
 
+        /* Count the user's tweets */
         $http
             .get(appConfig.appUrl + '/count/posts')
             .then(function(response){
@@ -34,28 +44,12 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                 console.log(err);
             });
 
-
-        /* Create a new Post */
-        $scope.create = function(post){
-            /* Create a new Post */
-/*            $http
-                .post(appConfig.appUrl + '/posts/new', post)
-                .then(function(response){
-                    $scope.isOpen = false;
-                    $scope.posts.push(response.data);
-                    Logger.logSuccess('Votre tweet a bien été posté');
-                }, function(err){
-                    console.log(err);
-                    Logger.logError('Erreur lors de la publication');
-                });*/
+        $scope.follow = function(user){
 
 
+        };
 
-            Dropzone.autoDiscover = false;
 
-            // console.log(angular.element(document.querySelector("#my-dropzone")));
-
-        }
 
     }
 ]).directive('uploadPicture', ['Storage', 'Logger', '$http',
