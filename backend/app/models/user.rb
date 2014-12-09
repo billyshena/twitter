@@ -2,6 +2,10 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 
+  validates :account_name, :email, :new_password, presence: true
+  validates :account_name, :email, uniqueness: true
+  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "E-mail not valid"}
+
   # Create two virtual (in memory only) attributes to hold the password and its confirmation.
   attr_accessor :new_password, :new_password_confirmation
   # We need to validate that the user has typed the same password twice

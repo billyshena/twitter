@@ -4,10 +4,12 @@
     before_filter :authenticate, :only => [:index, :update, :delete, :upload]
 
     def create
+      username = params[:username] ? params[:username] : params[:account_name]
+
       @user = User.new(
           email: params[:email],
           account_name: params[:account_name],
-          username: params[:username],
+          username: username,
           new_password: params[:new_password],
           bio: params[:bio],
       )

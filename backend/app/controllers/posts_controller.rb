@@ -1,5 +1,6 @@
 class PostsController < Api::BaseController
   before_filter :authenticate, :only => [:index, :create, :destroy, :update, :user_posts, :count]
+
   respond_to :json
 
   def index
