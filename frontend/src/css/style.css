@@ -39,7 +39,10 @@
 .login-form{
     padding: 0px 25px 0px 25px;
 }
-
+.bg-success{
+    background-color:#27ae60;
+    opacity:0.7;
+}
 
 a.team-request small.text-muted {
     display: inline-block;
