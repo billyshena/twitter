@@ -35,9 +35,9 @@ Rails.application.routes.draw do
     end
   end
 
-  post 'relationship/create', to: "relationship#create"
+  post 'relationships/create', to: "relationships#create"
 
-  delete 'relationship/destroy', to: "relationship#destroy"
+  delete 'relationships/destroy', to: "relationships#destroy"
 
   controller :user, path: '/user' do
     match 'create', via: [ :post, :options]
