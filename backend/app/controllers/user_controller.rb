@@ -1,6 +1,6 @@
 class UserController < Api::BaseController
-    respond_to :json
-    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :following?, :follow, :unfollow]
+    #respond_to :json
+    #before_filter :authenticate, :only => [:index, :update, :delete, :upload, :following?, :follow, :unfollow]
 
     def create
       username = params[:username] ? params[:username] : params[:account_name]
@@ -52,7 +52,9 @@ class UserController < Api::BaseController
 
     def following?
       @user = User.find(@current_user.id)
-      render json: {is_following: @user.following?(params[:id])}
+      @other_user = User.find(params[:id])
+
+      render json: {is_following: @user.following?(@other_user)}
     end
 
     def following

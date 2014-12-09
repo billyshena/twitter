@@ -2,7 +2,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
 
-  validates :account_name, :email, :password, presence: true
+  validates :account_name, :email, presence: true
   validates :account_name, :email, uniqueness: true
   validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i, message: "E-mail not valid"}
 
