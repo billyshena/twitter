@@ -12,7 +12,7 @@
                             <div class="panel-heading bg-info dk no-border wrapper-lg"></div>
                             <div class="text-center m-b clearfix">
                               <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })">
-                                <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}" alt="..." class="b b-3x b-white">
+                                <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}" alt="..." class="b b-3x b-white avatar-medium">
                                 <div class="h3 font-thin m-t-sm">{{user.account_name}}</div>
                                 <span>{{ numberPosts }} tweets</span>
                               </div>
@@ -74,21 +74,22 @@
 
                                   </span>
                                   <span class="pull-left thumb-sm avatar m-r">
-                                    <img data-ng-src="{{avatarUrl}}/{{tweet.user.avatar}}" alt="...">
+                                    <img class="avatar-small" data-ng-src="{{avatarUrl}}/{{tweet.user.avatar}}" alt="...">
                                     <i class="on b-white right"></i>
                                   </span>
                                   <span>
                                     <span class="h5">{{tweet.user.account_name}}</span>
 
-                                    <center>
+                                    
+                                  </span>
+
+                                   <p class="h4 tweet-content">{{tweet.content}}</p>
+                                   <center>
                                         <img data-ng-src="http://localhost:3000/uploads/{{tweet.image}}"
                                              alt="Post image"
                                              class="m-t tweet-img"
                                              height="200" width="250" ng-if="tweet.image !== null"/>
                                     </center>
-                                  </span>
-
-                                   <span>{{tweet.content}}</span>
                             </a>
                         </div>
                     </div>

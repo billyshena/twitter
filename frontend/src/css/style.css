@@ -20,6 +20,15 @@
 }
 .tweet-img{
     border-radius:5px;
+    min-height: 100px;
+    height: 100%;
+    width: 100%;
+    max-height: 1000px;
+    padding-bottom: 20px;
+}
+
+.tweet-content {
+    padding-top: 40px;
 }
 .item{
     border: 1px solid #e1e8ed;
@@ -96,6 +105,14 @@ a.team-request small.text-muted:first-letter {
 .border-img{
     border:3px solid white;
 }
+.avatar-medium {
+    height: 95px !important;
+    width: 100%;
+}
+.avatar-small {
+    height: 40px !important;
+    width: 100%;
+}
 .bg-white-opacity {
     background-color: rgba(255, 255, 255, 0.2);
 }
@@ -152,7 +169,7 @@ a.bg-white:hover{
     margin:10px;
 }
 .logo{
-    font-family:'Mission Script';color:white;margin-top:10px;margin-left:5px;
+    font-family:'Mission Script';color:white;margin-top:5px;margin-left:15px;margin-right: 10px;
 }
 .navbar-header i{
     color:white;
@@ -170,6 +187,12 @@ a.bg-white:hover{
 }
 .bg-light{
     background-color:white;
+}
+.navbar-collapse.collapse {
+    background-image: url("../img/suricate.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 50px;
 }
 .navbar-collapse.collapse > a{
     color: white;
@@ -190,6 +213,9 @@ a.bg-white:hover{
 
 .navbar-btn{
     color:white;
+}
+.fa-paper-plane {
+    padding-right: 5px;
 }
 
 .form-login{
@@ -226,12 +252,16 @@ p.noItem{
 .app:before{
     background-color:rgb(215, 238, 245);
 }
+.menu-item{
+    border-bottom:3px solid transparent;
+}
 .menu-item:hover{
     border-bottom:3px solid white;
 }
 .nav-pills > li > a:hover{
     color: #fff !important;
-    background-color: #23b7e5;
+    background-color: #E74C3C;
+    opacity: 0.8;
 
 }
 .thumb-lg{
