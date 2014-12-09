@@ -1,6 +1,6 @@
 class UserController < Api::BaseController
     respond_to :json
-    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :follow, :unfollow]
+    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :following?, :follow, :unfollow]
 
     def create
       username = params[:username] ? params[:username] : params[:account_name]
