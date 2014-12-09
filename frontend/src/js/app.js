@@ -13,6 +13,7 @@ angular.module('app', [
     'app.interceptors.auth',
     'app.controllers.user',
     'app.controllers.avatar',
+    'app.controllers.following',
     'app.directives.upload',
     'angularMoment'
 ]);

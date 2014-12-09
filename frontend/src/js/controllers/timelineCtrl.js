@@ -14,6 +14,8 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $scope.posts = [];
         $scope.maxLength = 150;
         $scope.numberPosts = 0;
+        $scope.numberFollowers = 0;
+        $scope.numberFollowings = 0;
 
 
         /* Get all the users to be followed */
@@ -83,10 +85,19 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         /** get number of followers for the current user **/
         $http
             .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
-            .then(function(data){
-                console.log(data);
+            .then(function(response){
+                $scope.numberFollowers = response.data.length;
             }, function(err){
 
+            });
+
+        /* get number of followings for the current user */
+        $http
+            .get(appConfig.appUrl + '/user/' + $scope.current_user + '/following')
+            .then(function(response){
+                $scope.numberFollowings = response.data.length;
+            }, function(err){
+                console.log(err);
             });
 
 
