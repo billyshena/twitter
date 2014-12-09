@@ -57,7 +57,6 @@ class PostsController < Api::BaseController
 
   def count
     @number_posts = Post.where(user_id: @current_user.id).count
-    puts "zedjzoejezd"
     render json: @number_posts.to_json
   end
 
