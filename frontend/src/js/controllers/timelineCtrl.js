@@ -46,14 +46,14 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
 
         $scope.follow = function(user){
 
-            $http.post(appConfig.appUrl + '/relationship/create',{
+            $http.post(appConfig.appUrl + '/relationships/create',{
                 followed_id: user.id
             }).then(function(data){
                 console.log(data);
+                $scope.persons.splice($scope.persons.indexOf(data),1);
                 Logger.logSuccess('Vous venez de suivre ' + user.account_name);
-
             }, function(err){
-                console.log(err);
+                return;
             })
 
 

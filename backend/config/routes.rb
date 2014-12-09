@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     match 'authenticate', via: [ :post ]
   end
 
-  post '/file/upload', to: "user#upload"
+  post '/upload_avatar', to: "user#upload"
 
   post '/posts/new', to: "posts#create"
 

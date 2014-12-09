@@ -6,7 +6,7 @@ angular.module('app.directives.upload', [])
         function (Storage, Logger) {
             return function (scope, element) {
                 element.dropzone({
-                    url: appConfig.appUrl + '/file/upload',
+                    url: appConfig.appUrl + '/upload_avatar',
                     maxFilesize: 500,
                     paramName: "file",
                     maxThumbnailFilesize: 5,
@@ -20,18 +20,11 @@ angular.module('app.directives.upload', [])
 
                         this.on("success", function (data, files) {
                             console.log(files);
+                            console.log(data);
                             Logger.logSuccess('Upload avatar en cours...');
                             setTimeout(function(){
                                 location.reload();
-                            },3000);
-                        });
-
-                        this.on("complete", function () {
-                            if (this.getQueuedFiles().length === 0 && this.getUploadingFiles().length === 0) {
-                                setTimeout(function(){
-                                    this.removeAllFiles();
-                                },3000);
-                            }
+                            },2000);
                         });
 
                         this.on("error", function (file, err) {
