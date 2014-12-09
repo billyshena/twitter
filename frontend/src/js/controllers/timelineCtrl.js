@@ -19,7 +19,15 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $http
             .get(appConfig.appUrl + '/user')
             .then(function(response){
-                $scope.persons = response.data;
+                angular.forEach(response.data, function(user){
+                    $http
+                        .get(appConfig.appUrl + '/user/is_following/' + user.id)
+                        .then(function(data){
+                            console.log(data);
+                        }, function(err){
+                            console.log(err);
+                        })
+                });
             }, function(err){
                 console.log(err);
             });

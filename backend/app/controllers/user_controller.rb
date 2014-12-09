@@ -46,7 +46,7 @@ class UserController < Api::BaseController
       File.open(Rails.root.join('public', 'avatars', uploaded_io.original_filename), 'wb') do |file|
         file.write(uploaded_io.read)
       end
-      @current_user.update_attribute(:avatar, uploaded_io.original_filename)
+      @updated_user = User.update(@current_user.id, avatar: uploaded_io.original_filename)
       render json: @updated_user.to_json
     end
 
