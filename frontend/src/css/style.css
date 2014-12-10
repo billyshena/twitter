@@ -32,8 +32,21 @@
 .displayName{
     text-transform: capitalize;
 }
-.app-content-body{
-    float:none;
+.list-group-item{
+    border:none;
+    border-bottom:1px solid lightgrey;
+}
+
+.favorite{
+    position: absolute;
+    right: 25px;
+
+}
+.favorite-with-img{
+    top:80px;
+}
+.favorite-without-img{
+    top:45px;
 }
 .tweet-content {
     padding-top: 40px;

@@ -12,6 +12,7 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
         $scope.selected = undefined;
         $scope.avatarUrl = appConfig.appUrl + '/avatars';
         $scope.isOpen = false;
+        $scope.current_user = JSON.parse(Storage.get('token')).id;
 
 
 

@@ -114,6 +114,28 @@ angular.module('app')
                         ]
                     }
                 })
+                .state('app.favorites',{
+                    url: '/favorites/:id',
+                    controller: 'favoriteCtrl',
+                    templateUrl: appConfig.assetsUrl + 'views/favorites.html',
+                    authenticate: true,
+                    resolve: {
+                        data: [
+                            '$stateParams','$http', 'Logger', '$state',
+                            function($stateParams, $http, Logger, $state){
+                                return $http
+                                    .get(appConfig.appUrl + '/user/' + $stateParams.id)
+                                    .then(function(response){
+                                        return response.data;
+                                    }, function(err){
+                                        console.log(err);
+                                        Logger.logError('Cet utilisateur n\'existe pas');
+                                        $state.go('app.timeline');
+                                    })
+                            }
+                        ]
+                    }
+                })
 
         }
     ]

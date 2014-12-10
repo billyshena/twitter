@@ -43,7 +43,17 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $http
             .get(appConfig.appUrl + '/posts')
             .then(function(response){
-                $scope.posts = response.data;
+
+                angular.forEach(response.data, function(post){
+                    $http
+                        .get(appConfig.appUrl + '/is_favorite/'+post.id)
+                        .then(function(res){
+                            if(res.data.length > 0){
+                                post.is_favorite = true;
+                            }
+                            $scope.posts.push(post);
+                        })
+                });
             }, function(err){
                 console.log(err);
                 Logger.logError('Erreur récupération de vos postes');
@@ -79,6 +89,31 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
             }, function(err){
                 console.log(err);
             });
+        };
+
+
+        $scope.favorite = function(tweet){
+            $http
+                .post(appConfig.appUrl + '/favorites/create',{
+                    post_id: tweet.id
+                })
+                .then(function(data){
+                    tweet.is_favorite = true;
+                    Logger.logSuccess("Ajouté à vos favoris");
+                }, function(err){
+                    console.log(err);
+                });
+        };
+
+
+        $scope.unfavorite = function(tweet){
+            $http
+                .delete(appConfig.appUrl + '/favorites/' + tweet.id)
+                .then(function(data){
+                    tweet.is_favorite = false;
+                }, function(err){
+                    console.log(err);
+                })
         };
 
         /** get number of followers for the current user **/

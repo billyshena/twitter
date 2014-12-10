@@ -1,6 +1,6 @@
 class UserController < Api::BaseController
     respond_to :json
-    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :following?, :follow, :unfollow]
+    before_filter :authenticate, :only => [:index, :update, :delete, :upload, :following?, :follow, :unfollow, :favorite?]
 
     def create
       username = params[:username] ? params[:username] : params[:account_name]
@@ -64,6 +64,7 @@ class UserController < Api::BaseController
       render json: @users
     end
 
+
     def followers
       @title = "Followers"
       @user  = User.find(params[:id])
@@ -71,4 +72,8 @@ class UserController < Api::BaseController
       render json: @users
     end
 
-  end
+    def favorite?
+      render json: Favorite.where(user_id: @current_user.id, post_id: params[:id])
+    end
+
+end
