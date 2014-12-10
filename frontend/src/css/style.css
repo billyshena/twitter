@@ -32,6 +32,9 @@
 .displayName{
     text-transform: capitalize;
 }
+.app-content-body{
+    float:none;
+}
 .tweet-content {
     padding-top: 40px;
     padding-bottom: 20px;

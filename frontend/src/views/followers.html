@@ -84,10 +84,15 @@
                             <div class="text-center m-b clearfix">
                                 <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })" href="#/app/profile/bshen">
                                     <img data-ng-src="{{avatarUrl}}/{{user.avatar}}" alt="..." class="b b-3x b-white avatar-medium" src="http://localhost:3000/avatars/billy_shen.jpg">
-                                    <div class="h3 font-thin m-t-sm ng-binding">{{user.account_name}}</div>
-                                    <span class="ng-binding">5 tweets</span>
                                 </div>
+                                <p>Vous suivez <span class="displayName h4">{{user.account_name}}</span></p>
                             </div>
+                            <center>
+                                <button class="btn btn-danger m-b" data-ng-click="unfollow(user)">
+                                    <i class="fa fa-share"></i>
+                                    Unfollow
+                                </button>
+                            </center>
                         </div>
                     </div>
                 </div>

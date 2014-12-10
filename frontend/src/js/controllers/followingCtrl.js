@@ -15,7 +15,18 @@ angular.module('app.controllers.following', []).controller('followingCtrl', [
         $http
             .get(appConfig.appUrl + '/user/' + $scope.current_user + '/followers')
             .then(function(response){
-                $scope.users = response.data;
+                angular.forEach(response.data, function(user, index){
+                    $http
+                        .get(appConfig.appUrl + '/user/is_following/' + user.id)
+                        .then(function(response){
+                            user.is_following = response.data.is_following;
+                            if(user.id !== $scope.current_user){
+                                $scope.users.push(user);
+                            }
+                        }, function(err){
+                            console.log(err);
+                        })
+                });
             }, function(err){
                 console.log(err);
             });
@@ -39,6 +50,31 @@ angular.module('app.controllers.following', []).controller('followingCtrl', [
             }, function(err){
                 console.log(err);
             });
+
+
+        $scope.follow = function(user){
+            $http.post(appConfig.appUrl + '/relationships/create',{
+                followed_id: user.id
+            }).then(function(data){
+                $scope.numberFollowings += 1;
+                user.is_following = true;
+                Logger.logSuccess('Vous venez de suivre ' + user.account_name);
+            }, function(err){
+                return;
+            });
+        };
+
+
+        $scope.unfollow = function(user){
+            $http.delete(appConfig.appUrl + '/relationships/'+ user.id).then(function(data){
+                $scope.numberFollowings -= 1;
+                user.is_following = false;
+                return;
+            }, function(err){
+                console.log(err);
+            });
+        };
+
 
     }
 ]);

@@ -29,7 +29,7 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
 
         /** get number of followers for the current user **/
         $http
-            .get(appConfig.appUrl + '/user/' + $scope.currentUser + '/followers')
+            .get(appConfig.appUrl + '/user/' + $scope.user.id + '/followers')
             .then(function(response){
                 $scope.numberFollowers = response.data.length;
             }, function(err){
@@ -38,7 +38,7 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
 
         /* get number of followings for the current user */
         $http
-            .get(appConfig.appUrl + '/user/' + $scope.currentUser + '/following')
+            .get(appConfig.appUrl + '/user/' + $scope.user.id + '/following')
             .then(function(response){
                 $scope.numberFollowings = response.data.length;
             }, function(err){

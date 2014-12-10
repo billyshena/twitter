@@ -84,16 +84,33 @@
                     <div class="col-md-12">
                         <div class="panel b-a">
                             <div class="panel-heading bg-success dk no-border wrapper-lg"></div>
-                            <div class="text-center m-b clearfix">
-                                <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })" href="#/app/profile/bshen">
+                            <div class="text-center clearfix">
+                                <div class="thumb-lg avatar m-t-n-xxl m-b" data-ui-sref="app.profile({ name: user.account_name })" href="#/app/profile/bshen">
                                     <img data-ng-src="{{avatarUrl }}/{{user.avatar}}"
                                          alt="..."
                                          class="b b-3x b-white avatar-medium"
                                          >
-                                    <div class="h3 font-thin m-t-sm ng-binding">{{user.account_name}}</div>
-                                    <span class="ng-binding">5 tweets</span>
                                 </div>
+                                <p> <span class="displayName h4">{{user.account_name}}</span>  vous suit</p>
                             </div>
+
+                            <center>
+                                <!-- FOLLOW button -->
+                                <button class="btn btn-default m-b"
+                                        ng-if="!user.is_following"
+                                        data-ng-click="follow(user)">
+                                    <i class="fa fa-user text"></i>
+                                    Follow
+                                </button>
+
+                                <!-- UNFOLLOW button -->
+                                <button class="btn btn-danger m-b"
+                                        ng-if="user.is_following"
+                                        data-ng-click="unfollow(user)">
+                                    <i class="fa fa-share"></i>
+                                    Unfollow
+                                </button>
+                            </center>
                         </div>
                     </div>
                 </div>

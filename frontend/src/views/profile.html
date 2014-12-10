@@ -39,8 +39,8 @@
     <div class="wrapper bg-white b-b">
         <ul class="nav nav-pills nav-sm">
             <li class="active"><a data-ui-sref="app.profile({ name: user.account_name})">Tweets</a></li>
-            <li><a data-ui-sref="app.following({name: user.account_name })">Abonnés</a></li>
-            <li><a data-ui-sref="app.followers({name: user.account_name })">Abonnements</a></li>
+            <li ng-show="currentUser == user.id"><a data-ui-sref="app.following({name: user.account_name })">Abonnés</a></li>
+            <li ng-show="currentUser == user.id"><a data-ui-sref="app.followers({name: user.account_name })">Abonnements</a></li>
             <li class="pull-right">
                 <!-- Single button -->
                 <div class="btn-group" dropdown is-open="status.isopen">
