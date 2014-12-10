@@ -75,4 +75,13 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+          :bucket => 'scolupload3',
+          :access_key_id => 'AKIAJD7OVVEBGC7DEIWA',
+          :secret_access_key => '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'
+      }
+  }
 end

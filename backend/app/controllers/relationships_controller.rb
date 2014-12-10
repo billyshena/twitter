@@ -11,7 +11,8 @@ class RelationshipsController < Api::BaseController
   end
 
   def destroy
-    user = Relationship.find(params[:id]).followed
+    puts "DESTROYING"
+    user = User.find(params[:id])
     if @current_user.unfollow(user)
       render json: {success: true}
     else

@@ -23,21 +23,18 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
             .get(appConfig.appUrl + '/user')
             .then(function(response){
                 angular.forEach(response.data, function(user, index){
-                    if(user.id == $scope.current_user){
-                        console.log('index = ' + index);
-                        console.log(user);
-                        response.data.splice(index, 1);
-                    }
                     $http
                         .get(appConfig.appUrl + '/user/is_following/' + user.id)
                         .then(function(response){
                             console.log(response);
                             user.is_following = response.data.is_following;
+                            if(user.id !== $scope.current_user){
+                                $scope.persons.push(user);
+                            }
                         }, function(err){
                             console.log(err);
                         })
                 });
-                $scope.persons = response.data;
             }, function(err){
                 console.log(err);
             });
@@ -65,8 +62,8 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
             $http.post(appConfig.appUrl + '/relationships/create',{
                 followed_id: user.id
             }).then(function(data){
-                console.log(data);
-                $scope.persons.splice($scope.persons.indexOf(data),1);
+                $scope.numberFollowings += 1;
+                user.is_following = true;
                 Logger.logSuccess('Vous venez de suivre ' + user.account_name);
             }, function(err){
                 return;
@@ -75,10 +72,8 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
 
 
         $scope.unfollow = function(user){
-            $http.post(appConfig.appUrl + '/relationships/destroy',{
-                followed_id: user.id
-            }).then(function(data){
-                console.log(data);
+            $http.delete(appConfig.appUrl + '/relationships/'+ user.id).then(function(data){
+                $scope.numberFollowings -= 1;
                 user.is_following = false;
                 return;
             }, function(err){

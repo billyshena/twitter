@@ -36,9 +36,6 @@
                           </div>
                     </div>
 
-                    <div class="col-md-12">
-
-                    </div>
                 </div>
                 <!-- /user information -->
 
@@ -119,23 +116,17 @@
                           <!-- FOLLOW button -->
                           <button class="btn btn-default pull-right"
                                   ng-if="!person.is_following"
-                                  ui-toggle-class="btn-success"
                                   data-ng-click="follow(person)">
                               <i class="fa fa-user text"></i>
-                              <span class="text">Follow</span>
-                              <i class="fa fa-check text-active"></i>
-                              <span class="text-active">Suivi</span>
+                              Follow
                           </button>
 
                           <!-- UNFOLLOW button -->
-                          <button class="btn btn-default pull-right"
+                          <button class="btn btn-danger pull-right"
                                   ng-if="person.is_following"
-                                  ui-toggle-class="btn-success"
-                                  data-ng-click="unFollow(person)">
-                              <i class="fa fa-user text"></i>
-                              <span class="text">Unfollow</span>
-                              <i class="fa fa-check text-active"></i>
-                              <span class="text-active">Suivi</span>
+                                  data-ng-click="unfollow(person)">
+                              <i class="fa fa-share"></i>
+                              Unfollow
                           </button>
 
                         <a href="">{{person.account_name}}</a>
