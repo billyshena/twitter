@@ -21,7 +21,12 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
                 templateUrl: appConfig.assetsUrl + 'views/modals/' + modal + '.html',
                 controller: modal + 'Ctrl'
             });
+
+            modalInstance.result.then(function(data){
+                $scope.user = data;
+            })
         };
+
 
 
         /* Get user's posts */

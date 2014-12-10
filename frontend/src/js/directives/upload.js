@@ -19,12 +19,10 @@ angular.module('app.directives.upload', [])
                     init: function () {
 
                         this.on("success", function (data, files) {
-                            console.log(files);
-                            console.log(data);
-                            Logger.logSuccess('Upload avatar en cours...');
-                            setTimeout(function(){
-                                location.reload();
-                            },2000);
+                            Logger.logSuccess('Votre avatar a bien été modifié!');
+                            scope.$apply(function(){
+                                scope.user = files;
+                            })
                         });
 
                         this.on("error", function (file, err) {
