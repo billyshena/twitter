@@ -17,6 +17,15 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $scope.numberFollowers = 0;
         $scope.numberFollowings = 0;
 
+        $http
+            .get(appConfig.appUrl + '/user/' + $scope.current_user)
+            .then(function(response){
+                $scope.user = response.data;
+            }, function(err){
+                console.log(err);
+            });
+
+
 
         /* Get all the users to be followed */
         $http
