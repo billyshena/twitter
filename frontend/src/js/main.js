@@ -12,7 +12,7 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
         $scope.selected = undefined;
         $scope.avatarUrl = appConfig.appUrl + '/avatars';
         $scope.isOpen = false;
-        $scope.current_user = JSON.parse(Storage.get('token')).id;
+
 
 
 
@@ -31,6 +31,8 @@ angular.module('app.controllers.main',[]).controller('AppCtrl', [
 
 
         if(Auth.isAuthenticated()){
+            $scope.current_user = JSON.parse(Storage.get('token')).id;
+            
             $http.get(appConfig.appUrl + '/user/' + JSON.parse(Storage.get('token')).id).success(function(data){
                 $scope.user = data;
             }).error(function(err){
