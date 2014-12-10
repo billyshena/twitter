@@ -66,6 +66,7 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+
   private
   # This is where the real work is done, store the BCrypt has in the
   # database

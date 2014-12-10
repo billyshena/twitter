@@ -15,6 +15,7 @@ angular.module('app', [
     'app.controllers.avatar',
     'app.controllers.following',
     'app.controllers.follower',
+    'app.controllers.favorite',
     'app.directives.upload',
     'angularMoment'
 ]);

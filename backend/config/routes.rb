@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :favorites
+
   resources :posts
 
   resources :cors
@@ -51,6 +53,15 @@ Rails.application.routes.draw do
   post '/upload_avatar', to: "user#upload"
 
   post '/posts/new', to: "posts#create"
+
+
+  post '/favorites/create', to: "favorites#create"
+
+  get '/getFavorites/:id', to: "favorites#index"
+
+  get '/is_favorite/:id', to: "user#favorite?"
+
+  delete 'favorites/:id', to: "favorites#destroy"
 
 
 end

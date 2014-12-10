@@ -79,17 +79,40 @@
                                     <i class="on b-white right"></i>
                                   </span>
                                       <span class="clear">
+
                                         <span class="displayName">{{tweet.user.account_name}}</span>
                                         <small class="text-muted clear text-ellipsis h4">{{tweet.content}}</small>
                                       </span>
+
                                    <center>
+
                                         <img data-ng-src="http://localhost:3000/uploads/{{tweet.image}}"
                                              alt="Post image"
                                              class="m-t tweet-img"
                                              height="200" width="250" ng-if="tweet.image !== null"/>
                                     </center>
                             </a>
+
+                            <!-- Button to add favorite -->
+                            <a class="btn btn-default favorite"
+                               ng-show="!tweet.is_favorite"
+                               data-ng-click="favorite(tweet)"
+                               ng-class="{'favorite-with-img': tweet.image !== null, 'favorite-without-img': tweet.image == null}">
+                                <i class="fa fa-star text"></i>
+                                <i class="fa fa-star text-active text-success"></i>
+                            </a>
+
+
+                            <!-- Button to remove favorite -->
+                            <a class="btn btn-default favorite active"
+                               ng-show="tweet.is_favorite"
+                               data-ng-click="unfavorite(tweet)"
+                               ng-class="{'favorite-with-img': tweet.image !== null, 'favorite-without-img': tweet.image == null}">
+                                <i class="fa fa-star text"></i>
+                                <i class="fa fa-star text-active text-success"></i>
+                            </a>
                         </div>
+
                     </div>
 
                 </div>
