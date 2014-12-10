@@ -8,6 +8,14 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
         $scope.posts = [];
 
 
+        $http
+            .get(appConfig.appUrl + '/user/is_following/' + $scope.user.id)
+            .then(function(response){
+                $scope.user.is_following = response.data.is_following;
+            }, function(err){
+                console.log(err);
+            });
+
         $scope.open = function(modal){
             var modalInstance = $modal.open({
                 templateUrl: appConfig.assetsUrl + 'views/modals/' + modal + '.html',
@@ -44,6 +52,30 @@ angular.module('app.controllers.user', []).controller('userCtrl', [
             }, function(err){
                 console.log(err);
             });
+
+
+        $scope.follow = function(user){
+            $http.post(appConfig.appUrl + '/relationships/create',{
+                followed_id: user.id
+            }).then(function(data){
+                $scope.numberFollowings += 1;
+                user.is_following = true;
+                Logger.logSuccess('Vous venez de suivre ' + user.account_name);
+            }, function(err){
+                return;
+            });
+        };
+
+
+        $scope.unfollow = function(user){
+            $http.delete(appConfig.appUrl + '/relationships/'+ user.id).then(function(data){
+                $scope.numberFollowings -= 1;
+                user.is_following = false;
+                return;
+            }, function(err){
+                console.log(err);
+            });
+        };
 
     }
 ]);

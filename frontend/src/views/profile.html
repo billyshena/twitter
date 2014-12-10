@@ -52,10 +52,23 @@
                         Mon compte <span class="caret"></span>
                     </button>
 
-                    <button class="btn btn-info" ng-if="user.id != currentUser">
-                        <i class="fa fa-share"></i>
-                        Follow
-                    </button>
+                    <div ng-if="user.id != currentUser">
+                        <button class="btn btn-default"
+                                ng-click="follow(user)"
+                                ng-if="!user.is_following">
+                            <i class="fa fa-user"></i>
+                            Follow
+                        </button>
+
+
+                        <button
+                                class="btn btn-danger"
+                                ng-click="unfollow(user)"
+                                ng-if="user.is_following">
+                            <i class="fa fa-share"></i>
+                            Unfollow
+                        </button>
+                    </div>
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <a data-ng-click="open('avatar')">
