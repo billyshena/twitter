@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="hbox text-center b-t b-light">
-                              <a data-ui-sref="app.following({name: user.account_name })"" class="col padder-v text-muted">
+                              <a data-ui-sref="app.following({name: user.account_name })" class="col padder-v text-muted">
                                 <div class="h4">{{numberFollowers}}</div>
                                 <span>Abonnés</span>
                               </a>
@@ -70,7 +70,7 @@
                     <div class="panel item">
                         <div class="list-group list-group-lg list-group-sp animated fadeInDownBig"
                              ng-repeat="tweet in posts | orderBy: '-created_at'">
-                            <a herf="" class="list-group-item clearfix ">
+                            <a herf="" data-ui-sref="app.profile({name: tweet.user.account_name })" class="list-group-item clearfix ">
                                   <i class="fa fa-clock-o pull-right" style="margin-top:4px;"></i>
                                   <span class="pull-right" am-time-ago="tweet.created_at">
 
@@ -80,7 +80,7 @@
                                     <i class="on b-white right"></i>
                                   </span>
                                   <span>
-                                    <span class="h5">{{tweet.user.account_name}}</span>
+                                      <span class="h5">{{tweet.user.account_name}}</span>
 
                                   </span>
 
