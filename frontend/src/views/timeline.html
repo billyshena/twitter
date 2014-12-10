@@ -18,7 +18,7 @@
                             <div class="text-center m-b clearfix">
                               <div class="thumb-lg avatar m-t-n-xxl" data-ui-sref="app.profile({ name: user.account_name })">
                                 <img data-ng-src="{{ avatarUrl }}/{{ user.avatar }}" alt="..." class="b b-3x b-white avatar-medium">
-                                <div class="h3 font-thin m-t-sm">{{user.account_name}}</div>
+                                <div class="h3 font-thin m-t-sm displayName">{{user.account_name}}</div>
                                 <span>{{ numberPosts }} tweets</span>
                               </div>
                             </div>
@@ -28,7 +28,7 @@
                                 <div class="h4">{{numberFollowers}}</div>
                                 <span>Abonnés</span>
                               </a>
-                              <a data-ui-sref="app.followers({name: user.account_name })" class="col padder-v text-muted b-r b-light">
+                              <a data-ui-sref="app.followers({name: user.account_name })" class="col padder-v text-muted b-light">
                                 <div class="h4">{{numberFollowings}}</div>
                                 <span>Abonnements</span>
                               </a>
@@ -72,19 +72,16 @@
                              ng-repeat="tweet in posts | orderBy: '-created_at'">
                             <a herf="" data-ui-sref="app.profile({name: tweet.user.account_name })" class="list-group-item clearfix ">
                                   <i class="fa fa-clock-o pull-right" style="margin-top:4px;"></i>
-                                  <span class="pull-right" am-time-ago="tweet.created_at">
+                                  <span class="pull-right" am-time-ago="tweet.created_at"></span>
 
-                                  </span>
                                   <span class="pull-left thumb-sm avatar m-r">
                                     <img class="avatar-small" data-ng-src="{{avatarUrl}}/{{tweet.user.avatar}}" alt="...">
                                     <i class="on b-white right"></i>
                                   </span>
-                                  <span>
-                                      <span class="h5">{{tweet.user.account_name}}</span>
-
-                                  </span>
-
-                                   <p class="h4 tweet-content">{{tweet.content}}</p>
+                                      <span class="clear">
+                                        <span class="displayName">{{tweet.user.account_name}}</span>
+                                        <small class="text-muted clear text-ellipsis h4">{{tweet.content}}</small>
+                                      </span>
                                    <center>
                                         <img data-ng-src="http://localhost:3000/uploads/{{tweet.image}}"
                                              alt="Post image"
@@ -129,7 +126,7 @@
                               Unfollow
                           </button>
 
-                        <a href="">{{person.account_name}}</a>
+                        <a href="" class="displayName">{{person.account_name}}</a>
                       </li>
 
                     </ul>

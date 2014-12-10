@@ -140,7 +140,6 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                     this.on("success", function (data, files) {
                         scope.$apply(function(){
                             scope.posts.push(files);
-                            scope.isOpen = false;
                         });
                         Logger.logSuccess('Votre poste a bien été publié');
                     });

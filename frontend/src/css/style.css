@@ -29,7 +29,9 @@
     max-height: 300px;
     padding-bottom: 20px;
 }
-
+.displayName{
+    text-transform: capitalize;
+}
 .tweet-content {
     padding-top: 40px;
     padding-bottom: 20px;
