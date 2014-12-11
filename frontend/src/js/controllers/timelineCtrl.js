@@ -104,7 +104,8 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $scope.favorite = function(tweet){
             $http
                 .post(appConfig.appUrl + '/favorites/create',{
-                    post_id: tweet.id
+                    post_id: tweet.id,
+                    user_id: tweet.user_id
                 })
                 .then(function(data){
                     tweet.is_favorite = true;

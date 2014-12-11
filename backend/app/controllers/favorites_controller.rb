@@ -4,7 +4,9 @@ class FavoritesController < Api::BaseController
 
   def index
     @favorites = Favorite.where(user_id: params[:id])
-    render json: @favorites.as_json(include: [:user,:post])
+    render json: @favorites.as_json(:include => {:post => {
+                                        :include  => :user
+                                    }})
   end
 
   def show

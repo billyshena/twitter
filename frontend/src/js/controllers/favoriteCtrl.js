@@ -13,6 +13,7 @@ angular.module('app.controllers.favorite', []).controller('favoriteCtrl', [
         $http
             .get(appConfig.appUrl + '/getFavorites/' + data.id)
             .then(function(response){
+                console.log(response.data);
                 $scope.posts = response.data;
                 $scope.numberFavorites = response.data.length;
             }, function(err){
