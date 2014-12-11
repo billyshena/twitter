@@ -15,7 +15,6 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
         /* Register a new user object */
         $scope.signUp = function (user){
 
-            console.log(user);
             $http
                 .post(appConfig.appUrl + '/user/create',{
                     email: user.email,
@@ -24,7 +23,6 @@ angular.module('app.controllers.home', []).controller('homeCtrl', [
                 })
                 .success(function(data){
                     $scope.newUser = {};
-                    console.log(data);
                     Logger.logSuccess('Votre compte a bien été crée');
                 }, function(err){
                     console.log(err);

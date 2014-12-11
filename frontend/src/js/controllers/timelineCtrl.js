@@ -17,6 +17,7 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
         $scope.numberFollowers = 0;
         $scope.numberFollowings = 0;
 
+
         $http
             .get(appConfig.appUrl + '/user/' + $scope.current_user)
             .then(function(response){
@@ -35,7 +36,6 @@ angular.module('app.controllers.timeline', []).controller('timelineCtrl', [
                     $http
                         .get(appConfig.appUrl + '/user/is_following/' + user.id)
                         .then(function(response){
-                            console.log(response);
                             user.is_following = response.data.is_following;
                             if(user.id !== $scope.current_user){
                                 $scope.persons.push(user);

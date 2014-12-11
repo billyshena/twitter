@@ -6,9 +6,6 @@
 angular.module('app.controllers.favorite', []).controller('favoriteCtrl', [
     '$scope', '$state', 'Logger', 'data', '$http',
     function ($scope, $state, Logger, data, $http) {
-        console.log(data);
-
-
         $scope.user = data;
         $scope.posts = [];
         $scope.numberFavorites = 0;

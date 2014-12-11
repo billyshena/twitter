@@ -12,13 +12,10 @@ angular.module('app.controllers.avatar', []).controller('avatarCtrl', [
         };
 
         $scope.$watch('user',function(data){
-            console.log('CHANGING USER ');
             if(data){
                 $modalInstance.close(data);
             }
         });
-
-        console.log('avatarCtrl fired');
 
     }
 ]);

@@ -7,11 +7,6 @@ angular.module('app.controllers.tweet', []).controller('tweetCtrl', [
     '$scope', 'Logger', '$http', '$modalInstance', '$rootScope',
     function($scope, Logger, $http, $modalInstance, $rootScope) {
 
-        console.log('tweetCtrl fired');
-
-
-
-
 
     }
 ]);

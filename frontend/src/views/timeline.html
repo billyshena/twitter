@@ -131,7 +131,7 @@
                       <li class="list-group-item"
                           ng-repeat="person in persons"
                           >
-                        <a href="" class="thumb-sm m-r">
+                        <a data-ui-sref="app.profile({name: person.account_name})" class="thumb-sm m-r">
                           <img data-ng-src="{{avatarUrl}}/{{person.avatar}}" class="r r-2x avatar-small">
                         </a>
 
