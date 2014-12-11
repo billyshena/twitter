@@ -12,7 +12,6 @@ angular.module('app')
             $rootScope.$on("$stateChangeStart", function (event, toState) {
                 if (toState.authenticate && !Auth.isAuthenticated()) {
                     event.preventDefault();
-                    Logger.logError('Merci de vous connecter pour accéder à cette section');
                     $state.go('app.home');
                 }
             });
