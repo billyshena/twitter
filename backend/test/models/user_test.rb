@@ -19,6 +19,16 @@ RSpec.describe PostsController, :type => :controller do
             michael.unfollow(archer)
             expect(michael.following?(archer)).to eq(false)
         end
+
+
+        
+        it "should not create the user if the email passed does not meet the regex" do
+            user = User.create(account_name: "Billy Shen", email: "billy.shen@")
+            expect(user.id).to eq(nil)
+
+            user_other = User.create(account_name: "Cecile Shen", email: "cecile.shen@gmail.com")
+            expect(user_other.id).to be > 0
+        end
     end
 
 end
